@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./_components/Navbar";
 import Footer from "./_components/Footer";
 import Hero from "./_components/Hero";
+import {ThemeProvider} from "next-themes";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -16,15 +17,19 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang='en'>
       <body>
-        <Hero>
-          <header className=' flex-shrink-0 z-10'>
-            <Navbar />
-          </header>
-          <main className='flex-1 mx-auto p-4 z-10'>{children}</main>
-          <footer className=' flex-shrink-0 z-10'>
-            <Footer />
-          </footer>
-        </Hero>
+        <ThemeProvider attribute='class' defaultTheme='light'>
+          <Hero>
+            <header className=' flex-shrink-0 '>
+              <Navbar />
+            </header>
+            <main className='flex-1 mx-auto p-4 flex items-center justify-center '>
+              {children}
+            </main>
+            <footer className=' flex-shrink-0 '>
+              <Footer />
+            </footer>
+          </Hero>
+        </ThemeProvider>
       </body>
     </html>
   );

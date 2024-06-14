@@ -26,7 +26,7 @@ export default function Page() {
   ];
 
   return (
-    <div className='text-white'>
+    <div>
       <h1 className='text-4xl font-bold'>About Me</h1>
       <p className='mt-4'>
         I am a passionate web developer with experience in building modern web

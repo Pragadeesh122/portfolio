@@ -24,7 +24,7 @@ export default function Page() {
   ];
 
   return (
-    <div className='text-white'>
+    <div>
       <h1 className='text-4xl font-bold'>My Projects</h1>
       <div className='mt-4 grid grid-cols-1 md:grid-cols-2 gap-4'>
         {projects.map((project) => (

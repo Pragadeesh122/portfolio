@@ -1,8 +1,9 @@
 import Link from "next/link";
+import ThemeToggle from "./ThemeToggle"; // Import the ThemeToggle component
 
 const Navbar = () => {
   return (
-    <nav className='bg-gradient-to-r from-blue-500 to-purple-600 text-white p-6 shadow-lg'>
+    <nav className='p-6'>
       <div className='container mx-auto flex justify-between items-center'>
         <Link href='/'>
           <span className='text-2xl font-bold'>My Portfolio</span>
@@ -20,6 +21,9 @@ const Navbar = () => {
           <Link href='/contact'>
             <span>Contact</span>
           </Link>
+          <span className='ml-12'>
+            <ThemeToggle />
+          </span>
         </div>
       </div>
     </nav>

@@ -1,11 +1,13 @@
+import {sendEmail} from "../_lib/actions";
+
 export default function Page() {
   return (
-    <div className='text-white'>
+    <div>
       <h1 className='text-4xl font-bold'>Contact Me</h1>
       <p className='mt-4'>
         Feel free to reach out to me via email or follow me on social media.
       </p>
-      <form className='mt-8 space-y-4'>
+      <form action={sendEmail} className='mt-8 space-y-4'>
         <div>
           <label className='block text-lg font-medium' htmlFor='name'>
             Name
