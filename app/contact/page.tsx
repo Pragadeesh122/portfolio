@@ -1,9 +1,10 @@
+import SubmitButton from "../_components/SubmitButton";
 import {sendEmail} from "../_lib/actions";
 
 export default function Page() {
   return (
     <div>
-      <h1 className='text-4xl font-bold'>Contact Me</h1>
+      <h1 className='text-4xl font-bold'>Let&apos;s Connect</h1>
       <p className='mt-4'>
         Feel free to reach out to me via email or follow me on social media.
       </p>
@@ -43,11 +44,7 @@ export default function Page() {
             rows={4}
             required></textarea>
         </div>
-        <button
-          type='submit'
-          className='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition'>
-          Send
-        </button>
+        <SubmitButton pendingLabel='Sending...' >Send</SubmitButton>
       </form>
     </div>
   );
