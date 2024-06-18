@@ -1,7 +1,14 @@
+import {title} from "process";
 import SubmitButton from "../_components/SubmitButton";
 import {sendEmail} from "../_lib/actions";
 
 export default function Page() {
+  const metadata = {
+    title: "Contact",
+    description:
+      "Feel free to reach out to me via email or follow me on social media.",
+  };
+
   return (
     <div>
       <h1 className='text-4xl font-bold'>Let&apos;s Connect</h1>
@@ -44,7 +51,7 @@ export default function Page() {
             rows={4}
             required></textarea>
         </div>
-        <SubmitButton pendingLabel='Sending...' >Send</SubmitButton>
+        <SubmitButton pendingLabel='Sending...'>Send</SubmitButton>
       </form>
     </div>
   );

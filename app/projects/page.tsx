@@ -1,6 +1,11 @@
 import ProjectCard from "../_components/ProjectCard";
 
 export default function Page() {
+  const metadata = {
+    title: "Projects",
+    description: "Check out some of the projects I have worked on.",
+  };
+
   type Project = {
     title: string;
     description: string;

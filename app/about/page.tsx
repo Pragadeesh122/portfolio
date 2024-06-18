@@ -1,6 +1,11 @@
 import ExperienceCard from "../_components/ExperienceCard";
 
 export default function Page() {
+  const metadata = {
+    title: "About",
+    description: "Learn more about me and my experience as a web developer.",
+  };
+
   type Experience = {
     company: string;
     role: string;

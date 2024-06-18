@@ -1,6 +1,11 @@
 import SkillCard from "../_components/SkillCard";
 
 export default function Page() {
+  const metadata = {
+    title: "Skills",
+    description: "Check out some of the skills I have acquired.",
+  };
+
   type Skill = {
     skill: string;
     level: string;
