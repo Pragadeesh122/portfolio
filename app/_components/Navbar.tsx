@@ -1,14 +1,22 @@
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle"; // Import the ThemeToggle component
+import Image from "next/image";
 
 const Navbar = () => {
   return (
-    <nav className='p-6'>
-      <div className='container mx-auto flex justify-between items-center'>
-        <Link href='/'>
-          <span className='text-2xl font-bold'>My Portfolio</span>
-        </Link>
-        <div className='flex gap-8 text-xl'>
+    <nav className='p-6 mt-6'>
+      <div className='container mx-auto flex justify-between  items-center'>
+        <div className='flex items-center gap-8'>
+          <Link href='/'>
+            <span>
+              <Image
+                className='rounded-full mr-6'
+                src='/logo.png'
+                alt='logo'
+                width={48}
+                height={48}></Image>
+            </span>
+          </Link>
           <Link href='/about'>
             <span>About</span>
           </Link>
@@ -21,6 +29,8 @@ const Navbar = () => {
           <Link href='/contact'>
             <span>Contact</span>
           </Link>
+        </div>
+        <div className='flex gap-8 text-xl'>
           <span className='ml-12'>
             <ThemeToggle />
           </span>

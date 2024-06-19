@@ -1,12 +1,11 @@
 import Link from "next/link";
 
+export const metadata = {
+  title: "Home",
+  description:
+    "Welcome to my portfolio. A showcase of my work and skills as a modern web developer.",
+};
 export default function Page() {
-  const metadata = {
-    title: "Home",
-    description:
-      "Welcome to my portfolio. A showcase of my work and skills as a modern web developer.",
-  };
-
   return (
     <div className='p-4'>
       <div className='text-center '>
