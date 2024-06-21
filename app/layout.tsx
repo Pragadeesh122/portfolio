@@ -5,6 +5,7 @@ import Navbar from "./_components/Navbar";
 import Footer from "./_components/Footer";
 import Hero from "./_components/Hero";
 import {ThemeProvider} from "next-themes";
+import ToastProvider from "./_components/ToastProvider";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -30,6 +31,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
             </footer>
           </Hero>
         </ThemeProvider>
+        <ToastProvider />
       </body>
     </html>
   );

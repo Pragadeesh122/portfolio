@@ -4,9 +4,9 @@ import nodemailer from "nodemailer";
 
 export async function sendEmail(formData: any) {
   try {
-    const name: string = formData.get("name");
-    const email: string = formData.get("email");
-    const message: string = formData.get("message");
+    const name: string = formData["name"];
+    const email: string = formData["email"];
+    const message: string = formData["message"];
 
     const transporter = nodemailer.createTransport({
       service: "gmail",

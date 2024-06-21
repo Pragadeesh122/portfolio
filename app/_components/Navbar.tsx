@@ -4,9 +4,9 @@ import Image from "next/image";
 
 const Navbar = () => {
   return (
-    <nav className='p-6 mt-6'>
+    <nav className='p-6 mt-6 text-xl'>
       <div className='container mx-auto flex justify-between  items-center'>
-        <div className='flex items-center gap-8'>
+        <div className='flex items-center gap-16'>
           <Link href='/'>
             <span>
               <Image
@@ -17,9 +17,9 @@ const Navbar = () => {
                 height={48}></Image>
             </span>
           </Link>
-          <Link href='/about'>
+          {/* <Link href='/about'>
             <span>About</span>
-          </Link>
+          </Link> */}
           <Link href='/skills'>
             <span>Skills</span>
           </Link>
