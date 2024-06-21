@@ -36,13 +36,13 @@ export default function ContactForm() {
     <form
       ref={formRef}
       onSubmit={handleSubmit}
-      className='mt-8 space-y-4 flex flex-col gap-6'>
+      className='mt-6 space-y-4 flex flex-col gap-3'>
       <div>
-        <label className='block text-lg font-medium mb-2' htmlFor='name'>
+        <label className='block text-md font-medium mb-1' htmlFor='name'>
           Name
         </label>
         <input
-          className='w-full border p-2 rounded'
+          className='w-full border p-2 rounded border-black dark:border-white'
           type='text'
           id='name'
           name='name'
@@ -50,11 +50,11 @@ export default function ContactForm() {
         />
       </div>
       <div>
-        <label className='block text-lg font-medium mb-2' htmlFor='email'>
+        <label className='block text-lg font-medium mb-1 ' htmlFor='email'>
           Email
         </label>
         <input
-          className='w-full border p-2 rounded'
+          className='w-full border p-2 rounded-md  border-black dark:border-white'
           type='email'
           id='email'
           name='email'
@@ -62,11 +62,13 @@ export default function ContactForm() {
         />
       </div>
       <div>
-        <label className='block text-lg font-medium mb-2' htmlFor='message'>
+        <label
+          className='block text-lg font-medium rounded-md mb-1'
+          htmlFor='message'>
           Message
         </label>
         <textarea
-          className='w-full border p-2 rounded'
+          className='w-full border p-2 rounded-md  border-black dark:border-white'
           id='message'
           name='message'
           rows={4}

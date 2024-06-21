@@ -1,36 +1,55 @@
+"use client";
+
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle"; // Import the ThemeToggle component
 import Image from "next/image";
 import {League_Spartan, Roboto_Slab} from "next/font/google";
-
-const lg = League_Spartan({subsets: ["latin"]});
-const rb = Roboto_Slab({subsets: ["latin"]});
+import {usePathname} from "next/navigation";
+// const lg = League_Spartan({subsets: ["latin"]});
+// const rb = Roboto_Slab({subsets: ["latin"]});
 
 const Navbar = () => {
+  const currentPath = usePathname();
+
   return (
-    <nav className='p-6 mt-6 text-xl'>
+    <nav className='p-4 mt-2 text-md'>
       <div className='container mx-auto flex justify-between  items-center'>
-        <div className={`${rb.className} flex items-center gap-16`}>
+        <div>
           <Link href='/'>
             <span>
               <Image
-                className='rounded-full mr-6'
+                className=' mr-6 '
                 src='/logo.png'
                 alt='logo'
-                width={48}
-                height={48}></Image>
+                width={52}
+                height={52}></Image>
             </span>
           </Link>
+        </div>
+        <div
+          className={` flex items-center gap-16 px-16 py-4 rounded-3xl border-2 dark:border-black shadow-md dark:bg-background_1-900`}>
           {/* <Link href='/about'>
             <span>About</span>
           </Link> */}
-          <Link className='nav_link_hover' href='/skills'>
+          <Link
+            className={`${
+              currentPath === "/skills" && "text-blue-500  dark:text-red-500"
+            }  hover:text-blue-500 dark:hover:text-red-500 transition-border`}
+            href='/skills'>
             <span>Skills</span>
           </Link>
-          <Link className='nav_link_hover' href='/projects'>
+          <Link
+            className={`${
+              currentPath === "/projects" && "text-blue-500  dark:text-red-500"
+            }  hover:text-blue-500 dark:hover:text-red-500 transition-border `}
+            href='/projects'>
             <span>Projects</span>
           </Link>
-          <Link className='nav_link_hover' href='/contact'>
+          <Link
+            className={`${
+              currentPath === "/contact" && "text-blue-500  dark:text-red-500"
+            }  hover:text-blue-500 dark:hover:text-red-500 transition-border  `}
+            href='/contact'>
             <span>Contact</span>
           </Link>
         </div>
