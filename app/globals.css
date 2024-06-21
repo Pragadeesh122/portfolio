@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 .light-mode-gradient {
-  @apply bg-gradient-to-b from-background-100 to-background-200;
+  @apply bg-gradient-to-b from-background_1-200 to-background_1-300;
+}
+
+.nav_link_hover {
+  @apply px-6 py-3 rounded-lg hover:text-blue-600 dark:hover:text-red-500;
 }

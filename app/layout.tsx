@@ -1,5 +1,5 @@
 import type {Metadata} from "next";
-import {Inter} from "next/font/google";
+import {Inter, Open_Sans} from "next/font/google";
 import "./globals.css";
 import Navbar from "./_components/Navbar";
 import Footer from "./_components/Footer";
@@ -8,6 +8,7 @@ import {ThemeProvider} from "next-themes";
 import ToastProvider from "./_components/ToastProvider";
 
 const inter = Inter({subsets: ["latin"]});
+const openSans = Open_Sans({subsets: ["latin"], display: "swap"});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang='en'>
-      <body>
+      <body className={`${openSans.className}`}>
         <ThemeProvider attribute='class' defaultTheme='light'>
           <Hero>
             <header className=' flex-shrink-0 '>

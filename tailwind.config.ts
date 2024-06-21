@@ -23,6 +23,19 @@ const config: Config = {
           900: "#4B351B",
           950: "#382814",
         },
+
+        background_1: {
+          100: "#F8F9FA",
+          200: "#E9ECEF",
+          300: "#DEE2E6",
+          400: "#CED4DA",
+          500: "#CED4DA",
+          600: "#6C757D",
+          700: "#495057",
+          800: "#343A40",
+          900: "#212529",
+        },
+
         primary: {
           first: "#000814",
           second: "#212529",
@@ -31,6 +44,7 @@ const config: Config = {
           primary: "#FF6F61",
           secondary: "#4CAF50",
         },
+        link_hover: "#ebebeb",
         link: "#1E88E5",
         button: "#FF5722",
         border: "#E0E0E0",
