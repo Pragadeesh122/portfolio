@@ -12,7 +12,7 @@ export default function Page() {
     <div className='flex flex-row gap-20 p-4 mx-auto'>
       <div className='flex flex-col gap-12'>
         <div className='text-lg max-w-xl'>
-          <h1 className='mb-4 font-bold text-4xl text-gray-800'>
+          <h1 className='mb-4 font-bold text-4xl text-gray-800 dark:text-gray-400'>
             Hello all, I&apos;m Pragadeesh
           </h1>
           <p className='text-gray-500 text-lg  leading-loose  font-semibold'>
@@ -23,23 +23,29 @@ export default function Page() {
           </p>
         </div>
         <div className='flex gap-8'>
-          <Link href='/resume.pdf' passHref>
-            <button className='px-6 py-3 border-2 border-slate-700 bg-slate-700 text-white rounded-lg transition duration-300'>
-              Download Resume
-            </button>
+          <Link
+            href='https://drive.google.com/file/d/1KjEyJSIe6OV2jesGv9hwCH2H60MckcVW/view?usp=sharing'
+            target='_blank'>
+            <div className='overflow-hidden rounded-lg'>
+              <button className='px-6 py-3 border-2 border-slate-700 bg-slate-700 text-white rounded-lg hover:scale-110 transition duration-300'>
+                Download Resume
+              </button>
+            </div>
           </Link>
-          <Link href='/contact' passHref>
-            <button className='px-6 py-3 border-2 border-red-500 bg-red-500 text-white rounded-lg transition duration-300'>
-              Contact Me
-            </button>
+          <Link href='/contact'>
+            <div className='overflow-hidden rounded-lg'>
+              <button className='px-6 py-3 border-2 border-red-500 bg-red-500 text-white rounded-lg hover:scale-110 transition duration-300'>
+                Contact Me
+              </button>
+            </div>
           </Link>
         </div>
       </div>
       <div>
         <Image
-          className='rounded-lg object-cover shadow-lg'
-          src='/pic5.webp'
-          width={500}
+          className='rounded-lg object-cover'
+          src='/mainPage.png'
+          width={550}
           height={300}
           alt='homeLogo'
         />
