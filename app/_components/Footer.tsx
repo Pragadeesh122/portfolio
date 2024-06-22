@@ -22,10 +22,10 @@ const Footer = () => {
     <footer className='p-4 mt-8 w-full'>
       <div className='flex  items-center justify-center gap-20'>
         <div className='flex gap-6'>
-          <Link href='https://www.linkedin.com/in/yourprofile' target='_blank'>
+          <Link href='https://www.linkedin.com/in/pragadeeshvs' target='_blank'>
             <Image src={LinkedIN} alt='LinkedIn' width={30} height={30} />
           </Link>
-          <Link href='https://github.com/yourprofile' target='_blank'>
+          <Link href='https://github.com/Pragadeesh122' target='_blank'>
             <Image
               src={theme === "light" ? Github_black : Github_white}
               alt='Github'
@@ -33,7 +33,7 @@ const Footer = () => {
               height={30}
             />
           </Link>
-          <Link href='https://twitter.com/yourprofile' target='_blank'>
+          <Link href='https://x.com/Pragadeesh1221' target='_blank'>
             <Image
               src={theme === "light" ? X_white : X_black}
               alt='Twitter'

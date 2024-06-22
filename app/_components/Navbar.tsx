@@ -54,9 +54,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div>
-          <span className='ml-12 px-2 pt-3 pb-2 rounded-lg hover:bg-link_hover dark:hover:bg-slate-600'>
-            <ThemeToggle />
-          </span>
+          <ThemeToggle />
         </div>
       </div>
     </nav>

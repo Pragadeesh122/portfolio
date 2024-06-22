@@ -23,13 +23,30 @@ export async function sendEmail(formData: any) {
       from: `${name} <${process.env.USER_GMAIL}>`,
       to: process.env.USER_GMAIL,
       replyTo: email,
-      subject: `${name} likes to connect with you!`,
-      text: `Hey Pragadeesh,\n\n${message}\n\nFrom: ${name} (${email})`,
-      html: `<p>Hey Pragadeesh,</p><p>${message}</p><p>From: ${name} (<a href="mailto:${email}">${email}</a>)</p>`,
+      subject: `New Connection Request from ${name}`,
+      text: `Hello Pragadeesh,
+
+You have received a new message from ${name} (${email}):
+
+"${message}"
+
+Best regards,
+${name}
+`,
+      html: `
+        <div style="font-family: Arial, sans-serif; font-size: 16px; color: #333;">
+          <p>Hello Pragadeesh,</p>
+          <p>You have received a new message from <strong>${name}</strong> (<a href="mailto:${email}" style="color: #1a0dab;">${email}</a>):</p>
+          <blockquote style="border-left: 2px solid #ccc; margin: 1em 0; padding: 0.5em 1em; color: #555;">
+            "${message}"
+          </blockquote>
+          <p>Best regards,<br>${name}</p>
+        </div>
+      `,
     };
 
     await transporter.sendMail(mailOptions);
   } catch (err: any) {
-    throw new Error(err);
+    throw new Error(err.message);
   }
 }
