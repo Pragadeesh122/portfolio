@@ -7,7 +7,7 @@ const FooterSkeleton = () => {
           <div className='w-8 h-8 bg-gray-300 rounded-full'></div>
           <div className='w-8 h-8 bg-gray-300 rounded-full'></div>
         </div>
-        <div className='w-64 h-6 bg-gray-300 rounded'></div>
+        <div className='w-72 h-6 bg-gray-300 rounded'></div>
       </div>
     </footer>
   );
