@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import mainPage from "@/public/mainPage.png";
 
 export const metadata = {
   title: "Home",
@@ -44,7 +45,8 @@ export default function Page() {
       <div>
         <Image
           className='rounded-lg object-cover '
-          src='/mainPage.png'
+          src={mainPage}
+          placeholder='blur'
           width={550}
           height={300}
           alt='homeLogo'
