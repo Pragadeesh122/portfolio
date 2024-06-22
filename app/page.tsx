@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <div className='flex flex-row gap-20 p-4 mx-auto'>
+    <div className='flex flex-col-reverse md:flex-row gap-20 p-4 mx-auto'>
       <div className='flex flex-col gap-12'>
         <div className='text-lg max-w-xl'>
           <h1 className='mb-4 font-bold text-4xl text-gray-800 dark:text-gray-400'>
@@ -43,7 +43,7 @@ export default function Page() {
       </div>
       <div>
         <Image
-          className='rounded-lg object-cover'
+          className='rounded-lg object-cover '
           src='/mainPage.png'
           width={550}
           height={300}

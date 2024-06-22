@@ -9,6 +9,7 @@ import LinkedIN from "@/public/LinkedIN.png";
 import X_white from "@/public/X_white.png";
 import X_black from "@/public/X_black.png";
 import {useEffect, useState} from "react";
+import FooterSkeleton from "../_skeletonComponent/FooterSkeleto";
 
 const Footer = () => {
   const {theme, setTheme} = useTheme();
@@ -16,7 +17,7 @@ const Footer = () => {
 
   useEffect(() => setMounted(true), []);
 
-  if (!mounted) return null;
+  if (!mounted) return <FooterSkeleton />;
 
   return (
     <footer className='p-4 mt-8 w-full'>

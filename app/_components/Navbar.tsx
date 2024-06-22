@@ -5,11 +5,18 @@ import ThemeToggle from "./ThemeToggle"; // Import the ThemeToggle component
 import Image from "next/image";
 import {League_Spartan, Roboto_Slab} from "next/font/google";
 import {usePathname} from "next/navigation";
+import {useEffect, useState} from "react";
+import NavbarSkeleton from "../_skeletonComponent/NavSkeleton";
 // const lg = League_Spartan({subsets: ["latin"]});
 // const rb = Roboto_Slab({subsets: ["latin"]});
 
 const Navbar = () => {
   const currentPath = usePathname();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return <NavbarSkeleton />;
 
   return (
     <nav className='p-4 mt-2 text-md'>

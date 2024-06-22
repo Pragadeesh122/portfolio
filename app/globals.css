@@ -9,3 +9,31 @@
 .nav_link_hover {
   @apply px-6 py-3 rounded-lg hover:text-blue-600 dark:hover:text-red-500;
 }
+
+@layer components {
+  .spinner {
+    margin: 3.2rem auto 1.6rem;
+    width: 60px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 8px solid theme("colors.background_1.900");
+    border-right-color: theme("colors.background_1.200");
+    animation: rotate 1s infinite linear;
+  }
+
+  .spinner-mini {
+    margin: 0;
+    width: 20px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 2px solid theme("colors.background_1.200");
+    border-right-color: transparent;
+    animation: rotate 1s infinite linear;
+  }
+
+  @keyframes rotate {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+}
