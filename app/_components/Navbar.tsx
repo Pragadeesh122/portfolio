@@ -19,6 +19,7 @@ const Navbar = () => {
   if (!mounted) return <NavbarSkeleton />;
 
   return (
+    // <NavbarSkeleton />
     <nav className='p-4 mt-2 text-md'>
       <div className='container mx-auto flex justify-between  items-center'>
         <div>
