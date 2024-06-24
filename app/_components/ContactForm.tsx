@@ -38,11 +38,11 @@ export default function ContactForm() {
       onSubmit={handleSubmit}
       className='mt-6 space-y-4 flex flex-col gap-3'>
       <div>
-        <label className='block text-md font-medium mb-1' htmlFor='name'>
+        <label className='block text-md mb-1 font-semibold' htmlFor='name'>
           Name
         </label>
         <input
-          className='w-full border p-2 rounded border-black dark:border-white'
+          className='w-full border p-2 rounded border-slate-300 dark:border-slate-800 '
           type='text'
           id='name'
           name='name'
@@ -50,11 +50,11 @@ export default function ContactForm() {
         />
       </div>
       <div>
-        <label className='block text-lg font-medium mb-1 ' htmlFor='email'>
+        <label className='block text-md font-semibold mb-1 ' htmlFor='email'>
           Email
         </label>
         <input
-          className='w-full border p-2 rounded-md  border-black dark:border-white'
+          className='w-full border p-2 rounded-md   border-slate-300 dark:border-slate-800 '
           type='email'
           id='email'
           name='email'
@@ -63,19 +63,19 @@ export default function ContactForm() {
       </div>
       <div>
         <label
-          className='block text-lg font-medium rounded-md mb-1'
+          className='block text-md font-semibold rounded-md mb-1'
           htmlFor='message'>
           Message
         </label>
         <textarea
-          className='w-full border p-2 rounded-md  border-black dark:border-white'
+          className='w-full border p-2 rounded-md   border-slate-300  dark:border-slate-800'
           id='message'
           name='message'
           rows={4}
           required></textarea>
       </div>
       <SubmitButton pendingLabel='Sending...' pending={pending}>
-        Send
+        Let&apos;s Connect
       </SubmitButton>
     </form>
   );

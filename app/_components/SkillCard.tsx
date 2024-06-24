@@ -1,19 +1,20 @@
-type SkillCardType = {
+import Image from "next/image";
+
+type SkillComponentProps = {
+  src: string;
+  alt: string;
   skill: string;
-  level: string;
-  icon: string;
 };
 
-const SkillCard = ({skill, level, icon}: SkillCardType) => {
+export default function SkillComponent({src, alt, skill}: SkillComponentProps) {
   return (
-    <div className='border p-4 rounded-lg flex items-center space-x-4'>
-      <img src={icon} alt={skill} className='h-12 w-12' />
-      <div>
-        <h3 className='text-xl font-bold'>{skill}</h3>
-        <p className='text-gray-700'>{level}</p>
+    <div className='flex flex-col items-center justify-center space-y-2'>
+      <div className='flex h-20 w-20 items-center justify-center rounded-full bg-muted dark:bg-background_1-200 shadow-md'>
+        <div className='h-10 w-10 text-primary'>
+          <Image src={src} alt={alt}></Image>
+        </div>
       </div>
+      <p className='text-sm font-medium'>{skill}</p>
     </div>
   );
-};
-
-export default SkillCard;
+}

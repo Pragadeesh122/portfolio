@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import mainPage from "@/public/mainPage.png";
+import mainPage_1 from "@/public/mainPage-1.png";
 
 export const metadata = {
   title: "Home",
@@ -10,10 +11,10 @@ export const metadata = {
 
 export default function Page() {
   return (
-    <div className='flex flex-col-reverse md:flex-row gap-20 p-4 mx-auto'>
+    <div className='flex flex-col-reverse items-center md:flex-row gap-20 p-4 mx-auto'>
       <div className='flex flex-col gap-12'>
         <div className='text-lg max-w-xl'>
-          <h1 className='mb-4 font-bold text-4xl text-gray-800 dark:text-gray-400'>
+          <h1 className='mb-4 font-bold text-4xl text-gray-800 dark:text-gray-200'>
             Hello all, I&apos;m Pragadeesh
           </h1>
           <p className='text-gray-500 text-lg  leading-loose  font-semibold'>
@@ -29,13 +30,13 @@ export default function Page() {
             target='_blank'>
             <div className='overflow-hidden rounded-lg'>
               <button className='px-6 py-3 border-2 border-slate-700 bg-slate-700 text-white rounded-lg hover:scale-110 transition duration-300'>
-                Download Resume
+                View Resume
               </button>
             </div>
           </Link>
           <Link href='/contact'>
             <div className='overflow-hidden rounded-lg'>
-              <button className='px-6 py-3 border-2 border-red-500 bg-red-500 text-white rounded-lg hover:scale-110 transition duration-300'>
+              <button className='px-6 py-3 border-2 border-red-500 bg-red-500 dark:border-green-400 dark:bg-green-400 text-white rounded-lg hover:scale-110 transition duration-300'>
                 Contact Me
               </button>
             </div>

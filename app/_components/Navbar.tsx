@@ -20,7 +20,7 @@ const Navbar = () => {
 
   return (
     // <NavbarSkeleton />
-    <nav className='p-4 mt-2 text-md'>
+    <nav className='p-4 mt-2 text-lg font-semibold'>
       <div className='container mx-auto flex justify-between  items-center'>
         <div>
           <Link href='/'>

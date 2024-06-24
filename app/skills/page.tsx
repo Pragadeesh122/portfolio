@@ -1,52 +1,36 @@
 import SkillCard from "../_components/SkillCard";
+import {skillData} from "../data/SkillData";
 
 export const metadata = {
   title: "Skills",
   description: "Check out some of the skills I have acquired.",
 };
-export default function Page() {
-  type Skill = {
-    skill: string;
-    level: string;
-    icon: string;
-  };
-
-  const skills: Skill[] = [
-    {
-      skill: "JavaScript",
-      level: "Advanced",
-      icon: "https://via.placeholder.com/40",
-    },
-    {
-      skill: "React",
-      level: "Advanced",
-      icon: "https://via.placeholder.com/40",
-    },
-    {
-      skill: "Next.js",
-      level: "Advanced",
-      icon: "https://via.placeholder.com/40",
-    },
-    {
-      skill: "Tailwind CSS",
-      level: "Intermediate",
-      icon: "https://via.placeholder.com/40",
-    },
-  ];
-
+export default function Component() {
   return (
-    <div>
-      <h1 className='text-4xl font-bold'>My Skills</h1>
-      <div className='mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-        {skills.map((skill) => (
-          <SkillCard
-            key={skill.skill}
-            skill={skill.skill}
-            level={skill.level}
-            icon={skill.icon}
-          />
-        ))}
+    <section className='py-6 md:py-12 lg:py-24'>
+      <div className='container px-4 md:px-6'>
+        <div className='flex flex-col items-center justify-center space-y-4 text-center'>
+          <div className='mb-8'>
+            <h2 className='text-2xl font-bold tracking-tighter sm:text-2xl md:text-3xl lg:text-5xl mb-4'>
+              My Technical Expertise
+            </h2>
+            <p className='max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-lg/relaxed'>
+              I&apos;m proficient in a wide range of web development
+              technologies, from front-end frameworks to backend and databases.
+            </p>
+          </div>
+        </div>
+        <div className='mx-auto grid max-w-5xl grid-cols-2 gap-12 py-12 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6'>
+          {skillData.map((skill, index) => (
+            <SkillCard
+              key={index}
+              src={skill.src}
+              alt={skill.alt}
+              skill={skill.skill}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
