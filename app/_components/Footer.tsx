@@ -43,7 +43,7 @@ const Footer = () => {
             />
           </Link>
         </div>
-        <div className='text-md font-semibold text-gray-600'>
+        <div className='text-xs sm:text-lg md:text-lg  font-semibold text-gray-600'>
           &copy; {new Date().getFullYear()} Pragadeesh. All rights reserved.
         </div>
       </div>

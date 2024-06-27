@@ -7,6 +7,7 @@ import {League_Spartan, Roboto_Slab} from "next/font/google";
 import {usePathname} from "next/navigation";
 import {useEffect, useState} from "react";
 import NavbarSkeleton from "../_skeletonComponent/NavSkeleton";
+import MobileNavBar from "./mobileNavBar";
 // const lg = League_Spartan({subsets: ["latin"]});
 // const rb = Roboto_Slab({subsets: ["latin"]});
 
@@ -20,7 +21,7 @@ const Navbar = () => {
 
   return (
     // <NavbarSkeleton />
-    <nav className='p-4 mt-2 text-lg font-semibold'>
+    <nav className='p-4 mt-2  md:text-md lg:text-lg font-semibold'>
       <div className='container mx-auto flex justify-between  items-center'>
         <div>
           <Link href='/'>
@@ -29,13 +30,13 @@ const Navbar = () => {
                 className=' mr-6 '
                 src='/logo.png'
                 alt='logo'
-                width={52}
-                height={52}></Image>
+                width={34}
+                height={34}></Image>
             </span>
           </Link>
         </div>
         <div
-          className={` flex items-center gap-16 px-16 py-4 rounded-3xl border-2 dark:border-black shadow-md dark:bg-background_1-900`}>
+          className={`hidden sm:flex items-center gap-16 px-16 py-4 rounded-3xl border-2 dark:border-black shadow-md dark:bg-background_1-900`}>
           {/* <Link href='/about'>
             <span>About</span>
           </Link> */}
@@ -61,8 +62,11 @@ const Navbar = () => {
             <span>Contact</span>
           </Link>
         </div>
-        <div>
+        <div className='flex gap-6 items-center'>
           <ThemeToggle />
+          <div className=' block sm:hidden'>
+            <MobileNavBar />
+          </div>
         </div>
       </div>
     </nav>

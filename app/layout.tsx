@@ -18,13 +18,13 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang='en'>
-      <body className={`${openSans.className}`}>
+      <body className={`${openSans.className} `}>
         <ThemeProvider attribute='class' defaultTheme='light'>
           <Hero>
             <header className=' flex-shrink-0 '>
               <Navbar />
             </header>
-            <main className='flex-1 mx-auto p-4 flex items-center justify-center '>
+            <main className='flex-1 mx-auto p-4 flex items-center justify-center main'>
               {children}
             </main>
             <footer className=' flex-shrink-0 '>

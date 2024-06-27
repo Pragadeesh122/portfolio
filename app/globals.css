@@ -37,3 +37,7 @@
     }
   }
 }
+
+.blurred body {
+  filter: blur(100px);
+}
