@@ -3,10 +3,10 @@ import React, {useState, useRef, useEffect} from "react";
 import {generatePortfolioResponse} from "@/app/_lib/actions";
 import ReactMarkdown from "react-markdown";
 
-interface Message {
+type Message = {
   type: "user" | "assistant";
   content: string;
-}
+};
 
 export default function PortfolioAssistant() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +29,7 @@ export default function PortfolioAssistant() {
   }, [messages]);
 
   const simulateStreaming = async (fullResponse: string) => {
-    const chunkSize = 3; // Adjust this value to control the streaming speed
+    const chunkSize = 3;
     let displayedResponse = "";
 
     for (let i = 0; i < fullResponse.length; i += chunkSize) {
