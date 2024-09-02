@@ -6,6 +6,7 @@ import Footer from "./_components/Footer";
 import Hero from "./_components/Hero";
 import {ThemeProvider} from "next-themes";
 import ToastProvider from "./_components/ToastProvider";
+import PortfolioAssistant from "./_components/PortfolioAssistant";
 
 const inter = Inter({subsets: ["latin"]});
 const openSans = Open_Sans({subsets: ["latin"], display: "swap"});
@@ -30,6 +31,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
             <footer className=' flex-shrink-0 '>
               <Footer />
             </footer>
+            <PortfolioAssistant />
           </Hero>
         </ThemeProvider>
         <ToastProvider />

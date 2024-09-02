@@ -1,6 +1,7 @@
 "use server";
 
 import nodemailer from "nodemailer";
+import {GoogleGenerativeAI} from "@google/generative-ai";
 
 export async function sendEmail(formData: any) {
   try {
@@ -48,5 +49,24 @@ ${name}
     await transporter.sendMail(mailOptions);
   } catch (err: any) {
     throw new Error(err.message);
+  }
+}
+
+const systemPrompt = process.env.SYSTEM_PROMPT as string;
+
+export async function generatePortfolioResponse(prompt: string) {
+  try {
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
+    const model = genAI.getGenerativeModel({model: "gemini-pro"});
+    const result = await model.generateContent([
+      systemPrompt,
+      `Human: ${prompt}`,
+      "Assistant: ",
+    ]);
+    const response = await result.response;
+    return response.text();
+  } catch (error) {
+    console.error("Error generating response:", error);
+    return "I'm sorry, but I encountered an error while processing your request.";
   }
 }
