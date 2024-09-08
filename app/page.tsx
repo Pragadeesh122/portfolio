@@ -20,7 +20,7 @@ export default function Page() {
         </div>
         <div className='flex gap-4 xs:gap-6 sm:gap-8'>
           <Link
-            href='https://drive.google.com/file/d/1KjEyJSIe6OV2jesGv9hwCH2H60MckcVW/view?usp=sharing'
+            href='https://drive.google.com/file/d/1GTpfRBh_8GaXSEXLZ_GrEajra-O0LYaz/view?usp=sharing'
             target='_blank'>
             <button className='px-6 py-3 text-lg font-semibold rounded-md bg-gray-800 text-white hover:bg-gray-700 transition duration-300 shadow-md'>
               View Resume
