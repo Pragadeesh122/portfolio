@@ -45,7 +45,7 @@ export default function Component({
           ))}
         </div>
       </CardContent>
-      <CardFooter className='bg-gray-50 p-4 flex justify-between items-center'>
+      <CardFooter className='bg-gray-50 p-4 flex justify-between items-center dark:bg-gray-600'>
         <Button variant='outline' size='sm' className='flex items-center gap-2'>
           <GithubIcon className='w-4 h-4' />
           <a href={githubLink} target='_blank' rel='noopener noreferrer'>

@@ -55,6 +55,16 @@ const Navbar = () => {
           </Link>
           <Link
             className={`${
+              currentPath === "/experience"
+                ? "text-blue-500 dark:text-red-500"
+                : "text-gray-700 dark:text-gray-300"
+            } hover:text-blue-500 dark:hover:text-red-500 transition-colors duration-300 relative group`}
+            href='/experience'>
+            <span className='tracking-wide'>Experience</span>
+            <span className='absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 dark:bg-red-500 transition-all duration-300 group-hover:w-full'></span>
+          </Link>
+          <Link
+            className={`${
               currentPath === "/contact"
                 ? "text-blue-500 dark:text-red-500"
                 : "text-gray-700 dark:text-gray-300"

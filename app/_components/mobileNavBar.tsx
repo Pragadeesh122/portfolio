@@ -57,6 +57,13 @@ export default function MobileNavBar() {
                 </div>
               </div>
             </Link>
+            <Link href='/experience'>
+              <div onClick={closeNav}>
+                <div className='hover:text-blue-500 hover:dark:text-red-500  hover:bg-background_1-500 dark:hover:bg-background_1-700 p-2 rounded-md'>
+                  Experience
+                </div>
+              </div>
+            </Link>
             <Link href='/contact'>
               <div onClick={closeNav}>
                 <div className='hover:text-blue-500 hover:dark:text-red-500 hover:bg-background_1-500 dark:hover:bg-background_1-700 p-2 rounded-md mb-4'>
