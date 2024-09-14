@@ -31,7 +31,13 @@ export default function Component({
     <Card className='w-full max-w-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-xl'>
       <CardHeader className='p-0'>
         <div className='relative w-full h-60'>
-          <Image src={imageUrl} alt={title} fill className='' />
+          <Image
+            src={imageUrl}
+            placeholder='blur'
+            alt={title}
+            fill
+            className=''
+          />
         </div>
       </CardHeader>
       <CardContent className='p-4'>

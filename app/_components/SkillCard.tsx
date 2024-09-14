@@ -1,7 +1,7 @@
-import Image from "next/image";
+import Image, {StaticImageData} from "next/image";
 
 type SkillComponentProps = {
-  src: string;
+  src: StaticImageData;
   alt: string;
   skill: string;
 };
