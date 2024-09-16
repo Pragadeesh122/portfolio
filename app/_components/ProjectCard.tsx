@@ -28,7 +28,7 @@ export default function Component({
   techStack = ["React", "Next.js", "Tailwind CSS"],
 }: ProjectCardProps) {
   return (
-    <Card className='w-full max-w-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-xl'>
+    <Card className='w-full max-w-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-xl border-gray-300 dark:border-gray-400'>
       <CardHeader className='p-0'>
         <div className='relative w-full h-60'>
           <Image
@@ -42,7 +42,9 @@ export default function Component({
       </CardHeader>
       <CardContent className='p-4'>
         <CardTitle className='text-xl font-bold mb-2'>{title}</CardTitle>
-        <p className='text-sm text-gray-600 mb-4'>{description}</p>
+        <p className='text-sm text-gray-600 dark:text-gray-200 mb-4'>
+          {description}
+        </p>
         <div className='flex flex-wrap gap-2 mb-4'>
           {techStack.map((tech, index) => (
             <Badge key={index} variant='default' className='text-xs'>

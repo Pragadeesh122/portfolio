@@ -42,7 +42,7 @@ export default function ContactForm() {
           Name
         </label>
         <input
-          className='w-full border p-2 rounded border-slate-300 dark:border-slate-800 '
+          className='w-full border p-2 rounded border-slate-400 dark:border-slate-600 '
           type='text'
           id='name'
           name='name'
@@ -54,7 +54,7 @@ export default function ContactForm() {
           Email
         </label>
         <input
-          className='w-full border p-2 rounded-md   border-slate-300 dark:border-slate-800 '
+          className='w-full border p-2 rounded-md   border-slate-400 dark:border-slate-600 '
           type='email'
           id='email'
           name='email'
@@ -68,7 +68,7 @@ export default function ContactForm() {
           Message
         </label>
         <textarea
-          className='w-full border p-2 rounded-md   border-slate-300  dark:border-slate-800'
+          className='w-full border p-2 rounded-md   border-slate-400  dark:border-slate-600'
           id='message'
           name='message'
           rows={4}

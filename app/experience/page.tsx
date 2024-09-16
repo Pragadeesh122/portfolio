@@ -51,7 +51,7 @@ export default function ExperiencePage() {
         {experiences.map((experience, index) => (
           <Card
             key={index}
-            className='hover:shadow-lg transition-shadow duration-300 max-w-7xl'>
+            className='hover:shadow-lg transition-shadow duration-300 max-w-7xl dark:border-gray-500'>
             <CardContent className='p-6 rounded-2xl'>
               <div className='flex items-start'>
                 <div className={`${experience.color} p-3 rounded-full mr-4`}>
@@ -61,11 +61,13 @@ export default function ExperiencePage() {
                   <h3 className='text-xl font-semibold mb-2'>
                     {experience.title}
                   </h3>
-                  <p className='text-sm font-semibold text-gray-700 dark:text-gray-400 mb-2'>
+                  <p className='text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2'>
                     {experience.institution || experience.company} |{" "}
                     {experience.period}
                   </p>
-                  <p className='text-gray-500'>{experience.description}</p>
+                  <p className='text-gray-500 dark:text-gray-300'>
+                    {experience.description}
+                  </p>
                 </div>
               </div>
             </CardContent>
