@@ -8,7 +8,7 @@ export default function Page() {
       <div className='flex flex-col gap-6 xs:gap-8 sm:gap-12 sm:items-start max-w-2xl'>
         <div className='text-lg'>
           <h1 className='mb-4 font-bold text-4xl sm:text-5xl md:text-6xl text-gray-800 dark:text-white'>
-            Hello all, I&apos;m{" "}
+            Hi there, I&apos;m{" "}
             <span className='text-blue-600 dark:text-blue-400'>Pragadeesh</span>
           </h1>
           <p className='text-gray-600 dark:text-gray-300 text-lg sm:text-xl sm:leading-loose'>
