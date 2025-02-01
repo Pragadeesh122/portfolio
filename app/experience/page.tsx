@@ -4,6 +4,15 @@ import {Card, CardContent} from "@/app/_components/ui/card";
 
 const experiences = [
   {
+    title: "Software Training",
+    company: "IU Corps",
+    period: "Oct 2024 - Dec 2024",
+    description:
+      "Built an activity management platform with NextJS 14 and Prisma ORM for YMCA programs, reducing admin workload by 40%. Implemented automated notifications and analytics dashboard using Server Components and Shadcn/UI for program tracking.",
+    icon: <Briefcase className='h-6 w-6' />,
+    color: "bg-green-200 text-green-600",
+  },
+  {
     title: "Software Developer Intern",
     company: "OSIDigital",
     period: "May 2024 - July 2024",

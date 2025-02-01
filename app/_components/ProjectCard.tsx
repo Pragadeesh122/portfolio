@@ -9,6 +9,7 @@ import {Button} from "@/app/_components/ui/button";
 import {GithubIcon, ExternalLinkIcon} from "lucide-react";
 import Image, {StaticImageData} from "next/image";
 import {Badge} from "./ui/badge";
+import Link from "next/link";
 
 interface ProjectCardProps {
   title: string;
@@ -28,16 +29,20 @@ export default function Component({
   techStack = ["React", "Next.js", "Tailwind CSS"],
 }: ProjectCardProps) {
   return (
-    <Card className='w-full max-w-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-xl border-gray-300 dark:border-gray-400'>
+    <Card className='w-full max-w-md overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-xl border-gray-300 dark:border-gray-400 ob'>
       <CardHeader className='p-0'>
         <div className='relative w-full h-60'>
-          <Image
-            src={imageUrl}
-            placeholder='blur'
-            alt={title}
-            fill
-            className=''
-          />
+          {title === "StyleSense AI" ? (
+            <Image
+              src={imageUrl}
+              placeholder='blur'
+              className='object-contain'
+              alt={title}
+              fill
+            />
+          ) : (
+            <Image src={imageUrl} placeholder='blur' alt={title} fill />
+          )}
         </div>
       </CardHeader>
       <CardContent className='p-4'>
@@ -56,15 +61,19 @@ export default function Component({
       <CardFooter className='bg-gray-50 p-4 flex justify-between items-center dark:bg-gray-600'>
         <Button variant='outline' size='sm' className='flex items-center gap-2'>
           <GithubIcon className='w-4 h-4' />
-          <a href={githubLink} target='_blank' rel='noopener noreferrer'>
+          <Link href={githubLink} target='_blank' rel='noopener noreferrer'>
             GitHub
-          </a>
+          </Link>
         </Button>
         <Button variant='default' size='sm' className='flex items-center gap-2'>
           <ExternalLinkIcon className='w-4 h-4' />
-          <a href={demoLink} target='_blank' rel='noopener noreferrer'>
-            Live Demo
-          </a>
+          {title === "StyleSense AI" ? (
+            <span>Coming Soon!</span>
+          ) : (
+            <Link href={demoLink} target='_blank' rel='noopener noreferrer'>
+              Live Demo
+            </Link>
+          )}
         </Button>
       </CardFooter>
     </Card>

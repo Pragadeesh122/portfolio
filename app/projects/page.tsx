@@ -3,6 +3,7 @@ import citroLanding from "@/public/citro-landing.png";
 import eleganceHub from "@/public/elegancehub-landing.png";
 import wildOasis from "@/public/wild_oasis_webiste.png";
 import WildOasisManager from "@/public/wild_oasis_management.png";
+import styleSenseAI from "@/public/styleSenseAI.png";
 import {StaticImageData} from "next/image";
 
 export const metadata = {
@@ -55,6 +56,22 @@ const projects: Project[] = [
     githubLink: "https://github.com/Pragadeesh122/the-wild-oasis-website",
     demoLink: "https://the-wiild-oasis.netlify.app",
     techStack: ["React", "Styled Components", "Supabase"],
+  },
+  {
+    title: "StyleSense AI",
+    description:
+      "An AI-powered wardrobe management mobile app that provides personalized outfit recommendations using Gemini AI. Features include intelligent calendar for outfit scheduling, wear history tracking, and analytics dashboard for wardrobe usage patterns. Coming soon to App Store and Play Store.",
+    imageUrl: styleSenseAI,
+    githubLink: "https://github.com/YourUsername/stylesense-ai",
+    demoLink: "#",
+    techStack: [
+      "React Native",
+      "Expo",
+      "Tamagui",
+      "Gemini AI",
+      "Firebase",
+      "NodeJS",
+    ],
   },
 ];
 

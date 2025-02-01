@@ -39,7 +39,7 @@ export default function PortfolioAssistant() {
         newMessages[newMessages.length - 1].content = displayedResponse;
         return newMessages;
       });
-      await new Promise((resolve) => setTimeout(resolve, 10)); // Adjust delay as needed
+      await new Promise((resolve) => setTimeout(resolve, 10));
       scrollToBottom();
     }
   };
