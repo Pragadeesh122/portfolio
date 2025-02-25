@@ -56,7 +56,7 @@ const systemPrompt = process.env.SYSTEM_PROMPT as string;
 
 export async function generatePortfolioResponse(prompt: string) {
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
-  const model = genAI.getGenerativeModel({model: "gemini-pro"});
+  const model = genAI.getGenerativeModel({model: "gemini-2.0-flash-exp"});
 
   const result = await model.generateContentStream([
     systemPrompt,
