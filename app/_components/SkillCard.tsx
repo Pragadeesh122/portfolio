@@ -29,7 +29,7 @@ export default function SkillComponent({
       whileTap={{scale: 0.95}}>
       <div className='group relative'>
         <div className='absolute inset-0 rounded-full bg-gradient-to-br from-blue-400 via-indigo-400 to-purple-500 opacity-75 blur-sm group-hover:opacity-100 transition-opacity duration-300'></div>
-        <div className='relative flex h-24 w-24 items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-lg border border-blue-100/50 dark:border-gray-700'>
+        <div className='relative flex h-24 w-24 items-center justify-center rounded-full bg-gray-800 shadow-lg border border-gray-700'>
           <div className='h-12 w-12 relative transition-transform duration-300 group-hover:scale-110'>
             <Image src={src} alt={alt} fill className='object-contain' />
           </div>

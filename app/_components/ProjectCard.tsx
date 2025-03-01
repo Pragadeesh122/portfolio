@@ -51,11 +51,11 @@ export default function ProjectCard({
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       className='h-full group perspective'>
-      <Card className='h-full flex flex-col overflow-hidden relative border border-blue-100 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-xl dark:shadow-gray-900/30 shadow-blue-200/50 rounded-xl transform-gpu transition-all duration-300'>
+      <Card className='h-full flex flex-col overflow-hidden relative border border-gray-700 bg-gray-800 shadow-xl shadow-gray-900/30 rounded-xl transform-gpu transition-all duration-300'>
         {/* Enhanced hover gradient accent overlay for light mode */}
         <motion.div
           animate={{opacity: isHovered ? 1 : 0}}
-          className='absolute left-0 top-0 w-2 h-full bg-gradient-to-b from-blue-500 via-indigo-500 to-purple-500 rounded-l-xl transition-opacity duration-300'
+          className='absolute left-0 top-0 w-2 h-full bg-gradient-to-b from-blue-500 to-blue-600  rounded-l-xl transition-opacity duration-300'
         />
 
         {/* Image container with overlay effect */}
@@ -64,7 +64,7 @@ export default function ProjectCard({
             src={imageUrl}
             alt={title}
             fill
-            className='object-cover object-center transition-transform duration-700 group-hover:scale-110 brightness-[0.98] dark:brightness-[0.85]'
+            className='object-cover object-center transition-transform duration-700 group-hover:scale-110 brightness-[0.85]'
             sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
           />
 
@@ -73,18 +73,18 @@ export default function ProjectCard({
 
         <CardHeader className='pb-2 space-y-2 pt-5'>
           <div className='flex items-start justify-between'>
-            <CardTitle className='text-xl font-bold tracking-tight text-blue-800 dark:text-gray-50'>
+            <CardTitle className='text-xl font-bold tracking-tight text-gray-50'>
               {title}
             </CardTitle>
             <motion.div
               animate={{rotate: isHovered ? 45 : 0}}
-              className='text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+              className='text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
               <Link href={demoLink} target='_blank'>
                 <ArrowUpRight className='h-5 w-5' />
               </Link>
             </motion.div>
           </div>
-          <CardDescription className='text-sm text-gray-600 dark:text-gray-400 line-clamp-2'>
+          <CardDescription className='text-sm text-gray-400 line-clamp-2 '>
             {description}
           </CardDescription>
         </CardHeader>
@@ -96,7 +96,7 @@ export default function ProjectCard({
               <Badge
                 key={tech}
                 variant='secondary'
-                className='text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-800/60 border border-blue-100 dark:border-blue-800/20 px-2 py-1 rounded-full'>
+                className='text-xs font-medium bg-blue-900/40 text-blue-200 hover:bg-blue-800/60 border border-blue-800/20 px-2 py-1 rounded-full'>
                 {tech}
               </Badge>
             ))}
@@ -112,10 +112,8 @@ export default function ProjectCard({
                 exit={{opacity: 0, height: 0}}
                 transition={{duration: 0.3}}
                 className='overflow-hidden'>
-                <div className='py-3 pr-1 max-h-[150px] overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-blue-200 dark:scrollbar-thumb-gray-700 scrollbar-track-transparent'>
-                  <p className='text-sm text-gray-600 dark:text-gray-300'>
-                    {longDescription}
-                  </p>
+                <div className='py-3 pr-1 max-h-[150px] overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-blue-600 scrollbar-track-blue-900/20'>
+                  <p className='text-sm text-gray-300'>{longDescription}</p>
                 </div>
               </motion.div>
             )}
@@ -128,7 +126,7 @@ export default function ProjectCard({
               variant='ghost'
               size='sm'
               onClick={() => setShowDetails(!showDetails)}
-              className='w-full justify-center text-sm text-blue-600 hover:text-blue-800 dark:text-gray-400 dark:hover:text-gray-200 border-t border-blue-50 dark:border-gray-700 rounded-none pt-3'>
+              className='w-full justify-center text-sm text-gray-400 hover:text-gray-200 border-t border-gray-700 rounded-none pt-3'>
               {showDetails ? (
                 <>
                   <span>Show less</span>
@@ -147,7 +145,7 @@ export default function ProjectCard({
             <Button
               asChild
               variant='outline'
-              className='flex-1 gap-1.5 bg-white dark:bg-gray-800 border border-blue-200 dark:border-gray-600 text-blue-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700'>
+              className='flex-1 gap-1.5 bg-gray-800 border border-gray-600 text-gray-200 hover:bg-gray-700'>
               <a
                 href={githubLink}
                 target='_blank'
@@ -158,18 +156,28 @@ export default function ProjectCard({
               </a>
             </Button>
 
-            <Button
-              asChild
-              className='flex-1 gap-1.5 bg-blue-600 hover:bg-blue-700 text-white border-0 shadow-md shadow-blue-400/20 dark:shadow-blue-900/30'>
-              <a
-                href={demoLink}
-                target='_blank'
-                rel='noopener noreferrer'
-                aria-label={`View ${title} live demo`}>
-                <ExternalLink className='h-4 w-4' />
-                <span>Demo</span>
-              </a>
-            </Button>
+            {title === "StyleSense AI" ? (
+              <div className='flex-1 gap-1.5 bg-blue-600 hover:bg-blue-700 text-white border-0 shadow-md shadow-blue-900/30'>
+                <div className='flex items-center w-full h-full justify-center '>
+                  <span className='text-white text-sm text-semibold'>
+                    Coming Soon
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <Button
+                asChild
+                className='flex-1 gap-1.5 bg-blue-600 hover:bg-blue-700 text-white border-0 shadow-md shadow-blue-900/30'>
+                <Link
+                  href={demoLink}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  aria-label={`View ${title} live demo`}>
+                  <ExternalLink className='h-4 w-4' />
+                  <span>Demo</span>
+                </Link>
+              </Button>
+            )}
           </div>
         </CardFooter>
       </Card>

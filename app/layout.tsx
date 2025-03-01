@@ -48,12 +48,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html lang='en' suppressHydrationWarning className='dark'>
       <body
         className={`${openSans.className} antialiased min-h-screen flex flex-col`}>
-        <ThemeProvider attribute='class' defaultTheme='light'>
+        <ThemeProvider defaultTheme='dark' forcedTheme='dark'>
           <Hero>
-            <header className='sticky top-0 z-50 backdrop-blur-md bg-white/70 dark:bg-black/70 border-b border-blue-100/50 dark:border-gray-800'>
+            <header className='sticky top-0 z-50 backdrop-blur-md bg-black/70 border-b border-gray-800'>
               <Navbar />
             </header>
             <main className='flex-1 mx-auto w-full min-h-[calc(100vh-180px)] '>

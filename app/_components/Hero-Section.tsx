@@ -30,9 +30,9 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Enhanced decorative elements for light mode */}
+      {/* Decorative elements - dark mode only */}
       <motion.div
-        className='absolute top-32 -left-16 w-32 h-32 bg-gradient-to-r from-blue-400/20 to-indigo-400/20 dark:bg-blue-400/5 rounded-full filter blur-lg'
+        className='absolute top-32 -left-16 w-32 h-32 bg-blue-400/5 rounded-full filter blur-lg'
         animate={{
           scale: [1, 1.1, 1],
           opacity: [0.2, 0.25, 0.2],
@@ -45,7 +45,7 @@ export default function HeroSection() {
       />
 
       <motion.div
-        className='absolute top-[40%] right-16 w-24 h-24 bg-gradient-to-r from-purple-400/20 to-pink-400/20 dark:bg-purple-400/5 rounded-full filter blur-lg'
+        className='absolute top-[40%] right-16 w-24 h-24 bg-purple-400/5 rounded-full filter blur-lg'
         animate={{
           scale: [1, 1.15, 1],
           opacity: [0.2, 0.3, 0.2],
@@ -59,7 +59,7 @@ export default function HeroSection() {
       />
 
       <motion.div
-        className='absolute bottom-20 left-1/3 w-32 h-32 bg-gradient-to-r from-sky-400/20 to-teal-400/20 dark:bg-teal-400/5 rounded-full filter blur-lg'
+        className='absolute bottom-20 left-1/3 w-32 h-32 bg-teal-400/5 rounded-full filter blur-lg'
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.2, 0.25, 0.2],
@@ -72,9 +72,9 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Enhanced animated dots for light mode */}
+      {/* Animated dots - dark mode only */}
       <motion.div
-        className='absolute top-[20%] right-[15%] w-4 h-4 bg-gradient-to-r from-blue-500/40 to-indigo-500/40 dark:bg-blue-500/20 rounded-full'
+        className='absolute top-[20%] right-[15%] w-4 h-4 bg-blue-500/20 rounded-full'
         animate={{
           scale: [1, 1.5, 1],
           opacity: [0.4, 0.6, 0.4],
@@ -87,7 +87,7 @@ export default function HeroSection() {
       />
 
       <motion.div
-        className='absolute top-[40%] left-[10%] w-3 h-3 bg-gradient-to-r from-purple-500/40 to-pink-500/40 dark:bg-purple-500/20 rounded-full'
+        className='absolute top-[40%] left-[10%] w-3 h-3 bg-purple-500/20 rounded-full'
         animate={{
           scale: [1, 1.5, 1],
           opacity: [0.4, 0.6, 0.4],
@@ -101,7 +101,7 @@ export default function HeroSection() {
       />
 
       <motion.div
-        className='absolute bottom-[30%] right-[25%] w-2 h-2 bg-gradient-to-r from-sky-500/40 to-teal-500/40 dark:bg-teal-500/20 rounded-full'
+        className='absolute bottom-[30%] right-[25%] w-2 h-2 bg-teal-500/20 rounded-full'
         animate={{
           scale: [1, 1.5, 1],
           opacity: [0.4, 0.6, 0.4],

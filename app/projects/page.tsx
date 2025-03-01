@@ -2,7 +2,8 @@
 
 import {motion, AnimatePresence} from "framer-motion";
 import ProjectCard from "../_components/ProjectCard";
-import citroLanding from "@/public/citro-landing.png";
+import nalvarPlatform from "@/public/nalvar-display.png";
+import citroLanding from "@/public/citro-home.png";
 import eleganceHub from "@/public/elegancehub-landing.png";
 import wildOasis from "@/public/wild_oasis_webiste.png";
 import WildOasisManager from "@/public/wild_oasis_management.png";
@@ -21,15 +22,23 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "EleganceHub",
+    title: "Nalvar",
     description:
-      "An e-commerce platform showcasing the latest fashion trends and products. This site offers a sleek, user-friendly interface for browsing and purchasing cutting-edge fashion items, from stylish dresses to elegant accessories.",
+      "A comprehensive website built for Nalvar, a tech consulting business, showcasing their services and case studies. Features an intuitive UI with smooth interactions and a RAG-powered chatbot to assist users with business queries.",
     longDescription:
-      "EleganceHub represents a comprehensive e-commerce solution with features including user authentication, product filtering, cart management, payment processing, and order tracking. Built with a modern tech stack focusing on performance and user experience.",
-    imageUrl: eleganceHub,
-    githubLink: "https://github.com/Pragadeesh122/e-commerce",
-    demoLink: "https://elegancehub.vercel.app",
-    techStack: ["Next.js", "Tailwind CSS", "NextAuth", "ShadCn", "Supabase"],
+      "For Nalvar, I developed a modern, comprehensive website that effectively presents their tech consulting services and detailed case studies. The site features an intuitive user interface with smooth animations and interactive elements that enhance the user experience. A key innovation was implementing a RAG (Retrieval-Augmented Generation) chatbot that helps visitors instantly find information about Nalvar's business services without navigating through multiple pages. The responsive design ensures a seamless experience across all devices.",
+    imageUrl: nalvarPlatform,
+    githubLink: "https://github.com/Pragadeesh122/nalvar",
+    demoLink: "https://nalvar.com",
+    techStack: [
+      "Next.js",
+      "React",
+      "FastAPI",
+      "TypeScript",
+      "Tailwind CSS",
+      "LangChain",
+      "RAG Chatbot",
+    ],
   },
   {
     title: "Citro Essential Oil",
@@ -41,6 +50,17 @@ const projects: Project[] = [
     githubLink: "https://github.com/Pragadeesh122/citro",
     demoLink: "https://citroessentialoil.com",
     techStack: ["Next.js", "Tailwind CSS", "ShadCn", "Supabase"],
+  },
+  {
+    title: "EleganceHub",
+    description:
+      "An e-commerce platform showcasing the latest fashion trends and products. This site offers a sleek, user-friendly interface for browsing and purchasing cutting-edge fashion items, from stylish dresses to elegant accessories.",
+    longDescription:
+      "EleganceHub represents a comprehensive e-commerce solution with features including user authentication, product filtering, cart management, payment processing, and order tracking. Built with a modern tech stack focusing on performance and user experience.",
+    imageUrl: eleganceHub,
+    githubLink: "https://github.com/Pragadeesh122/e-commerce",
+    demoLink: "https://elegancehub.vercel.app",
+    techStack: ["Next.js", "Tailwind CSS", "NextAuth", "ShadCn", "Supabase"],
   },
   {
     title: "Wild Oasis",
@@ -71,7 +91,7 @@ const projects: Project[] = [
     longDescription:
       "StyleSense AI utilizes advanced machine learning algorithms to analyze users' clothing items and provide intelligent outfit suggestions based on weather, occasion, and style preferences. The app includes a virtual closet, outfit planning calendar, wear frequency tracking, and personalized style insights.",
     imageUrl: styleSenseAI,
-    githubLink: "https://github.com/YourUsername/stylesense-ai",
+    githubLink: "https://github.com/Pragadeesh122/VirtualWardrobe",
     demoLink: "#",
     techStack: [
       "React Native",
@@ -88,15 +108,15 @@ export default function ProjectsPage() {
   return (
     <section className='py-12 md:py-16 lg:py-20 relative'>
       {/* Main background gradient */}
-      <div className='absolute inset-0 bg-gradient-to-b from-blue-50/70 via-cyan-50/50 to-white dark:from-blue-950/20 dark:via-cyan-950/10 dark:to-gray-950 -z-10'></div>
+      <div className='absolute inset-0 bg-gradient-to-b from-blue-950/20 via-cyan-950/10 to-gray-950 -z-10'></div>
 
       {/* Decorative blob shapes for light mode */}
-      <div className='absolute top-24 left-0 w-96 h-96 rounded-full bg-gradient-to-br from-blue-100/40 to-cyan-100/40 blur-3xl dark:opacity-0 -z-10'></div>
-      <div className='absolute bottom-24 right-0 w-96 h-96 rounded-full bg-gradient-to-tr from-teal-100/40 to-blue-100/40 blur-3xl dark:opacity-0 -z-10'></div>
-      <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-96 rounded-full bg-gradient-to-r from-cyan-100/30 via-blue-100/30 to-teal-100/30 blur-3xl dark:opacity-0 -z-10'></div>
+      <div className='absolute top-24 left-0 w-96 h-96 rounded-full bg-blue-900/10 blur-3xl -z-10'></div>
+      <div className='absolute bottom-24 right-0 w-96 h-96 rounded-full bg-cyan-900/10 blur-3xl -z-10'></div>
+      <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-blue-900/10 via-blue-900/10 to-teal-900/10 blur-3xl -z-10'></div>
 
       {/* Noise texture */}
-      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.08] bg-[url('/noise.png')] pointer-events-none"></div>
+      <div className="absolute inset-0 opacity-[0.08] bg-[url('/noise.png')] pointer-events-none"></div>
 
       <div className='container px-4 md:px-6 mx-auto max-w-7xl'>
         <motion.div
@@ -105,10 +125,10 @@ export default function ProjectsPage() {
           animate={{opacity: 1, y: 0}}
           transition={{duration: 0.5}}>
           <div className='relative'>
-            <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl mb-4 bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 dark:from-blue-400 dark:via-cyan-400 dark:to-teal-400 text-transparent bg-clip-text pb-2 px-8'>
+            <h1 className='text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 pb-2 px-8'>
               My Projects
             </h1>
-            <p className='max-w-[800px] text-gray-600 dark:text-gray-400 md:text-xl lg:text-xl xl:text-xl px-4 pb-6'>
+            <p className='max-w-[800px] text-gray-400 md:text-xl lg:text-xl xl:text-xl px-4 pb-6'>
               Explore my portfolio of web applications built with modern
               technologies, showcasing my skills in web development and design.
             </p>

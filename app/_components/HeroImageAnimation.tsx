@@ -16,14 +16,14 @@ export default function HeroImageAnimation({
       initial={{opacity: 0, scale: 0.9}}
       animate={{opacity: 1, scale: 1}}
       transition={{duration: 0.6}}>
-      <div className='relative rounded-xl overflow-hidden shadow-[0_20px_50px_rgba(8,112,184,0.3)] dark:shadow-[0_20px_50px_rgba(8,112,184,0.2)] group'>
+      <div className='relative rounded-xl overflow-hidden shadow-[0_20px_50px_rgba(8,112,184,0.2)] group'>
         {/* Decorative elements */}
-        <div className='absolute -top-4 -left-4 w-24 h-24 bg-blue-500/30 dark:bg-blue-600/20 rounded-full filter blur-xl z-0'></div>
-        <div className='absolute -bottom-8 -right-8 w-32 h-32 bg-purple-500/20 dark:bg-purple-600/20 rounded-full filter blur-xl z-0'></div>
+        <div className='absolute -top-4 -left-4 w-24 h-24 bg-blue-600/20 rounded-full filter blur-xl z-0'></div>
+        <div className='absolute -bottom-8 -right-8 w-32 h-32 bg-purple-600/20 rounded-full filter blur-xl z-0'></div>
 
         {/* Light streak effect */}
         <motion.div
-          className='absolute -top-[100px] -right-[100px] w-[250px] h-[500px] bg-white/30 dark:bg-white/10 rotate-45 z-10'
+          className='absolute -top-[100px] -right-[100px] w-[250px] h-[500px] bg-white/10 rotate-45 z-10'
           initial={{x: -400, opacity: 0}}
           animate={{x: 400, opacity: 0.5}}
           transition={{
@@ -49,7 +49,7 @@ export default function HeroImageAnimation({
 
         {/* Animated border glow */}
         <motion.div
-          className='absolute inset-0 rounded-xl border-2 border-blue-400/0 dark:border-blue-500/0 z-30'
+          className='absolute inset-0 rounded-xl border-2 border-blue-500/0 z-30'
           animate={{
             boxShadow: [
               "0 0 0px rgba(96, 165, 250, 0)",

@@ -137,9 +137,9 @@ export default function PortfolioAssistant() {
           <Bot size={24} />
         </button>
       ) : (
-        <div className='bg-white dark:bg-gray-800 rounded-lg shadow-xl p-4 sm:p-6 w-[90vw] sm:w-[28rem] md:w-[32rem] lg:w-[36rem] h-[80vh] sm:h-[70vh] md:h-[75vh] lg:h-[80vh] flex flex-col border dark:border-gray-700'>
-          <div className='flex justify-between items-center mb-4 border-b dark:border-gray-700 pb-3'>
-            <h2 className='text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100 flex items-center'>
+        <div className='bg-gray-800 rounded-lg shadow-xl p-4 sm:p-6 w-[90vw] sm:w-[28rem] md:w-[32rem] lg:w-[36rem] h-[80vh] sm:h-[70vh] md:h-[75vh] lg:h-[80vh] flex flex-col border border-gray-700'>
+          <div className='flex justify-between items-center mb-4 border-b border-gray-700 pb-3'>
+            <h2 className='text-xl sm:text-2xl font-bold text-gray-100 flex items-center'>
               <Bot className='mr-2' size={24} /> Portfolio AI Assistant
             </h2>
             <button
@@ -152,7 +152,7 @@ export default function PortfolioAssistant() {
 
           <div
             ref={chatContainerRef}
-            className='flex-grow overflow-auto mb-4 space-y-4 rounded-md p-3 bg-gray-50 dark:bg-gray-900'>
+            className='flex-grow overflow-auto mb-4 space-y-4 rounded-md p-3 bg-gray-900'>
             {messages.map((message, index) => (
               <div
                 key={index}
@@ -163,7 +163,7 @@ export default function PortfolioAssistant() {
                   className={`max-w-[75%] p-2 sm:p-3 rounded-lg ${
                     message.type === "user"
                       ? "bg-blue-500 text-white"
-                      : "bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                      : "bg-gray-700 text-gray-200"
                   }`}>
                   <p className='text-sm sm:text-base'>
                     <ReactMarkdown className='whitespace-pre-wrap break-words [&>*]:my-1 [&>p]:mb-1 [&>ul]:ml-4 [&>ul]:mb-1 [&>ol]:ml-4 [&>ol]:mb-1 [&>li]:mb-0.5 [&>h1]:font-bold [&>h2]:font-bold [&>h3]:font-bold [&>h4]:font-bold [&>h5]:font-bold [&>h6]:font-bold'>
@@ -176,15 +176,13 @@ export default function PortfolioAssistant() {
 
             {showQuickQuestions && messages.length === 1 && (
               <div className='mt-4'>
-                <p className='text-sm text-gray-600 dark:text-gray-400 mb-2'>
-                  Try asking:
-                </p>
+                <p className='text-sm text-gray-400 mb-2'>Try asking:</p>
                 <div className='flex flex-wrap gap-2'>
                   {quickQuestions.map((question, index) => (
                     <button
                       key={index}
                       onClick={() => handleQuickQuestion(question)}
-                      className='text-xs md:text-sm bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-full px-3 py-1 hover:bg-gray-100 dark:hover:bg-gray-700 transition'>
+                      className='text-xs md:text-sm bg-gray-800 border border-gray-600 rounded-full px-3 py-1 hover:bg-gray-700 transition'>
                       {question}
                     </button>
                   ))}
@@ -197,7 +195,7 @@ export default function PortfolioAssistant() {
 
           {isLoading && (
             <div className='flex justify-start mb-4'>
-              <div className='bg-gray-100 dark:bg-gray-700 p-2 sm:p-3 rounded-lg text-gray-800 dark:text-gray-200'>
+              <div className='bg-gray-700 p-2 sm:p-3 rounded-lg text-gray-200'>
                 <span className='flex items-center'>
                   <Loader2 className='animate-spin mr-2' size={16} />{" "}
                   Thinking...
@@ -215,13 +213,13 @@ export default function PortfolioAssistant() {
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
                 placeholder='Ask me anything about Pragadeesh...'
-                className='w-full p-2 sm:p-3 border border-gray-300 dark:border-gray-600 rounded-lg mb-3 text-sm sm:text-base pr-12 dark:bg-gray-700 dark:text-white'
+                className='w-full p-2 sm:p-3 border border-gray-600 rounded-lg mb-3 text-sm sm:text-base pr-12 bg-gray-700 text-white'
                 disabled={isLoading}
               />
               <button
                 type='submit'
                 disabled={isLoading || query.trim() === ""}
-                className='absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 disabled:opacity-50 disabled:cursor-not-allowed'
+                className='absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-300 hover:text-blue-400 disabled:opacity-50 disabled:cursor-not-allowed'
                 aria-label='Send message'>
                 <Send size={20} />
               </button>

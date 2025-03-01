@@ -14,6 +14,15 @@ import redux from "@/public/redux.svg";
 import html5 from "@/public/html5.svg";
 import css3 from "@/public/css3.svg";
 import aws from "@/public/aws.svg";
+import python from "@/public/python-original.svg";
+import cplusplus from "@/public/cplusplus-original.svg";
+import langchain from "@/public/langchain.jpeg";
+import pytorch from "@/public/pytorch.svg";
+import pinecone from "@/public/pinecone.png";
+import chromadb from "@/public/chroma.png";
+import kubernetes from "@/public/kubernetes.svg";
+import agentic_ai from "@/public/Agentic AI.jpeg";
+import rag from "@/public/RAG.jpeg";
 
 // Define skill categories
 export const categories = [
@@ -23,6 +32,7 @@ export const categories = [
   "Database",
   "DevOps",
   "Language",
+  "AI/ML",
 ];
 
 export const skillData = [
@@ -104,6 +114,20 @@ export const skillData = [
     proficiency: 85,
   },
   {
+    skill: "Python",
+    alt: "python_logo",
+    src: python,
+    category: "Language",
+    proficiency: 90,
+  },
+  {
+    skill: "C++",
+    alt: "cplusplus_logo",
+    src: cplusplus,
+    category: "Language",
+    proficiency: 85,
+  },
+  {
     skill: "Git",
     alt: "git_logo",
     src: git_original,
@@ -116,6 +140,13 @@ export const skillData = [
     src: docker_original,
     category: "DevOps",
     proficiency: 78,
+  },
+  {
+    skill: "Kubernetes",
+    alt: "kubernetes_logo",
+    src: kubernetes,
+    category: "DevOps",
+    proficiency: 80,
   },
   {
     skill: "Supabase",
@@ -132,10 +163,52 @@ export const skillData = [
     proficiency: 85,
   },
   {
+    skill: "Pinecone",
+    alt: "pinecone_logo",
+    src: pinecone,
+    category: "Database",
+    proficiency: 83,
+  },
+  {
+    skill: "ChromaDB",
+    alt: "chromadb_logo",
+    src: chromadb,
+    category: "Database",
+    proficiency: 82,
+  },
+  {
     skill: "AWS",
     alt: "aws_logo",
     src: aws,
     category: "DevOps",
     proficiency: 75,
+  },
+  {
+    skill: "LangChain",
+    alt: "langchain_logo",
+    src: langchain,
+    category: "AI/ML",
+    proficiency: 88,
+  },
+  {
+    skill: "RAG Applications",
+    alt: "rag_logo",
+    src: rag,
+    category: "AI/ML",
+    proficiency: 85,
+  },
+  {
+    skill: "Agentic AI",
+    alt: "agentic_ai_logo",
+    src: agentic_ai,
+    category: "AI/ML",
+    proficiency: 83,
+  },
+  {
+    skill: "PyTorch",
+    alt: "pytorch_logo",
+    src: pytorch,
+    category: "AI/ML",
+    proficiency: 80,
   },
 ];

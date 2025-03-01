@@ -24,15 +24,15 @@ export default function SkillsPage() {
   return (
     <section className='pt-12 md:py-16 lg:pt-20 relative'>
       {/* Main background gradient */}
-      <div className='absolute inset-0 bg-gradient-to-b from-teal-50/70 via-cyan-50/50 to-white dark:from-teal-950/20 dark:via-cyan-950/10 dark:to-gray-950 -z-10'></div>
+      <div className='absolute inset-0 bg-gradient-to-b from-teal-950/20 via-cyan-950/10 to-gray-950 -z-10'></div>
 
       {/* Decorative blob shapes for light mode */}
-      <div className='absolute top-24 left-0 w-96 h-96 rounded-full bg-gradient-to-br from-teal-100/40 to-cyan-100/40 blur-3xl dark:opacity-0 -z-10'></div>
-      <div className='absolute bottom-24 right-0 w-96 h-96 rounded-full bg-gradient-to-tr from-indigo-100/40 to-purple-100/40 blur-3xl dark:opacity-0 -z-10'></div>
-      <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-96 rounded-full bg-gradient-to-r from-cyan-100/30 via-teal-100/30 to-sky-100/30 blur-3xl dark:opacity-0 -z-10'></div>
+      <div className='absolute top-24 left-0 w-96 h-96 rounded-full bg-teal-900/10 blur-3xl -z-10'></div>
+      <div className='absolute bottom-24 right-0 w-96 h-96 rounded-full bg-indigo-900/10 blur-3xl -z-10'></div>
+      <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-teal-900/10 via-teal-900/10 to-sky-900/10 blur-3xl -z-10'></div>
 
       {/* Noise texture */}
-      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.08] bg-[url('/noise.png')] pointer-events-none"></div>
+      <div className="absolute inset-0 opacity-[0.08] bg-[url('/noise.png')] pointer-events-none"></div>
 
       <div className='container px-4 md:px-6 mx-auto max-w-7xl'>
         <motion.div
@@ -41,10 +41,10 @@ export default function SkillsPage() {
           animate={{opacity: 1, y: 0}}
           transition={{duration: 0.5}}>
           <div className='mb-8 relative'>
-            <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl mb-4 bg-gradient-to-r from-teal-600 via-cyan-600 to-indigo-600 dark:from-teal-400 dark:via-cyan-400 dark:to-indigo-400 text-transparent bg-clip-text pb-2'>
+            <h1 className='text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-cyan-400 to-indigo-400 pb-2'>
               My Technical Expertise
             </h1>
-            <p className='max-w-[800px] text-gray-600 dark:text-gray-400 md:text-xl lg:text-lg xl:text-xl relative z-10'>
+            <p className='max-w-[800px] text-gray-400 md:text-xl lg:text-lg xl:text-xl relative z-10'>
               I&apos;m proficient in a wide range of web development
               technologies, from front-end frameworks to backend and databases.
             </p>
@@ -60,8 +60,8 @@ export default function SkillsPage() {
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                     selectedCategory === category
-                      ? "bg-blue-600 hover:bg-blue-700 text-white shadow-md"
-                      : "bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
+                      ? "bg-blue-600 text-white hover:bg-blue-700"
+                      : "bg-gray-800 text-gray-200 hover:bg-gray-700"
                   }`}
                   whileHover={{scale: 1.05}}
                   whileTap={{scale: 0.95}}>
@@ -85,7 +85,7 @@ export default function SkillsPage() {
                   animate={{opacity: 1, scale: 1}}
                   exit={{opacity: 0, scale: 0.8}}
                   transition={{duration: 0.4, delay: index * 0.05}}
-                  className='bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow duration-300 border border-gray-100 dark:border-gray-700'>
+                  className='bg-gray-800 rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow duration-300 border border-gray-700'>
                   <SkillCard
                     src={skill.src}
                     alt={skill.alt}
@@ -101,7 +101,7 @@ export default function SkillsPage() {
                 initial={{opacity: 0}}
                 animate={{opacity: 1}}
                 transition={{delay: 0.3}}>
-                <p className='text-lg text-gray-500 dark:text-gray-400'>
+                <p className='text-lg text-gray-400'>
                   No skills found matching your criteria.
                 </p>
                 <button

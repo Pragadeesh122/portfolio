@@ -3,7 +3,7 @@ import type {Metadata} from "next";
 export const metadata: Metadata = {
   title: "Skills | Pragadeesh - Full Stack Developer",
   description:
-    "Explore my technical expertise across frontend, backend, databases, and devops technologies.",
+    "Explore my technical expertise across frontend, backend, databases, devops, and AI/ML technologies.",
   keywords: [
     "skills",
     "web development",
@@ -13,5 +13,15 @@ export const metadata: Metadata = {
     "typescript",
     "frontend",
     "backend",
+    "AI/ML",
+    "python",
+    "c++",
+    "langchain",
+    "rag",
+    "agentic ai",
+    "pytorch",
+    "pinecone",
+    "chromadb",
+    "kubernetes",
   ],
 };

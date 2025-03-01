@@ -31,15 +31,15 @@ export default function AboutPage() {
   return (
     <section className='py-12 md:py-16 lg:py-20 relative'>
       {/* Main background gradient */}
-      <div className='absolute inset-0 bg-gradient-to-b from-blue-50/70 via-cyan-50/50 to-white dark:from-blue-950/20 dark:via-cyan-950/10 dark:to-gray-950 -z-10'></div>
+      <div className='absolute inset-0 bg-gradient-to-b from-blue-950/20 via-cyan-950/10 to-gray-950 -z-10'></div>
 
       {/* Noise texture */}
-      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.08] bg-[url('/noise.png')] pointer-events-none"></div>
+      <div className="absolute inset-0 opacity-[0.08] bg-[url('/noise.png')] pointer-events-none"></div>
 
       {/* Decorative blob shapes for light mode */}
-      <div className='absolute top-24 left-0 w-96 h-96 rounded-full bg-gradient-to-br from-blue-100/40 to-cyan-100/40 blur-3xl dark:opacity-0 -z-10'></div>
-      <div className='absolute bottom-24 right-0 w-96 h-96 rounded-full bg-gradient-to-tr from-teal-100/40 to-blue-100/40 blur-3xl dark:opacity-0 -z-10'></div>
-      <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-96 rounded-full bg-gradient-to-r from-cyan-100/30 via-blue-100/30 to-teal-100/30 blur-3xl dark:opacity-0 -z-10'></div>
+      <div className='absolute top-24 left-0 w-96 h-96 rounded-full bg-blue-900/10 blur-3xl -z-10'></div>
+      <div className='absolute bottom-24 right-0 w-96 h-96 rounded-full bg-teal-900/10 blur-3xl -z-10'></div>
+      <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-blue-900/10 via-blue-900/10 to-teal-900/10 blur-3xl -z-10'></div>
 
       <div className='container px-4 md:px-6 mx-auto max-w-5xl'>
         <motion.div
@@ -47,10 +47,10 @@ export default function AboutPage() {
           initial={{opacity: 0, y: -20}}
           animate={{opacity: 1, y: 0}}
           transition={{duration: 0.5}}>
-          <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 dark:from-blue-400 dark:via-cyan-400 dark:to-teal-400 text-transparent bg-clip-text pb-2'>
+          <h1 className='text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 pb-2'>
             About Me
           </h1>
-          <p className='max-w-[700px] text-gray-600 dark:text-gray-400 md:text-xl'>
+          <p className='max-w-[700px] text-gray-400 md:text-xl'>
             I am a passionate web developer with experience in building modern
             web applications.
           </p>
@@ -61,9 +61,7 @@ export default function AboutPage() {
           animate={{opacity: 1, y: 0}}
           transition={{duration: 0.5, delay: 0.2}}
           className='mb-12'>
-          <h2 className='text-2xl font-bold mb-6 text-blue-700 dark:text-blue-300'>
-            Experience
-          </h2>
+          <h2 className='text-2xl font-bold mb-6 text-blue-300'>Experience</h2>
           <div className='space-y-6'>
             {experiences.map((exp, index) => (
               <motion.div
