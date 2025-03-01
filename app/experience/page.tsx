@@ -34,7 +34,7 @@ const experiences: Experience[] = [
   {
     title: "Software Training",
     company: "IU Corps",
-    period: "Jan 2023 - Jun 2023",
+    period: "Oct 2024 - Dec 2024",
     description: [
       "Led the development of an activity management platform for IU Corps, enabling efficient tracking of community engagement initiatives.",
       "Implemented user authentication, role-based permissions, and dynamic dashboards for administrators.",
@@ -54,7 +54,7 @@ const experiences: Experience[] = [
   {
     title: "Software Developer Intern",
     company: "OSIDigital",
-    period: "May 2022 - Aug 2022",
+    period: "May 2024 - July 2024",
     description: [
       "Collaborated on enterprise applications for inventory management and sales tracking.",
       "Developed responsive interfaces using React and TypeScript, ensuring cross-browser compatibility.",
