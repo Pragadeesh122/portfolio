@@ -23,7 +23,7 @@ import chromadb from "@/public/chroma.png";
 import kubernetes from "@/public/kubernetes.svg";
 import agentic_ai from "@/public/Agentic AI.jpeg";
 import rag from "@/public/RAG.jpeg";
-
+import fastapi_original from "@/public/fastAPI.png";
 // Define skill categories
 export const categories = [
   "All",
@@ -84,6 +84,13 @@ export const skillData = [
     src: nodejs_original,
     category: "Backend",
     proficiency: 85,
+  },
+  {
+    skill: "FastAPI",
+    alt: "fastapi_logo",
+    src: fastapi_original,
+    category: "Backend",
+    proficiency: 80,
   },
   {
     skill: "MongoDB",
