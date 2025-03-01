@@ -43,7 +43,7 @@ export default function SkillComponent({
         <p className='text-xs text-gray-500 dark:text-gray-400'>{category}</p>
       </div>
 
-      <div className='w-full'>
+      {/* <div className='w-full'>
         <div className='h-1.5 w-full bg-blue-100 dark:bg-gray-700 rounded-full overflow-hidden'>
           <motion.div
             className='h-full bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-600 dark:from-blue-400 dark:to-indigo-500 rounded-full'
@@ -53,7 +53,7 @@ export default function SkillComponent({
             viewport={{once: true}}
           />
         </div>
-      </div>
+      </div> */}
     </motion.div>
   );
 }
