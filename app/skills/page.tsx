@@ -11,33 +11,40 @@ import {skillData, categories} from "../data/SkillData";
 export default function SkillsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [filteredSkills, setFilteredSkills] = useState(skillData);
-  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const filtered = skillData.filter((skill) => {
       const matchesCategory =
         selectedCategory === "All" || skill.category === selectedCategory;
-      const matchesSearch = skill.skill
-        .toLowerCase()
-        .includes(searchQuery.toLowerCase());
-      return matchesCategory && matchesSearch;
+      return matchesCategory;
     });
     setFilteredSkills(filtered);
-  }, [selectedCategory, searchQuery]);
+  }, [selectedCategory]);
 
   return (
-    <section className='py-12 md:py-16 lg:py-24'>
+    <section className='pt-12 md:py-16 lg:pt-20 relative'>
+      {/* Main background gradient */}
+      <div className='absolute inset-0 bg-gradient-to-b from-teal-50/70 via-cyan-50/50 to-white dark:from-teal-950/20 dark:via-cyan-950/10 dark:to-gray-950 -z-10'></div>
+
+      {/* Decorative blob shapes for light mode */}
+      <div className='absolute top-24 left-0 w-96 h-96 rounded-full bg-gradient-to-br from-teal-100/40 to-cyan-100/40 blur-3xl dark:opacity-0 -z-10'></div>
+      <div className='absolute bottom-24 right-0 w-96 h-96 rounded-full bg-gradient-to-tr from-indigo-100/40 to-purple-100/40 blur-3xl dark:opacity-0 -z-10'></div>
+      <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-96 rounded-full bg-gradient-to-r from-cyan-100/30 via-teal-100/30 to-sky-100/30 blur-3xl dark:opacity-0 -z-10'></div>
+
+      {/* Noise texture */}
+      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.08] bg-[url('/noise.png')] pointer-events-none"></div>
+
       <div className='container px-4 md:px-6 mx-auto max-w-7xl'>
         <motion.div
-          className='flex flex-col items-center justify-center space-y-4 text-center'
+          className='flex flex-col items-center justify-center space-y-4 text-center relative'
           initial={{opacity: 0, y: -20}}
           animate={{opacity: 1, y: 0}}
           transition={{duration: 0.5}}>
-          <div className='mb-8'>
-            <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl mb-4 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 text-transparent bg-clip-text'>
+          <div className='mb-8 relative'>
+            <h1 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl mb-4 bg-gradient-to-r from-teal-600 via-cyan-600 to-indigo-600 dark:from-teal-400 dark:via-cyan-400 dark:to-indigo-400 text-transparent bg-clip-text pb-2'>
               My Technical Expertise
             </h1>
-            <p className='max-w-[800px] text-gray-600 dark:text-gray-400 md:text-xl lg:text-lg xl:text-xl'>
+            <p className='max-w-[800px] text-gray-600 dark:text-gray-400 md:text-xl lg:text-lg xl:text-xl relative z-10'>
               I&apos;m proficient in a wide range of web development
               technologies, from front-end frameworks to backend and databases.
             </p>
@@ -45,15 +52,15 @@ export default function SkillsPage() {
         </motion.div>
 
         <div className='mb-8'>
-          <div className='flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0'>
-            <div className='flex flex-wrap gap-2 justify-center sm:justify-start'>
+          <div className='flex justify-center'>
+            <div className='flex flex-wrap gap-2 justify-center'>
               {categories.map((category) => (
                 <motion.button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                     selectedCategory === category
-                      ? "bg-blue-600 text-white dark:bg-blue-500"
+                      ? "bg-blue-600 hover:bg-blue-700 text-white shadow-md"
                       : "bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
                   }`}
                   whileHover={{scale: 1.05}}
@@ -61,23 +68,6 @@ export default function SkillsPage() {
                   {category}
                 </motion.button>
               ))}
-            </div>
-
-            <div className='relative w-full sm:w-64'>
-              <input
-                type='text'
-                placeholder='Search skills...'
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className='w-full px-4 py-2 rounded-full border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-gray-200'
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery("")}
-                  className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300'>
-                  ✕
-                </button>
-              )}
             </div>
           </div>
         </div>
@@ -117,7 +107,6 @@ export default function SkillsPage() {
                 <button
                   onClick={() => {
                     setSelectedCategory("All");
-                    setSearchQuery("");
                   }}
                   className='mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors'>
                   Reset filters

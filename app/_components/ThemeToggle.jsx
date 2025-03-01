@@ -17,7 +17,7 @@ const ThemeToggle = () => {
 
   return (
     <motion.div
-      className='relative p-2 rounded-full hover:bg-background_1-200 dark:hover:bg-slate-800 transition-colors'
+      className='relative p-2 rounded-full hover:bg-blue-100/70 dark:hover:bg-slate-800 transition-colors'
       whileHover={{scale: 1.05}}
       whileTap={{scale: 0.95}}
       initial={{opacity: 0}}
@@ -39,7 +39,7 @@ const ThemeToggle = () => {
             rotate: theme === "light" ? 0 : -180,
           }}
           transition={{duration: 0.3}}>
-          <MoonIcon className='h-6 w-6 text-gray-800' />
+          <MoonIcon className='h-6 w-6 text-indigo-700' />
         </motion.div>
 
         <motion.div

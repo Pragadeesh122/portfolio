@@ -1,17 +1,27 @@
 "use client";
 
+import {useState} from "react";
 import {
   Card,
   CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
+  CardTitle,
 } from "@/app/_components/ui/card";
 import {Button} from "@/app/_components/ui/button";
-import {GithubIcon, ExternalLinkIcon, InfoIcon} from "lucide-react";
-import Image, {StaticImageData} from "next/image";
-import {Badge} from "./ui/badge";
+import {Badge} from "@/app/_components/ui/badge";
+import {
+  Github,
+  ExternalLink,
+  ChevronDown,
+  ChevronUp,
+  ArrowUpRight,
+} from "lucide-react";
+import Image from "next/image";
+import {motion, AnimatePresence} from "framer-motion";
+import {StaticImageData} from "next/image";
 import Link from "next/link";
-import {useState} from "react";
 
 interface ProjectCardProps {
   title: string;
@@ -21,92 +31,148 @@ interface ProjectCardProps {
   githubLink: string;
   demoLink: string;
   techStack: string[];
-  featured?: boolean;
 }
 
 export default function ProjectCard({
-  title = "Amazing Project",
-  description = "This is a fantastic project that showcases my skills in React, Next.js, and Tailwind CSS.",
+  title,
+  description,
   longDescription,
   imageUrl,
-  githubLink = "https://github.com/yourusername/amazing-project",
-  demoLink = "https://amazing-project.vercel.app",
-  techStack = ["React", "Next.js", "Tailwind CSS"],
-  featured = false,
+  githubLink = "#",
+  demoLink = "#",
+  techStack = [],
 }: ProjectCardProps) {
   const [showDetails, setShowDetails] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <Card
-      className={`w-full max-w-md overflow-hidden transition-all duration-300 transform hover:shadow-xl border-gray-300 dark:border-gray-400 ${
-        featured ? "border-2 border-blue-500 dark:border-blue-400" : ""
-      } ${showDetails ? "scale-105 z-10" : "hover:scale-102"}`}>
-      <CardHeader className='p-0 relative'>
-        <div className='relative w-full h-60 overflow-hidden'>
+    <motion.div
+      whileHover={{y: -8, transition: {duration: 0.3, ease: "easeOut"}}}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      className='h-full group perspective'>
+      <Card className='h-full flex flex-col overflow-hidden relative border border-blue-100 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-xl dark:shadow-gray-900/30 shadow-blue-200/50 rounded-xl transform-gpu transition-all duration-300'>
+        {/* Enhanced hover gradient accent overlay for light mode */}
+        <motion.div
+          animate={{opacity: isHovered ? 1 : 0}}
+          className='absolute left-0 top-0 w-2 h-full bg-gradient-to-b from-blue-500 via-indigo-500 to-purple-500 rounded-l-xl transition-opacity duration-300'
+        />
+
+        {/* Image container with overlay effect */}
+        <div className='relative w-full aspect-video overflow-hidden group'>
           <Image
             src={imageUrl}
-            placeholder='blur'
             alt={title}
             fill
-            className={`object-cover transition-transform duration-700 ${
-              showDetails ? "scale-110" : ""
-            }`}
+            className='object-cover object-center transition-transform duration-700 group-hover:scale-110 brightness-[0.98] dark:brightness-[0.85]'
+            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
           />
-          {featured && (
-            <div className='absolute top-0 right-0 bg-blue-500 text-white px-3 py-1 rounded-bl-lg font-medium text-sm z-10'>
-              Featured
-            </div>
-          )}
-        </div>
-      </CardHeader>
-      <CardContent className={`p-4 ${showDetails ? "pb-0" : ""}`}>
-        <div className='flex justify-between items-start mb-2'>
-          <h3 className='text-xl font-bold'>{title}</h3>
-          <Button
-            variant='ghost'
-            size='sm'
-            className='p-1 h-auto'
-            onClick={() => setShowDetails(!showDetails)}
-            aria-label={showDetails ? "Hide details" : "Show details"}>
-            <InfoIcon
-              size={18}
-              className={`transition-transform ${
-                showDetails ? "text-blue-500 rotate-180" : ""
-              }`}
-            />
-          </Button>
+
+          <div className='absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent opacity-80'></div>
         </div>
 
-        <p className='text-sm text-gray-600 dark:text-gray-200 mb-4'>
-          {showDetails && longDescription ? longDescription : description}
-        </p>
+        <CardHeader className='pb-2 space-y-2 pt-5'>
+          <div className='flex items-start justify-between'>
+            <CardTitle className='text-xl font-bold tracking-tight text-blue-800 dark:text-gray-50'>
+              {title}
+            </CardTitle>
+            <motion.div
+              animate={{rotate: isHovered ? 45 : 0}}
+              className='text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+              <Link href={demoLink} target='_blank'>
+                <ArrowUpRight className='h-5 w-5' />
+              </Link>
+            </motion.div>
+          </div>
+          <CardDescription className='text-sm text-gray-600 dark:text-gray-400 line-clamp-2'>
+            {description}
+          </CardDescription>
+        </CardHeader>
 
-        <div className='flex flex-wrap gap-2 mb-4'>
-          {techStack.map((tech, index) => (
-            <Badge key={index} variant='default' className='text-xs'>
-              {tech}
-            </Badge>
-          ))}
+        {/* Enhanced tech stack badges for light mode */}
+        <div className='px-6 pb-2'>
+          <div className='flex flex-wrap gap-1.5'>
+            {techStack.map((tech) => (
+              <Badge
+                key={tech}
+                variant='secondary'
+                className='text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-200 hover:bg-blue-200 dark:hover:bg-blue-800/60 border border-blue-100 dark:border-blue-800/20 px-2 py-1 rounded-full'>
+                {tech}
+              </Badge>
+            ))}
+          </div>
         </div>
-      </CardContent>
-      <CardFooter className='bg-gray-50 p-4 flex justify-between items-center dark:bg-gray-600 border-t dark:border-gray-700'>
-        <Button variant='outline' size='sm' className='flex items-center gap-2'>
-          <GithubIcon className='w-4 h-4' />
-          <Link href={githubLink} target='_blank' rel='noopener noreferrer'>
-            GitHub
-          </Link>
-        </Button>
-        <Button variant='default' size='sm' className='flex items-center gap-2'>
-          <ExternalLinkIcon className='w-4 h-4' />
-          {title === "StyleSense AI" ? (
-            <span>Coming Soon!</span>
-          ) : (
-            <Link href={demoLink} target='_blank' rel='noopener noreferrer'>
-              Live Demo
-            </Link>
+
+        <CardContent className='pt-4 pb-4 flex-grow'>
+          <AnimatePresence>
+            {showDetails && longDescription && (
+              <motion.div
+                initial={{opacity: 0, height: 0}}
+                animate={{opacity: 1, height: "auto"}}
+                exit={{opacity: 0, height: 0}}
+                transition={{duration: 0.3}}
+                className='overflow-hidden'>
+                <div className='py-3 pr-1 max-h-[150px] overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-blue-200 dark:scrollbar-thumb-gray-700 scrollbar-track-transparent'>
+                  <p className='text-sm text-gray-600 dark:text-gray-300'>
+                    {longDescription}
+                  </p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </CardContent>
+
+        <CardFooter className='pt-0 flex flex-col gap-3 mt-auto pb-4'>
+          {longDescription && (
+            <Button
+              variant='ghost'
+              size='sm'
+              onClick={() => setShowDetails(!showDetails)}
+              className='w-full justify-center text-sm text-blue-600 hover:text-blue-800 dark:text-gray-400 dark:hover:text-gray-200 border-t border-blue-50 dark:border-gray-700 rounded-none pt-3'>
+              {showDetails ? (
+                <>
+                  <span>Show less</span>
+                  <ChevronUp className='ml-1 h-4 w-4' />
+                </>
+              ) : (
+                <>
+                  <span>Show more</span>
+                  <ChevronDown className='ml-1 h-4 w-4' />
+                </>
+              )}
+            </Button>
           )}
-        </Button>
-      </CardFooter>
-    </Card>
+
+          <div className='flex gap-3 w-full mt-2'>
+            <Button
+              asChild
+              variant='outline'
+              className='flex-1 gap-1.5 bg-white dark:bg-gray-800 border border-blue-200 dark:border-gray-600 text-blue-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700'>
+              <a
+                href={githubLink}
+                target='_blank'
+                rel='noopener noreferrer'
+                aria-label={`View ${title} GitHub repository`}>
+                <Github className='h-4 w-4' />
+                <span>Code</span>
+              </a>
+            </Button>
+
+            <Button
+              asChild
+              className='flex-1 gap-1.5 bg-blue-600 hover:bg-blue-700 text-white border-0 shadow-md shadow-blue-400/20 dark:shadow-blue-900/30'>
+              <a
+                href={demoLink}
+                target='_blank'
+                rel='noopener noreferrer'
+                aria-label={`View ${title} live demo`}>
+                <ExternalLink className='h-4 w-4' />
+                <span>Demo</span>
+              </a>
+            </Button>
+          </div>
+        </CardFooter>
+      </Card>
+    </motion.div>
   );
 }

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .light-mode-gradient {
-  @apply bg-gradient-to-b from-background_1-200 to-background_1-300;
+  @apply bg-gradient-to-b from-sky-50 to-blue-100;
 }
 
 .nav_link_hover {
@@ -72,25 +72,25 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 250 95% 76%;
+    --accent-foreground: 210 40% 98%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
     --radius: 0.5rem;
   }
 
@@ -124,4 +124,29 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* New Light Mode Specific Classes */
+.light-card {
+  @apply bg-white shadow-sm border border-blue-50 hover:shadow-md transition-shadow duration-300;
+}
+
+.light-input {
+  @apply bg-white border border-blue-100 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all duration-200;
+}
+
+.light-button-primary {
+  @apply bg-gradient-to-r from-blue-500 to-indigo-600 text-white hover:from-blue-600 hover:to-indigo-700 shadow-md hover:shadow-lg transition-all duration-300;
+}
+
+.light-button-secondary {
+  @apply bg-white text-blue-600 border border-blue-200 hover:bg-blue-50 shadow-sm hover:shadow transition-all duration-300;
+}
+
+.light-section {
+  @apply bg-gradient-to-br from-sky-50 via-white to-indigo-50 border border-blue-50 rounded-xl shadow-sm;
+}
+
+.light-blob {
+  @apply bg-gradient-to-br from-blue-300/30 to-indigo-400/20 blur-xl;
 }

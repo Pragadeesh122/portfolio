@@ -7,6 +7,7 @@ export async function sendEmail(formData: any) {
   try {
     const name: string = formData["name"];
     const email: string = formData["email"];
+    const subject: string = formData["subject"];
     const message: string = formData["message"];
 
     const transporter = nodemailer.createTransport({
@@ -24,10 +25,12 @@ export async function sendEmail(formData: any) {
       from: `${name} <${process.env.USER_GMAIL}>`,
       to: process.env.USER_GMAIL,
       replyTo: email,
-      subject: `New Connection Request from ${name}`,
+      subject: `New Contact: ${subject || "Portfolio Inquiry"} from ${name}`,
       text: `Hello Pragadeesh,
 
 You have received a new message from ${name} (${email}):
+
+Subject: ${subject || "Portfolio Inquiry"}
 
 "${message}"
 
@@ -38,6 +41,7 @@ ${name}
         <div style="font-family: Arial, sans-serif; font-size: 16px; color: #333;">
           <p>Hello Pragadeesh,</p>
           <p>You have received a new message from <strong>${name}</strong> (<a href="mailto:${email}" style="color: #1a0dab;">${email}</a>):</p>
+          <p><strong>Subject:</strong> ${subject || "Portfolio Inquiry"}</p>
           <blockquote style="border-left: 2px solid #ccc; margin: 1em 0; padding: 0.5em 1em; color: #555;">
             "${message}"
           </blockquote>

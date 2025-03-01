@@ -79,15 +79,15 @@ export default function HeroAnimations({
         animate={{opacity: 1}}
         transition={{delay: 0.9, duration: 0.5}}>
         <Link
-          href='https://drive.google.com/file/d/1VOzWOWeBXT6nW1QYXG9oyLQCBs1A67DI/view?usp=sharing'
+          href='https://drive.google.com/file/d/10EZ3qsQS6II-uToa4WlyYH1B8TxymQXd/view?usp=sharing'
           target='_blank'>
-          <button className='px-7 py-3 text-lg font-semibold rounded-lg bg-gradient-to-r from-gray-800 to-gray-700 text-white hover:shadow-xl hover:-translate-y-0.5 transition duration-300 transform flex items-center gap-2 shadow-md'>
+          <button className='px-7 py-3 text-lg font-semibold rounded-lg bg-gray-800 hover:bg-gray-700 text-white hover:shadow-xl hover:-translate-y-0.5 transition duration-300 transform flex items-center gap-2 shadow-md'>
             View Resume
             <ArrowRight size={18} />
           </button>
         </Link>
         <Link href='/contact'>
-          <button className='px-7 py-3 text-lg font-semibold rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:shadow-xl hover:-translate-y-0.5 transition duration-300 transform flex items-center gap-2 shadow-md'>
+          <button className='px-7 py-3 text-lg font-semibold rounded-lg bg-blue-600 hover:bg-blue-700 text-white hover:shadow-xl hover:-translate-y-0.5 transition duration-300 transform flex items-center gap-2 shadow-md'>
             Contact Me
             <Mail size={18} />
           </button>
