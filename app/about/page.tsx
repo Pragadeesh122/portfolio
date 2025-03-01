@@ -3,11 +3,6 @@
 import {motion} from "framer-motion";
 import ExperienceCard from "../_components/ExperienceCard";
 
-export const metadata = {
-  title: "About",
-  description: "Learn more about me and my experience as a web developer.",
-};
-
 export default function AboutPage() {
   type Experience = {
     company: string;
