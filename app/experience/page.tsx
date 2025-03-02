@@ -78,7 +78,7 @@ const experiences: Experience[] = [
     description: [
       "Specialized in Software Engineering and Web Development.",
       "Relevant coursework: Advanced Web Application Development, Cloud Computing, Database Systems, and Machine Learning.",
-      "GPA: 3.8/4.0",
+      "GPA: 3.88/4.0",
     ],
     icon: (
       <GraduationCap className='w-10 h-10 text-purple-600 dark:text-purple-400' />
@@ -101,7 +101,7 @@ const experiences: Experience[] = [
   {
     title: "Bachelor of Science in Computer Science and Engineering",
     company: "Kumaraguru College of Technology",
-    period: "2017 - 2021",
+    period: "2019 - 2023",
     description: [
       "Focused on Computer Science fundamentals, algorithms, and software development methodologies.",
       "Relevant coursework: Data Structures, Algorithms, Object-Oriented Programming, and Database Management Systems.",
