@@ -136,7 +136,7 @@ const Footer = () => {
               whileHover={{scale: 1.02}}
               className='w-full max-w-xs rounded-xl overflow-hidden border border-gray-800 p-4 bg-gray-800/50 backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-300'>
               <p className='text-sm text-gray-400 mb-4'>
-                Ready to collaborate? Let's turn your ideas into impactful
+                Ready to collaborate? Let&apos;s turn your ideas into impactful
                 solutions.
               </p>
               <Link

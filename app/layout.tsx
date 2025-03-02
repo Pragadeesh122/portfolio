@@ -4,9 +4,10 @@ import "./globals.css";
 import Navbar from "./_components/Navbar";
 import Footer from "./_components/Footer";
 import Hero from "./_components/Hero";
-import {ThemeProvider} from "next-themes";
+import {ThemeProvider} from "./_components/ThemeProvider";
 import ToastProvider from "./_components/ToastProvider";
 import {ChatInterface} from "./_components/ChatInterface";
+import ClientOnly from "./_components/ClientOnly";
 
 const inter = Inter({subsets: ["latin"]});
 const openSans = Open_Sans({subsets: ["latin"], display: "swap"});
@@ -55,21 +56,23 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
     <html lang='en' suppressHydrationWarning className='dark'>
       <body
         className={`${openSans.className} antialiased min-h-screen flex flex-col`}>
-        <ThemeProvider defaultTheme='dark' forcedTheme='dark'>
-          <Hero>
-            <header className='sticky top-0 z-50 backdrop-blur-md bg-black/70 border-b border-gray-800'>
-              <Navbar />
-            </header>
-            <main className='flex-1 mx-auto w-full min-h-[calc(100vh-180px)] '>
-              {children}
-            </main>
-            <footer className='mt-auto'>
-              <Footer />
-            </footer>
-            <ChatInterface />
-          </Hero>
-        </ThemeProvider>
-        <ToastProvider />
+        <ClientOnly>
+          <ThemeProvider defaultTheme='dark' forcedTheme='dark'>
+            <Hero>
+              <header className='sticky top-0 z-50 backdrop-blur-md bg-black/70 border-b border-gray-800'>
+                <Navbar />
+              </header>
+              <main className='flex-1 mx-auto w-full min-h-[calc(100vh-180px)] '>
+                {children}
+              </main>
+              <footer className='mt-auto'>
+                <Footer />
+              </footer>
+              <ChatInterface />
+            </Hero>
+          </ThemeProvider>
+          <ToastProvider />
+        </ClientOnly>
       </body>
     </html>
   );

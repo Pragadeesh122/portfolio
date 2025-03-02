@@ -101,7 +101,7 @@ const experiences: Experience[] = [
   {
     title: "Bachelor of Science in Computer Science and Engineering",
     company: "Kumaraguru College of Technology",
-    period: "2019 - 2023",
+    period: "2019so - 2023",
     description: [
       "Focused on Computer Science fundamentals, algorithms, and software development methodologies.",
       "Relevant coursework: Data Structures, Algorithms, Object-Oriented Programming, and Database Management Systems.",
