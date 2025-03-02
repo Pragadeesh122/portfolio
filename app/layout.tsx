@@ -1,4 +1,4 @@
-import type {Metadata} from "next";
+import type {Metadata, Viewport} from "next";
 import {Inter, Open_Sans} from "next/font/google";
 import "./globals.css";
 import Navbar from "./_components/Navbar";
@@ -6,10 +6,15 @@ import Footer from "./_components/Footer";
 import Hero from "./_components/Hero";
 import {ThemeProvider} from "next-themes";
 import ToastProvider from "./_components/ToastProvider";
-import PortfolioAssistant from "./_components/PortfolioAssistant";
+import {ChatInterface} from "./_components/ChatInterface";
 
 const inter = Inter({subsets: ["latin"]});
 const openSans = Open_Sans({subsets: ["latin"], display: "swap"});
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   title: "Pragadeesh - Full Stack Developer",
@@ -42,7 +47,6 @@ export const metadata: Metadata = {
       "Full Stack Web Developer specializing in React, Next.js, Node.js, and modern web technologies.",
     creator: "@Pragadeesh1221",
   },
-  viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
 };
 
@@ -62,7 +66,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
             <footer className='mt-auto'>
               <Footer />
             </footer>
-            <PortfolioAssistant />
+            <ChatInterface />
           </Hero>
         </ThemeProvider>
         <ToastProvider />
