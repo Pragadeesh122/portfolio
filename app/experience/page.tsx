@@ -74,7 +74,7 @@ const experiences: Experience[] = [
   {
     title: "Master's in Computer Science",
     company: "Indiana University, Bloomington",
-    period: "2021 - 2023",
+    period: "2023 - 2025",
     description: [
       "Specialized in Software Engineering and Web Development.",
       "Relevant coursework: Advanced Web Application Development, Cloud Computing, Database Systems, and Machine Learning.",
@@ -88,7 +88,7 @@ const experiences: Experience[] = [
   {
     title: "Web Development Intern",
     company: "SmartKnower",
-    period: "Jan 2020 - Mar 2020",
+    period: "Apr 2022 - Jun 2022",
     description: [
       "Revitalized a B2B e-commerce platform, improving user experience and performance metrics.",
       "Implemented responsive design principles to enhance mobile accessibility.",
