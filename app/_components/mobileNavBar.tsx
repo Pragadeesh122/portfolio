@@ -7,9 +7,11 @@ import menu_dark from "@/public/menu-dark.svg";
 import close_dark from "@/public/close-dark.png";
 import {usePathname} from "next/navigation";
 import {motion, AnimatePresence} from "framer-motion";
+import ResumeButton from "./ResumeButton";
 
-// Navigation items shared with main navbar
+// Navigation items with Home added
 const navItems = [
+  {path: "/", label: "Home"},
   {path: "/skills", label: "Skills"},
   {path: "/projects", label: "Projects"},
   {path: "/experience", label: "Experience"},
@@ -94,50 +96,61 @@ export default function MobileNavBar() {
               exit='closed'
               onClick={(e) => e.stopPropagation()}>
               <div className='flex flex-col space-y-8'>
-                {navItems.map((item) => (
-                  <motion.div
-                    key={item.path}
-                    variants={itemVariants}
-                    className='relative'
-                    whileHover={{
-                      x: 5,
-                      transition: {duration: 0.2},
-                    }}>
-                    <Link href={item.path} onClick={closeNav}>
-                      <motion.div
-                        className={`relative px-5 py-3 rounded-lg font-medium text-lg ${
-                          pathname === item.path
-                            ? "text-white"
-                            : "text-gray-300 hover:text-white"
-                        }`}
-                        whileTap={{scale: 0.98}}>
-                        {/* Background highlight */}
-                        <motion.span
-                          className={`absolute inset-0 rounded-lg ${
+                {/* Main navigation items */}
+                <div className='space-y-3'>
+                  {navItems.map((item) => (
+                    <motion.div
+                      key={item.path}
+                      variants={itemVariants}
+                      className='relative'
+                      whileHover={{
+                        x: 5,
+                        transition: {duration: 0.2},
+                      }}>
+                      <Link href={item.path} onClick={closeNav}>
+                        <motion.div
+                          className={`relative px-5 py-3 rounded-lg font-medium text-lg ${
                             pathname === item.path
-                              ? "bg-gradient-to-br from-blue-600/80 to-blue-800/80 shadow-md shadow-blue-600/10"
-                              : "bg-transparent"
+                              ? "text-white"
+                              : "text-gray-300 hover:text-white"
                           }`}
-                          initial={false}
-                          animate={{
-                            background:
+                          whileTap={{scale: 0.98}}>
+                          {/* Background highlight */}
+                          <motion.span
+                            className={`absolute inset-0 rounded-lg ${
                               pathname === item.path
-                                ? "linear-gradient(to bottom right, rgba(37, 99, 235, 0.8), rgba(30, 64, 175, 0.8))"
-                                : "transparent",
-                            boxShadow:
-                              pathname === item.path
-                                ? "0 4px 12px rgba(37, 99, 235, 0.15)"
-                                : "none",
-                          }}
-                          transition={{duration: 0.3}}
-                        />
+                                ? "bg-gradient-to-br from-blue-600/80 to-blue-800/80 shadow-md shadow-blue-600/10"
+                                : "bg-transparent"
+                            }`}
+                            initial={false}
+                            animate={{
+                              background:
+                                pathname === item.path
+                                  ? "linear-gradient(to bottom right, rgba(37, 99, 235, 0.8), rgba(30, 64, 175, 0.8))"
+                                  : "transparent",
+                              boxShadow:
+                                pathname === item.path
+                                  ? "0 4px 12px rgba(37, 99, 235, 0.15)"
+                                  : "none",
+                            }}
+                            transition={{duration: 0.3}}
+                          />
 
-                        {/* Text content with relative positioning */}
-                        <span className='relative z-10'>{item.label}</span>
-                      </motion.div>
-                    </Link>
-                  </motion.div>
-                ))}
+                          {/* Text content with relative positioning */}
+                          <span className='relative z-10'>{item.label}</span>
+                        </motion.div>
+                      </Link>
+                    </motion.div>
+                  ))}
+
+                  {/* Resume Button in mobile menu */}
+                  {/* <motion.div variants={itemVariants} className='mt-4 px-2'>
+                    <ResumeButton
+                      variant='secondary'
+                      className='w-full py-2 flex items-center justify-center gap-2 bg-blue-600/20 hover:bg-blue-600/30 text-white border-none'
+                    />
+                  </motion.div> */}
+                </div>
               </div>
             </motion.nav>
           </motion.div>

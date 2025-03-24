@@ -3,10 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import {usePathname} from "next/navigation";
-import {useEffect, useState} from "react";
+import {useEffect, useState, useRef} from "react";
 import NavbarSkeleton from "../_skeletonComponent/NavSkeleton";
 import MobileNavBar from "./mobileNavBar";
 import {motion} from "framer-motion";
+import ModernSubmenu from "./ModernSubmenu";
+import {ChevronDown} from "lucide-react";
 
 const navItems = [
   {path: "/skills", label: "Skills"},
@@ -20,6 +22,9 @@ const Navbar = () => {
   const [mounted, setMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
+  const submenuRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -31,6 +36,30 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Handle click outside to close submenu
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        submenuRef.current &&
+        buttonRef.current &&
+        !submenuRef.current.contains(event.target as Node) &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
+        setIsSubmenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  // Close submenu when navigating to another page
+  useEffect(() => {
+    setIsSubmenuOpen(false);
+  }, [currentPath]);
 
   if (!mounted) return <NavbarSkeleton />;
 
@@ -48,8 +77,10 @@ const Navbar = () => {
         <motion.div
           initial={{opacity: 0}}
           animate={{opacity: 1}}
-          transition={{duration: 0.5, delay: 0.2}}>
-          <Link href='/' className='group flex items-center space-x-3'>
+          transition={{duration: 0.5, delay: 0.2}}
+          className='relative flex items-center'>
+          {/* Logo with home link */}
+          <Link href='/' className='group flex items-center'>
             <div className='relative overflow-hidden rounded-full shadow-lg shadow-blue-500/20'>
               <Image
                 className='transition-transform duration-500 group-hover:scale-110'
@@ -59,7 +90,7 @@ const Navbar = () => {
                 height={40}
               />
             </div>
-            <div className='hidden sm:block overflow-hidden'>
+            <div className='hidden sm:block ml-3 overflow-hidden'>
               <motion.span
                 className='text-xl font-bold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500'
                 initial={{x: -20, opacity: 0}}
@@ -69,6 +100,27 @@ const Navbar = () => {
               </motion.span>
             </div>
           </Link>
+
+          {/* Dropdown toggle button */}
+          <div
+            ref={buttonRef}
+            onClick={() => setIsSubmenuOpen(!isSubmenuOpen)}
+            className='flex items-center ml-1 cursor-pointer p-1 rounded-full hover:bg-gray-800/30'>
+            <motion.div
+              animate={{rotate: isSubmenuOpen ? 180 : 0}}
+              transition={{duration: 0.3}}
+              className='text-blue-400'>
+              <ChevronDown size={16} />
+            </motion.div>
+          </div>
+
+          {/* Submenu container positioned relative to the parent */}
+          <div ref={submenuRef} className='absolute top-full left-0'>
+            <ModernSubmenu
+              isOpen={isSubmenuOpen}
+              setIsOpen={setIsSubmenuOpen}
+            />
+          </div>
         </motion.div>
 
         <div className='hidden sm:block ml-auto'>

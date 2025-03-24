@@ -92,6 +92,9 @@ const MessageContent = ({content}: {content: string}) => {
   return formatMessageContent(content);
 };
 
+// Create a variable to store the toggle chat function
+let globalToggleChat: (() => void) | null = null;
+
 export function ChatInterface() {
   const [state, setState] = useState<ChatState>({
     messages: [],
@@ -152,6 +155,15 @@ export function ChatInterface() {
   const handleToggleChat = () => {
     setState((prev: ChatState) => ({...prev, isOpen: !prev.isOpen}));
   };
+
+  // Store the toggle function globally
+  useEffect(() => {
+    globalToggleChat = handleToggleChat;
+
+    return () => {
+      globalToggleChat = null;
+    };
+  }, []);
 
   const streamResponse = (fullResponse: string) => {
     const messageId = uuidv4(); // Generate ID once and reuse
@@ -461,4 +473,11 @@ export function ChatInterface() {
       </div>
     </div>
   );
+}
+
+// Export the toggle chat function
+export function toggleChatWindow() {
+  if (globalToggleChat) {
+    globalToggleChat();
+  }
 }

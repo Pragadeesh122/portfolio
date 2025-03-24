@@ -2,7 +2,8 @@
 
 import {motion} from "framer-motion";
 import Link from "next/link";
-import {ArrowRight, Github, Linkedin, Mail} from "lucide-react";
+import {ArrowRight, Github, Linkedin, Mail, FileText} from "lucide-react";
+import ResumeButton from "./ResumeButton";
 
 interface HeroAnimationsProps {
   name: string;
@@ -78,14 +79,13 @@ export default function HeroAnimations({
         initial={{opacity: 0}}
         animate={{opacity: 1}}
         transition={{delay: 0.9, duration: 0.5}}>
-        <Link
-          href='https://drive.google.com/file/d/10EZ3qsQS6II-uToa4WlyYH1B8TxymQXd/view?usp=sharing'
-          target='_blank'>
-          <button className='px-7 py-3 text-lg font-semibold rounded-lg bg-gray-800 hover:bg-gray-700 text-white hover:shadow-xl hover:-translate-y-0.5 transition duration-300 transform flex items-center gap-2 shadow-md'>
-            View Resume
-            <ArrowRight size={18} />
-          </button>
-        </Link>
+        <ResumeButton
+          variant='ghost'
+          resumePath='/resume.pdf'
+          className='px-7 py-7 text-lg font-semibold rounded-lg bg-gray-800 hover:bg-gray-700 text-white hover:shadow-xl hover:-translate-y-0.5 transition duration-300 transform flex items-center gap-2 shadow-md'>
+          View Resume
+          <ArrowRight size={18} />
+        </ResumeButton>
         <Link href='/contact'>
           <button className='px-7 py-3 text-lg font-semibold rounded-lg bg-blue-600 hover:bg-blue-700 text-white hover:shadow-xl hover:-translate-y-0.5 transition duration-300 transform flex items-center gap-2 shadow-md'>
             Contact Me
