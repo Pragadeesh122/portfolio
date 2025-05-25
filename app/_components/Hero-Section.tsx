@@ -11,7 +11,7 @@ export default function HeroSection() {
     name: "Pragadeesh",
     title: "Full Stack Developer",
     description:
-      "I build modern, high-performance applications with React, Next.js, Node.js, and TailwindCSS. Focused on creating intuitive user interfaces and seamless experiences that solve real business challenges.",
+      "I transform ideas into intelligent full stack applications, seamlessly integrating AI capabilities to create powerful, user-centric solutions. Using React, Next.js, Node.js, FastAPI, and LangChain to build intuitive experiences that solve real business challenges.",
   };
 
   return (

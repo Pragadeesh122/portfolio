@@ -32,11 +32,11 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
-    title: "Software Training",
+    title: "Software Developer",
     company: "IU Corps",
     period: "Oct 2024 - Dec 2024",
     description: [
-      "Led the development of an activity management platform for IU Corps, enabling efficient tracking of community engagement initiatives.",
+      "Led the development of an activity management platform for YMCA Owen County, enabling efficient tracking of community engagement initiatives.",
       "Implemented user authentication, role-based permissions, and dynamic dashboards for administrators.",
       "Designed and deployed RESTful APIs to support seamless front-end interactions.",
     ],
@@ -105,7 +105,7 @@ const experiences: Experience[] = [
     description: [
       "Focused on Computer Science fundamentals, algorithms, and software development methodologies.",
       "Relevant coursework: Data Structures, Algorithms, Object-Oriented Programming, and Database Management Systems.",
-      "GPA: 8.5/10.0",
+      "GPA: 8.71/10.0",
     ],
     icon: (
       <GraduationCap className='w-10 h-10 text-purple-600 dark:text-purple-400' />

@@ -8,8 +8,8 @@ import {ThemeProvider} from "./_components/ThemeProvider";
 import ToastProvider from "./_components/ToastProvider";
 import {ChatInterface} from "./_components/ChatInterface";
 import ClientOnly from "./_components/ClientOnly";
+import {Analytics} from "@vercel/analytics/next";
 
-const inter = Inter({subsets: ["latin"]});
 const openSans = Open_Sans({subsets: ["latin"], display: "swap"});
 
 export const viewport: Viewport = {
@@ -56,6 +56,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
     <html lang='en' suppressHydrationWarning className='dark'>
       <body
         className={`${openSans.className} antialiased min-h-screen flex flex-col`}>
+        <Analytics />
         <ClientOnly>
           <ThemeProvider defaultTheme='dark' forcedTheme='dark'>
             <Hero>
