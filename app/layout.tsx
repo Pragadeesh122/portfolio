@@ -1,5 +1,5 @@
 import type {Metadata, Viewport} from "next";
-import {Inter, Open_Sans} from "next/font/google";
+import {Inter, JetBrains_Mono} from "next/font/google";
 import "./globals.css";
 import Navbar from "./_components/Navbar";
 import Footer from "./_components/Footer";
@@ -9,8 +9,19 @@ import ToastProvider from "./_components/ToastProvider";
 import {ChatInterface} from "./_components/ChatInterface";
 import ClientOnly from "./_components/ClientOnly";
 import {Analytics} from "@vercel/analytics/next";
+import ScrollProgress from "./_components/ScrollProgress";
 
-const openSans = Open_Sans({subsets: ["latin"], display: "swap"});
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-jetbrains",
+});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -55,15 +66,14 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang='en' suppressHydrationWarning className='dark'>
       <body
-        className={`${openSans.className} antialiased min-h-screen flex flex-col`}>
+        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased min-h-screen flex flex-col`}>
         <Analytics />
         <ClientOnly>
           <ThemeProvider defaultTheme='dark' forcedTheme='dark'>
             <Hero>
-              <header className='sticky top-0 z-50 backdrop-blur-md bg-black/70 border-b border-gray-800'>
-                <Navbar />
-              </header>
-              <main className='flex-1 mx-auto w-full min-h-[calc(100vh-180px)] '>
+              <ScrollProgress />
+              <Navbar />
+              <main className='flex-1 mx-auto w-full min-h-[calc(100vh-180px)]'>
                 {children}
               </main>
               <footer className='mt-auto'>

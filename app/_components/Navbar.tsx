@@ -3,14 +3,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import {usePathname} from "next/navigation";
-import {useEffect, useState, useRef} from "react";
+import {useEffect, useState} from "react";
 import NavbarSkeleton from "../_skeletonComponent/NavSkeleton";
 import MobileNavBar from "./mobileNavBar";
 import {motion} from "framer-motion";
-import ModernSubmenu from "./ModernSubmenu";
-import {ChevronDown} from "lucide-react";
 
 const navItems = [
+  {path: "/", label: "Home"},
   {path: "/skills", label: "Skills"},
   {path: "/projects", label: "Projects"},
   {path: "/experience", label: "Experience"},
@@ -20,180 +19,65 @@ const navItems = [
 const Navbar = () => {
   const currentPath = usePathname();
   const [mounted, setMounted] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
-  const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
-  const submenuRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
-
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // Handle click outside to close submenu
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        submenuRef.current &&
-        buttonRef.current &&
-        !submenuRef.current.contains(event.target as Node) &&
-        !buttonRef.current.contains(event.target as Node)
-      ) {
-        setIsSubmenuOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  // Close submenu when navigating to another page
-  useEffect(() => {
-    setIsSubmenuOpen(false);
-  }, [currentPath]);
 
   if (!mounted) return <NavbarSkeleton />;
 
   return (
     <motion.nav
-      className={`py-4 sm:py-5 px-4 sm:px-6 transition-all duration-500 ${
-        scrolled
-          ? "backdrop-blur-lg bg-black/60 shadow-[0_10px_30px_-15px_rgba(2,6,23,0.7)]"
-          : "bg-transparent"
-      }`}
-      initial={{y: -100}}
-      animate={{y: 0}}
-      transition={{duration: 0.5, ease: "easeOut"}}>
-      <div className='container mx-auto flex justify-between items-center'>
-        <motion.div
-          initial={{opacity: 0}}
-          animate={{opacity: 1}}
-          transition={{duration: 0.5, delay: 0.2}}
-          className='relative flex items-center'>
-          {/* Logo with home link */}
-          <Link href='/' className='group flex items-center'>
-            <div className='relative overflow-hidden rounded-full shadow-lg shadow-blue-500/20'>
-              <Image
-                className='transition-transform duration-500 group-hover:scale-110'
-                src='/logo.png'
-                alt='logo'
-                width={40}
-                height={40}
-              />
-            </div>
-            <div className='hidden sm:block ml-3 overflow-hidden'>
-              <motion.span
-                className='text-xl font-bold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500'
-                initial={{x: -20, opacity: 0}}
-                animate={{x: 0, opacity: 1}}
-                transition={{duration: 0.6, delay: 0.3}}>
-                Pragadeesh
-              </motion.span>
-            </div>
-          </Link>
-
-          {/* Dropdown toggle button */}
-          <div
-            ref={buttonRef}
-            onClick={() => setIsSubmenuOpen(!isSubmenuOpen)}
-            className='flex items-center ml-1 cursor-pointer p-1 rounded-full hover:bg-gray-800/30'>
-            <motion.div
-              animate={{rotate: isSubmenuOpen ? 180 : 0}}
-              transition={{duration: 0.3}}
-              className='text-blue-400'>
-              <ChevronDown size={16} />
-            </motion.div>
-          </div>
-
-          {/* Submenu container positioned relative to the parent */}
-          <div ref={submenuRef} className='absolute top-full left-0'>
-            <ModernSubmenu
-              isOpen={isSubmenuOpen}
-              setIsOpen={setIsSubmenuOpen}
+      className='fixed top-4 left-1/2 -translate-x-1/2 z-50 px-2 sm:px-3 py-2 bg-zinc-950/70 backdrop-blur-xl border border-gray-800/50 rounded-full shadow-lg shadow-black/20'
+      initial={{y: -100, opacity: 0}}
+      animate={{y: 0, opacity: 1}}
+      transition={{duration: 0.6, ease: [0.22, 1, 0.36, 1]}}>
+      <div className='flex items-center gap-1'>
+        {/* Logo */}
+        <Link href='/' className='flex items-center mr-1 sm:mr-2'>
+          <div className='relative overflow-hidden rounded-full'>
+            <Image
+              className='transition-transform duration-500 hover:scale-110'
+              src='/logo.png'
+              alt='logo'
+              width={32}
+              height={32}
             />
           </div>
-        </motion.div>
+        </Link>
 
-        <div className='hidden sm:block ml-auto'>
-          <motion.div
-            className='flex items-center gap-6'
-            initial={{y: -20, opacity: 0}}
-            animate={{y: 0, opacity: 1}}
-            transition={{duration: 0.5, delay: 0.3}}>
-            {navItems.map((item, index) => (
-              <motion.div
-                key={item.path}
-                initial={{opacity: 0}}
-                animate={{opacity: 1}}
-                transition={{delay: 0.4 + index * 0.1, duration: 0.5}}
-                className='relative'>
-                <Link
-                  href={item.path}
-                  onMouseEnter={() => setHoveredItem(item.path)}
-                  onMouseLeave={() => setHoveredItem(null)}>
-                  <motion.div
-                    className={`relative px-5 py-2.5 rounded-lg font-medium text-base transition-all duration-300 ${
-                      currentPath === item.path
-                        ? "text-white"
-                        : "text-gray-300 hover:text-white"
-                    }`}
-                    whileHover={{
-                      scale: 1.05,
-                      transition: {duration: 0.2},
-                    }}>
-                    {/* Background highlight */}
-                    <motion.span
-                      className={`absolute inset-0 rounded-lg ${
-                        currentPath === item.path
-                          ? "bg-gradient-to-br from-blue-600/80 to-blue-800/80 shadow-md shadow-blue-600/20"
-                          : "bg-transparent"
-                      }`}
-                      initial={false}
-                      animate={{
-                        opacity:
-                          hoveredItem === item.path && currentPath !== item.path
-                            ? 0.7
-                            : 1,
-                        background:
-                          hoveredItem === item.path && currentPath !== item.path
-                            ? "linear-gradient(to bottom right, rgba(59, 130, 246, 0.4), rgba(29, 78, 216, 0.4))"
-                            : currentPath === item.path
-                            ? "linear-gradient(to bottom right, rgba(37, 99, 235, 0.8), rgba(30, 64, 175, 0.8))"
-                            : "transparent",
-                        boxShadow:
-                          hoveredItem === item.path || currentPath === item.path
-                            ? "0 4px 12px rgba(37, 99, 235, 0.15)"
-                            : "none",
-                      }}
-                      transition={{duration: 0.3}}
-                    />
-
-                    {/* Text content with relative positioning */}
-                    <span className='relative z-10'>{item.label}</span>
-                  </motion.div>
-                </Link>
+        {/* Desktop nav items */}
+        <div className='hidden sm:flex items-center gap-0.5'>
+          {navItems.map((item) => (
+            <Link key={item.path} href={item.path}>
+              <motion.div className='relative px-3.5 py-1.5 rounded-full text-sm font-medium transition-colors duration-200'>
+                {currentPath === item.path && (
+                  <motion.span
+                    layoutId='nav-indicator'
+                    className='absolute inset-0 rounded-full bg-emerald-500/15 border border-emerald-500/20'
+                    transition={{
+                      type: "spring",
+                      stiffness: 380,
+                      damping: 30,
+                    }}
+                  />
+                )}
+                <span
+                  className={`relative z-10 ${
+                    currentPath === item.path
+                      ? "text-emerald-400"
+                      : "text-gray-400 hover:text-gray-200"
+                  }`}>
+                  {item.label}
+                </span>
               </motion.div>
-            ))}
-          </motion.div>
+            </Link>
+          ))}
         </div>
 
-        <div className='flex items-center'>
-          <motion.div
-            className='block sm:hidden'
-            initial={{opacity: 0, scale: 0.8}}
-            animate={{opacity: 1, scale: 1}}
-            transition={{delay: 0.6, duration: 0.5}}>
-            <MobileNavBar />
-          </motion.div>
+        {/* Mobile hamburger */}
+        <div className='block sm:hidden'>
+          <MobileNavBar />
         </div>
       </div>
     </motion.nav>
