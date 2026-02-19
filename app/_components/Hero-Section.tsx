@@ -1,118 +1,173 @@
 "use client";
 
-import mainPage from "@/public/mainPage.png";
-import HeroAnimations from "./HeroAnimations";
-import HeroImageAnimation from "./HeroImageAnimation";
 import {motion} from "framer-motion";
+import Link from "next/link";
+import {
+  ArrowRight,
+  Github,
+  Linkedin,
+  Mail,
+  MapPin,
+  Twitter,
+} from "lucide-react";
+import ResumeButton from "./ResumeButton";
+
+const ease = [0.22, 1, 0.36, 1];
+
+const cardBase =
+  "rounded-2xl bg-zinc-900/60 border border-gray-800/50 backdrop-blur-sm";
+
+const techStack = [
+  "React",
+  "Next.js",
+  "TypeScript",
+  "Node.js",
+  "FastAPI",
+  "Python",
+  "LangChain",
+  "TailwindCSS",
+  "PostgreSQL",
+  "MongoDB",
+  "Docker",
+  "AWS",
+];
 
 export default function HeroSection() {
-  // Content data that could potentially come from a CMS or API in the future
-  const heroData = {
-    name: "Pragadeesh",
-    title: "Full Stack Developer",
-    description:
-      "I transform ideas into intelligent full stack applications, seamlessly integrating AI capabilities to create powerful, user-centric solutions. Using React, Next.js, Node.js, FastAPI, and LangChain to build intuitive experiences that solve real business challenges.",
-  };
-
   return (
-    <>
-      <div className='w-full grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-4 items-center py-8 md:py-16'>
-        <div className='md:col-span-3 order-2 md:order-1 px-4 md:px-8'>
-          <HeroAnimations
-            name={heroData.name}
-            title={heroData.title}
-            description={heroData.description}
-          />
+    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-auto'>
+      {/* Main intro card - spans full width on lg */}
+      <motion.div
+        className={`${cardBase} p-8 sm:p-10 col-span-1 sm:col-span-2 lg:col-span-4 hover:border-gray-700/60 transition-colors duration-300`}
+        initial={{opacity: 0, filter: "blur(10px)"}}
+        animate={{opacity: 1, filter: "blur(0px)"}}
+        transition={{duration: 0.6, ease}}>
+        <p className='font-mono text-xs uppercase tracking-widest text-gray-500 mb-4'>
+          Full Stack Developer
+        </p>
+        <h1 className='text-[clamp(2.5rem,6vw,5rem)] font-bold tracking-tight text-white leading-[1.1] mb-6'>
+          Hi, I&apos;m{" "}
+          <span className='text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400'>
+            Pragadeesh
+          </span>
+        </h1>
+        <p className='text-gray-400 text-lg sm:text-xl max-w-3xl leading-relaxed'>
+          I transform ideas into intelligent full-stack applications, seamlessly
+          integrating AI capabilities to create powerful, user-centric solutions.
+        </p>
+      </motion.div>
+
+      {/* Available for work card */}
+      <motion.div
+        className={`${cardBase} p-6 flex items-center gap-4 hover:border-emerald-800/40 transition-colors duration-300`}
+        initial={{opacity: 0, filter: "blur(10px)"}}
+        animate={{opacity: 1, filter: "blur(0px)"}}
+        transition={{duration: 0.6, delay: 0.1, ease}}>
+        <div className='relative'>
+          <div className='w-3 h-3 rounded-full bg-emerald-500' />
+          <div className='absolute inset-0 w-3 h-3 rounded-full bg-emerald-500 animate-ping opacity-75' />
         </div>
-
-        <div className='md:col-span-2 order-1 md:order-2 flex justify-center'>
-          <HeroImageAnimation imageSrc={mainPage} />
+        <div>
+          <p className='text-white font-medium text-sm'>Available for work</p>
+          <p className='text-gray-500 text-xs font-mono'>Open to opportunities</p>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Decorative elements - dark mode only */}
+      {/* Location card */}
       <motion.div
-        className='absolute top-32 -left-16 w-32 h-32 bg-blue-400/5 rounded-full filter blur-lg'
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.2, 0.25, 0.2],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
+        className={`${cardBase} p-6 flex items-center gap-4 hover:border-gray-700/60 transition-colors duration-300`}
+        initial={{opacity: 0, filter: "blur(10px)"}}
+        animate={{opacity: 1, filter: "blur(0px)"}}
+        transition={{duration: 0.6, delay: 0.15, ease}}>
+        <MapPin className='w-5 h-5 text-gray-500 flex-shrink-0' />
+        <div>
+          <p className='text-white font-medium text-sm'>Indiana, US</p>
+          <p className='text-gray-500 text-xs font-mono'>EST timezone</p>
+        </div>
+      </motion.div>
 
+      {/* CTA buttons card */}
       <motion.div
-        className='absolute top-[40%] right-16 w-24 h-24 bg-purple-400/5 rounded-full filter blur-lg'
-        animate={{
-          scale: [1, 1.15, 1],
-          opacity: [0.2, 0.3, 0.2],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1,
-        }}
-      />
+        className={`${cardBase} p-6 flex items-center gap-3 col-span-1 sm:col-span-2 hover:border-gray-700/60 transition-colors duration-300`}
+        initial={{opacity: 0, filter: "blur(10px)"}}
+        animate={{opacity: 1, filter: "blur(0px)"}}
+        transition={{duration: 0.6, delay: 0.2, ease}}>
+        <ResumeButton
+          variant='ghost'
+          resumePath='/resume.pdf'
+          className='px-5 py-2.5 text-sm font-medium rounded-full bg-gray-800 hover:bg-gray-700 text-white transition-all duration-200 flex items-center gap-2'>
+          Resume
+          <ArrowRight size={14} />
+        </ResumeButton>
+        <Link href='/contact'>
+          <button className='px-5 py-2.5 text-sm font-medium rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-white transition-all duration-200 flex items-center gap-2 shadow-lg shadow-emerald-500/20'>
+            Contact Me
+            <Mail size={14} />
+          </button>
+        </Link>
+      </motion.div>
 
+      {/* Tech stack marquee card */}
       <motion.div
-        className='absolute bottom-20 left-1/3 w-32 h-32 bg-teal-400/5 rounded-full filter blur-lg'
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.2, 0.25, 0.2],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 2,
-        }}
-      />
+        className={`${cardBase} p-6 overflow-hidden col-span-1 sm:col-span-2 lg:col-span-3 hover:border-gray-700/60 transition-colors duration-300`}
+        initial={{opacity: 0, filter: "blur(10px)"}}
+        animate={{opacity: 1, filter: "blur(0px)"}}
+        transition={{duration: 0.6, delay: 0.25, ease}}>
+        <p className='font-mono text-xs uppercase tracking-widest text-gray-500 mb-4'>
+          Tech Stack
+        </p>
+        <div className='relative overflow-hidden'>
+          <div className='absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-zinc-900/60 to-transparent z-10' />
+          <div className='absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-zinc-900/60 to-transparent z-10' />
+          <div className='flex animate-marquee whitespace-nowrap'>
+            {[...techStack, ...techStack].map((tech, i) => (
+              <span
+                key={i}
+                className='inline-flex items-center px-3 py-1.5 mx-1.5 rounded-full border border-gray-800/50 bg-gray-800/30 text-gray-300 text-xs font-mono'>
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </motion.div>
 
-      {/* Animated dots - dark mode only */}
+      {/* Social links card */}
       <motion.div
-        className='absolute top-[20%] right-[15%] w-4 h-4 bg-blue-500/20 rounded-full'
-        animate={{
-          scale: [1, 1.5, 1],
-          opacity: [0.4, 0.6, 0.4],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
-      <motion.div
-        className='absolute top-[40%] left-[10%] w-3 h-3 bg-purple-500/20 rounded-full'
-        animate={{
-          scale: [1, 1.5, 1],
-          opacity: [0.4, 0.6, 0.4],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1,
-        }}
-      />
-
-      <motion.div
-        className='absolute bottom-[30%] right-[25%] w-2 h-2 bg-teal-500/20 rounded-full'
-        animate={{
-          scale: [1, 1.5, 1],
-          opacity: [0.4, 0.6, 0.4],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 2,
-        }}
-      />
-    </>
+        className={`${cardBase} p-6 hover:border-gray-700/60 transition-colors duration-300`}
+        initial={{opacity: 0, filter: "blur(10px)"}}
+        animate={{opacity: 1, filter: "blur(0px)"}}
+        transition={{duration: 0.6, delay: 0.3, ease}}>
+        <p className='font-mono text-xs uppercase tracking-widest text-gray-500 mb-4'>
+          Connect
+        </p>
+        <div className='flex gap-3'>
+          {[
+            {
+              href: "https://github.com/Pragadeesh122",
+              icon: <Github size={18} />,
+              label: "GitHub",
+            },
+            {
+              href: "https://www.linkedin.com/in/pragadeeshvs",
+              icon: <Linkedin size={18} />,
+              label: "LinkedIn",
+            },
+            {
+              href: "https://x.com/Pragadeesh1221",
+              icon: <Twitter size={18} />,
+              label: "Twitter",
+            },
+          ].map((social) => (
+            <Link
+              key={social.label}
+              href={social.href}
+              target='_blank'
+              aria-label={social.label}
+              className='p-2.5 rounded-full bg-gray-800/50 border border-gray-800/50 text-gray-400 hover:text-emerald-400 hover:border-emerald-500/20 transition-all duration-200'>
+              {social.icon}
+            </Link>
+          ))}
+        </div>
+      </motion.div>
+    </div>
   );
 }

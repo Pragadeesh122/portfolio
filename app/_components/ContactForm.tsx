@@ -4,8 +4,79 @@ import {useRef, useState} from "react";
 import {sendEmail} from "../_lib/actions";
 import toast from "react-hot-toast";
 import {motion} from "framer-motion";
-import {Button} from "@/app/_components/ui/button";
-import {Send, Loader2, User, Mail, MessageSquare, Tag} from "lucide-react";
+import {Send, Loader2} from "lucide-react";
+
+function FloatingInput({
+  id,
+  label,
+  type = "text",
+  value,
+  onChange,
+  disabled,
+}: {
+  id: string;
+  label: string;
+  type?: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  disabled: boolean;
+}) {
+  return (
+    <div className='relative'>
+      <input
+        id={id}
+        name={id}
+        type={type}
+        value={value}
+        onChange={onChange}
+        required
+        disabled={disabled}
+        placeholder=' '
+        className='peer w-full px-4 pt-5 pb-2 bg-gray-800/30 border border-gray-800/50 rounded-xl text-gray-200 text-sm focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all duration-200 placeholder-transparent disabled:opacity-50'
+      />
+      <label
+        htmlFor={id}
+        className='absolute left-4 top-2 text-[10px] font-mono uppercase tracking-wider text-gray-500 transition-all duration-200 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-placeholder-shown:tracking-normal peer-placeholder-shown:normal-case peer-focus:top-2 peer-focus:text-[10px] peer-focus:uppercase peer-focus:tracking-wider peer-focus:text-emerald-500'>
+        {label}
+      </label>
+    </div>
+  );
+}
+
+function FloatingTextarea({
+  id,
+  label,
+  value,
+  onChange,
+  disabled,
+}: {
+  id: string;
+  label: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  disabled: boolean;
+}) {
+  return (
+    <div className='relative'>
+      <textarea
+        id={id}
+        name={id}
+        rows={5}
+        value={value}
+        onChange={onChange}
+        required
+        disabled={disabled}
+        placeholder=' '
+        className='peer w-full px-4 pt-5 pb-2 bg-gray-800/30 border border-gray-800/50 rounded-xl text-gray-200 text-sm focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all duration-200 placeholder-transparent disabled:opacity-50 resize-none'
+      />
+      <label
+        htmlFor={id}
+        className='absolute left-4 top-2 text-[10px] font-mono uppercase tracking-wider text-gray-500 transition-all duration-200 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-sm peer-placeholder-shown:tracking-normal peer-placeholder-shown:normal-case peer-focus:top-2 peer-focus:text-[10px] peer-focus:uppercase peer-focus:tracking-wider peer-focus:text-emerald-500'>
+        {label}
+      </label>
+    </div>
+  );
+}
 
 export default function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -55,93 +126,53 @@ export default function ContactForm() {
       animate={{opacity: 1, y: 0}}
       transition={{duration: 0.5}}
       className='w-full'>
-      <form ref={formRef} onSubmit={handleSubmit} className='space-y-6'>
-        <div className='space-y-4'>
-          <div className='relative'>
-            <div className='absolute left-4 top-1/2 -translate-y-1/2 text-blue-500 dark:text-gray-400'>
-              <User className='h-5 w-5' />
-            </div>
-            <input
-              id='name'
-              name='name'
-              value={formState.name}
-              onChange={handleChange}
-              placeholder='Your name'
-              required
-              className='w-full pl-12 pr-4 py-3 bg-blue-50/50 dark:bg-gray-900/50 border border-blue-100 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 transition-all duration-200 placeholder:text-blue-400/70 dark:placeholder:text-gray-500'
-              disabled={pending}
-            />
-          </div>
+      <form ref={formRef} onSubmit={handleSubmit} className='space-y-4'>
+        <FloatingInput
+          id='name'
+          label='Your name'
+          value={formState.name}
+          onChange={handleChange}
+          disabled={pending}
+        />
+        <FloatingInput
+          id='email'
+          label='Email address'
+          type='email'
+          value={formState.email}
+          onChange={handleChange}
+          disabled={pending}
+        />
+        <FloatingInput
+          id='subject'
+          label='Subject'
+          value={formState.subject}
+          onChange={handleChange}
+          disabled={pending}
+        />
+        <FloatingTextarea
+          id='message'
+          label='Your message'
+          value={formState.message}
+          onChange={handleChange}
+          disabled={pending}
+        />
 
-          <div className='relative'>
-            <div className='absolute left-4 top-1/2 -translate-y-1/2 text-blue-500 dark:text-gray-400'>
-              <Mail className='h-5 w-5' />
-            </div>
-            <input
-              id='email'
-              name='email'
-              type='email'
-              value={formState.email}
-              onChange={handleChange}
-              placeholder='Your email'
-              required
-              className='w-full pl-12 pr-4 py-3 bg-blue-50/50 dark:bg-gray-900/50 border border-blue-100 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 transition-all duration-200 placeholder:text-blue-400/70 dark:placeholder:text-gray-500'
-              disabled={pending}
-            />
-          </div>
-
-          <div className='relative'>
-            <div className='absolute left-4 top-1/2 -translate-y-1/2 text-blue-500 dark:text-gray-400'>
-              <Tag className='h-5 w-5' />
-            </div>
-            <input
-              id='subject'
-              name='subject'
-              value={formState.subject}
-              onChange={handleChange}
-              placeholder='Subject'
-              required
-              className='w-full pl-12 pr-4 py-3 bg-blue-50/50 dark:bg-gray-900/50 border border-blue-100 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 transition-all duration-200 placeholder:text-blue-400/70 dark:placeholder:text-gray-500'
-              disabled={pending}
-            />
-          </div>
-
-          <div className='relative'>
-            <div className='absolute left-4 top-6 text-blue-500 dark:text-gray-400'>
-              <MessageSquare className='h-5 w-5' />
-            </div>
-            <textarea
-              id='message'
-              name='message'
-              rows={6}
-              value={formState.message}
-              onChange={handleChange}
-              placeholder='Your message'
-              required
-              className='w-full pl-12 pr-4 py-3 bg-blue-50/50 dark:bg-gray-900/50 border border-blue-100 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 transition-all duration-200 placeholder:text-blue-400/70 dark:placeholder:text-gray-500'
-              disabled={pending}
-            />
-          </div>
-        </div>
-
-        <div className='flex justify-end'>
-          <Button
-            type='submit'
-            disabled={pending}
-            className='px-6 py-3 flex gap-2 items-center bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg shadow-blue-300/30 dark:shadow-blue-900/20 transition-all duration-300 transform hover:scale-[1.02]'>
-            {pending ? (
-              <>
-                <Loader2 className='h-5 w-5 animate-spin' />
-                <span>Sending...</span>
-              </>
-            ) : (
-              <>
-                <Send className='h-5 w-5' />
-                <span>Send Message</span>
-              </>
-            )}
-          </Button>
-        </div>
+        <button
+          type='submit'
+          disabled={pending}
+          className='w-full py-3 px-6 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-white text-sm font-medium transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 disabled:opacity-50 disabled:cursor-not-allowed'>
+          {pending ? (
+            <>
+              <Loader2 className='h-4 w-4 animate-spin' />
+              <span>Sending...</span>
+            </>
+          ) : (
+            <>
+              <Send className='h-4 w-4' />
+              <span>Send Message</span>
+            </>
+          )}
+        </button>
       </form>
     </motion.div>
   );

@@ -1,15 +1,12 @@
 "use client";
 
 import {useState, useEffect} from "react";
+import {createPortal} from "react-dom";
 import Link from "next/link";
-import Image from "next/image";
-import menu_dark from "@/public/menu-dark.svg";
-import close_dark from "@/public/close-dark.png";
 import {usePathname} from "next/navigation";
 import {motion, AnimatePresence} from "framer-motion";
-import ResumeButton from "./ResumeButton";
+import {Menu, X} from "lucide-react";
 
-// Navigation items with Home added
 const navItems = [
   {path: "/", label: "Home"},
   {path: "/skills", label: "Skills"},
@@ -19,143 +16,85 @@ const navItems = [
 ];
 
 export default function MobileNavBar() {
-  const [openNav, setOpenNav] = useState<boolean>(false);
+  const [openNav, setOpenNav] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
 
-  // Close menu when route changes
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     setOpenNav(false);
   }, [pathname]);
 
-  const handleNavClick = () => {
-    setOpenNav((prev) => !prev);
-  };
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (openNav) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [openNav]);
 
-  const closeNav = () => {
-    setOpenNav(false);
-  };
-
-  const menuVariants = {
-    closed: {
-      opacity: 0,
-      y: "-100%",
-      transition: {
-        duration: 0.3,
-        staggerChildren: 0.05,
-        staggerDirection: -1,
-        when: "afterChildren",
-      },
-    },
-    open: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.3,
-        staggerChildren: 0.1,
-        delayChildren: 0.1,
-        when: "beforeChildren",
-      },
-    },
-  };
-
-  const itemVariants = {
-    closed: {opacity: 0, y: -20},
-    open: {opacity: 1, y: 0},
-  };
+  const overlay = (
+    <AnimatePresence>
+      {openNav && (
+        <motion.div
+          className='fixed inset-0 bg-black/80 backdrop-blur-md z-[60]'
+          initial={{opacity: 0}}
+          animate={{opacity: 1}}
+          exit={{opacity: 0}}
+          transition={{duration: 0.2}}
+          onClick={() => setOpenNav(false)}>
+          <motion.nav
+            className='fixed top-20 left-4 right-4 bg-zinc-950/95 backdrop-blur-xl border border-gray-800/50 rounded-2xl p-6 shadow-xl'
+            initial={{opacity: 0, y: -20, scale: 0.95}}
+            animate={{opacity: 1, y: 0, scale: 1}}
+            exit={{opacity: 0, y: -20, scale: 0.95}}
+            transition={{duration: 0.25, ease: [0.22, 1, 0.36, 1]}}
+            onClick={(e) => e.stopPropagation()}>
+            <div className='flex flex-col gap-1'>
+              {navItems.map((item, index) => (
+                <motion.div
+                  key={item.path}
+                  initial={{opacity: 0, x: -10}}
+                  animate={{opacity: 1, x: 0}}
+                  transition={{delay: index * 0.06}}>
+                  <Link href={item.path} onClick={() => setOpenNav(false)}>
+                    <div
+                      className={`relative px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${
+                        pathname === item.path
+                          ? "text-emerald-400 bg-emerald-500/10"
+                          : "text-gray-400 hover:text-white hover:bg-gray-800/50"
+                      }`}>
+                      {item.label}
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </motion.nav>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
 
   return (
-    <div className='relative'>
+    <>
       <motion.button
-        onClick={handleNavClick}
-        className='relative z-50 p-2 rounded-full bg-gray-900 hover:bg-gray-800 transition-colors shadow-md shadow-blue-900/20'
-        whileHover={{scale: 1.05}}
-        whileTap={{scale: 0.95}}
+        onClick={() => setOpenNav((prev) => !prev)}
+        className='relative z-[70] p-1.5 rounded-full text-gray-400 hover:text-white transition-colors'
+        whileTap={{scale: 0.9}}
         aria-label={openNav ? "Close menu" : "Open menu"}
         aria-expanded={openNav}>
-        {openNav ? (
-          <Image src={close_dark} className='h-6 w-6' alt='Close menu' />
-        ) : (
-          <Image src={menu_dark} className='h-6 w-6' alt='Open menu' />
-        )}
+        {openNav ? <X size={20} /> : <Menu size={20} />}
       </motion.button>
 
-      <AnimatePresence>
-        {openNav && (
-          <motion.div
-            className='fixed inset-0 bg-black/90 backdrop-blur-md z-40'
-            initial={{opacity: 0}}
-            animate={{opacity: 1}}
-            exit={{opacity: 0}}
-            transition={{duration: 0.2}}
-            onClick={closeNav}>
-            <motion.nav
-              className='fixed top-0 left-0 right-0 pt-24 px-8 pb-8 bg-black/95 shadow-lg'
-              variants={menuVariants}
-              initial='closed'
-              animate='open'
-              exit='closed'
-              onClick={(e) => e.stopPropagation()}>
-              <div className='flex flex-col space-y-8'>
-                {/* Main navigation items */}
-                <div className='space-y-3'>
-                  {navItems.map((item) => (
-                    <motion.div
-                      key={item.path}
-                      variants={itemVariants}
-                      className='relative'
-                      whileHover={{
-                        x: 5,
-                        transition: {duration: 0.2},
-                      }}>
-                      <Link href={item.path} onClick={closeNav}>
-                        <motion.div
-                          className={`relative px-5 py-3 rounded-lg font-medium text-lg ${
-                            pathname === item.path
-                              ? "text-white"
-                              : "text-gray-300 hover:text-white"
-                          }`}
-                          whileTap={{scale: 0.98}}>
-                          {/* Background highlight */}
-                          <motion.span
-                            className={`absolute inset-0 rounded-lg ${
-                              pathname === item.path
-                                ? "bg-gradient-to-br from-blue-600/80 to-blue-800/80 shadow-md shadow-blue-600/10"
-                                : "bg-transparent"
-                            }`}
-                            initial={false}
-                            animate={{
-                              background:
-                                pathname === item.path
-                                  ? "linear-gradient(to bottom right, rgba(37, 99, 235, 0.8), rgba(30, 64, 175, 0.8))"
-                                  : "transparent",
-                              boxShadow:
-                                pathname === item.path
-                                  ? "0 4px 12px rgba(37, 99, 235, 0.15)"
-                                  : "none",
-                            }}
-                            transition={{duration: 0.3}}
-                          />
-
-                          {/* Text content with relative positioning */}
-                          <span className='relative z-10'>{item.label}</span>
-                        </motion.div>
-                      </Link>
-                    </motion.div>
-                  ))}
-
-                  {/* Resume Button in mobile menu */}
-                  {/* <motion.div variants={itemVariants} className='mt-4 px-2'>
-                    <ResumeButton
-                      variant='secondary'
-                      className='w-full py-2 flex items-center justify-center gap-2 bg-blue-600/20 hover:bg-blue-600/30 text-white border-none'
-                    />
-                  </motion.div> */}
-                </div>
-              </div>
-            </motion.nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+      {mounted && createPortal(overlay, document.body)}
+    </>
   );
 }
