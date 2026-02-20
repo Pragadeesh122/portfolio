@@ -73,7 +73,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
             <Hero>
               <ScrollProgress />
               <Navbar />
-              <main className='flex-1 mx-auto w-full min-h-[calc(100vh-180px)]'>
+              <main className='mx-auto w-full'>
                 {children}
               </main>
               <footer className='mt-auto'>

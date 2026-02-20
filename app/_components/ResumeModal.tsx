@@ -1,8 +1,8 @@
 "use client";
 
 import {useState, useEffect} from "react";
+import {createPortal} from "react-dom";
 import {X, Download} from "lucide-react";
-import {Button} from "@/app/_components/ui/button";
 import {motion, AnimatePresence} from "framer-motion";
 
 interface ResumeModalProps {
@@ -18,19 +18,26 @@ export default function ResumeModal({
 }: ResumeModalProps) {
   const [mounted, setMounted] = useState<boolean>(false);
 
-  // Handle escape key to close modal
   useEffect(() => {
     setMounted(true);
+  }, []);
 
+  // Handle escape key to close modal
+  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen) {
         onClose();
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    if (isOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "hidden";
+    }
+
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
     };
   }, [isOpen, onClose]);
 
@@ -43,7 +50,7 @@ export default function ResumeModal({
 
   if (!mounted) return null;
 
-  return (
+  const modal = (
     <AnimatePresence>
       {isOpen && (
         <motion.div
@@ -51,46 +58,44 @@ export default function ResumeModal({
           animate={{opacity: 1}}
           exit={{opacity: 0}}
           transition={{duration: 0.3}}
-          className='fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-2 sm:p-4'
+          className='fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md p-0 sm:p-4'
           onClick={handleBackdropClick}>
           <motion.div
             initial={{scale: 0.9, opacity: 0}}
             animate={{scale: 1, opacity: 1}}
             exit={{scale: 0.9, opacity: 0}}
             transition={{type: "spring", damping: 20, stiffness: 300}}
-            className='bg-white dark:bg-slate-900 rounded-lg overflow-hidden shadow-2xl flex flex-col w-full max-w-5xl h-[95vh] sm:h-[90vh]'
+            className='bg-zinc-950 sm:border border-gray-800/50 sm:rounded-2xl overflow-hidden shadow-2xl shadow-black/60 flex flex-col w-full max-w-5xl h-full sm:h-[90vh]'
             onClick={(e) => e.stopPropagation()}>
             {/* Modal header */}
-            <div className='flex items-center justify-between p-2 sm:p-4 border-b border-gray-200 dark:border-gray-700'>
-              <h2 className='text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-200'>
+            <div className='flex items-center justify-between p-3 sm:p-4 border-b border-gray-800/50'>
+              <h2 className='text-lg sm:text-xl font-semibold text-gray-200'>
                 Resume
               </h2>
-              <div className='flex items-center space-x-2'>
+              <div className='flex items-center gap-2'>
                 <a
                   href={resumeUrl}
                   download
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='inline-flex items-center justify-center rounded-md text-sm font-medium h-8 sm:h-9 px-2 sm:px-4 py-1 sm:py-2 bg-blue-600 text-white hover:bg-blue-700 transition-colors'>
-                  <Download className='h-4 w-4 mr-1 sm:mr-2' />
+                  className='inline-flex items-center justify-center rounded-lg text-sm font-medium h-8 sm:h-9 px-3 sm:px-4 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white hover:opacity-90 transition-opacity'>
+                  <Download className='h-4 w-4 mr-1.5' />
                   <span className='hidden sm:inline'>Download</span>
                 </a>
-                <Button
-                  variant='ghost'
-                  size='icon'
+                <button
                   onClick={onClose}
                   aria-label='Close modal'
-                  className='h-8 w-8 sm:h-9 sm:w-9'>
+                  className='h-8 w-8 sm:h-9 sm:w-9 rounded-full flex items-center justify-center text-gray-500 hover:text-gray-300 hover:bg-gray-800/50 transition-colors'>
                   <X className='h-4 w-4 sm:h-5 sm:w-5' />
-                </Button>
+                </button>
               </div>
             </div>
 
-            {/* PDF iframe - simplify with direct tailwind classes */}
-            <div className='flex-1 w-full h-[calc(95vh-4rem)] sm:h-[calc(90vh-4.5rem)]'>
+            {/* PDF iframe */}
+            <div className='flex-1 w-full bg-white overflow-auto'>
               <iframe
                 src={`${resumeUrl}#toolbar=0&view=FitH`}
-                className='w-full h-full'
+                className='h-full min-w-[700px] sm:min-w-0 w-full'
                 title='Resume PDF'
                 allowFullScreen
               />
@@ -100,4 +105,6 @@ export default function ResumeModal({
       )}
     </AnimatePresence>
   );
+
+  return createPortal(modal, document.body);
 }

@@ -28,7 +28,7 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className='fixed top-4 left-1/2 -translate-x-1/2 z-50 px-2 sm:px-3 py-2 bg-zinc-950/70 backdrop-blur-xl border border-gray-800/50 rounded-full shadow-lg shadow-black/20'
+      className='fixed top-4 left-4 right-4 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 z-50 px-3 sm:px-3 py-2 bg-zinc-950/70 backdrop-blur-xl border border-gray-800/50 rounded-full shadow-lg shadow-black/20'
       initial={{y: -100, opacity: 0}}
       animate={{y: 0, opacity: 1}}
       transition={{duration: 0.6, ease: [0.22, 1, 0.36, 1]}}>
@@ -76,7 +76,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile hamburger */}
-        <div className='block sm:hidden'>
+        <div className='block sm:hidden ml-auto'>
           <MobileNavBar />
         </div>
       </div>
