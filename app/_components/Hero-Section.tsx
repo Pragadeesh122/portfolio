@@ -141,7 +141,7 @@ export default function HeroSection() {
         </div>
         <div className='flex gap-3 mt-5'>
           <Link
-            href='https://github.com/Pragadeesh122/nalvar'
+            href='https://github.com/Pragadeesh122'
             target='_blank'
             className='flex items-center gap-1.5 text-xs text-gray-400 hover:text-white transition-colors duration-200'>
             <Github size={13} /> GitHub

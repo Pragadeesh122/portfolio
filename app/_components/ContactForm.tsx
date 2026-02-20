@@ -2,7 +2,7 @@
 
 import {useRef, useState} from "react";
 import {sendEmail} from "../_lib/actions";
-import toast from "react-hot-toast";
+import {toast} from "sonner";
 import {motion} from "framer-motion";
 import {Send, Loader2} from "lucide-react";
 
