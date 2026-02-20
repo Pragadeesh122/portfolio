@@ -1,8 +1,7 @@
 "use client";
 
-import {Toaster} from "react-hot-toast";
-import "@/app/toast.css";
+import {Toaster} from "@/app/_components/ui/sonner";
 
 export default function ToastProvider() {
-  return <Toaster />;
+  return <Toaster richColors position='top-right' />;
 }

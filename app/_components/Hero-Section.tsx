@@ -4,10 +4,15 @@ import {motion} from "framer-motion";
 import Link from "next/link";
 import {
   ArrowRight,
+  ExternalLink,
   Github,
+  Globe,
+  Layers,
   Linkedin,
   Mail,
   MapPin,
+  Smartphone,
+  Sparkles,
   Twitter,
 } from "lucide-react";
 import ResumeButton from "./ResumeButton";
@@ -37,22 +42,23 @@ export default function HeroSection() {
     <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-auto'>
       {/* Main intro card - spans full width on lg */}
       <motion.div
-        className={`${cardBase} p-8 sm:p-10 col-span-1 sm:col-span-2 lg:col-span-4 hover:border-gray-700/60 transition-colors duration-300`}
+        className={`${cardBase} p-6 sm:p-8 col-span-1 sm:col-span-2 lg:col-span-4 hover:border-gray-700/60 transition-colors duration-300`}
         initial={{opacity: 0, filter: "blur(10px)"}}
         animate={{opacity: 1, filter: "blur(0px)"}}
         transition={{duration: 0.6, ease}}>
-        <p className='font-mono text-xs uppercase tracking-widest text-gray-500 mb-4'>
+        <p className='font-mono text-xs uppercase tracking-widest text-gray-500 mb-3'>
           Full Stack Developer
         </p>
-        <h1 className='text-[clamp(2.5rem,6vw,5rem)] font-bold tracking-tight text-white leading-[1.1] mb-6'>
+        <h1 className='text-[clamp(2rem,5vw,3.75rem)] font-bold tracking-tight text-white leading-[1.1] mb-4'>
           Hi, I&apos;m{" "}
           <span className='text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400'>
             Pragadeesh
           </span>
         </h1>
-        <p className='text-gray-400 text-lg sm:text-xl max-w-3xl leading-relaxed'>
+        <p className='text-gray-400 text-base sm:text-lg max-w-3xl leading-relaxed'>
           I transform ideas into intelligent full-stack applications, seamlessly
-          integrating AI capabilities to create powerful, user-centric solutions.
+          integrating AI capabilities to create powerful, user-centric
+          solutions.
         </p>
       </motion.div>
 
@@ -68,7 +74,9 @@ export default function HeroSection() {
         </div>
         <div>
           <p className='text-white font-medium text-sm'>Available for work</p>
-          <p className='text-gray-500 text-xs font-mono'>Open to opportunities</p>
+          <p className='text-gray-500 text-xs font-mono'>
+            Open to opportunities
+          </p>
         </div>
       </motion.div>
 
@@ -80,8 +88,8 @@ export default function HeroSection() {
         transition={{duration: 0.6, delay: 0.15, ease}}>
         <MapPin className='w-5 h-5 text-gray-500 flex-shrink-0' />
         <div>
-          <p className='text-white font-medium text-sm'>Indiana, US</p>
-          <p className='text-gray-500 text-xs font-mono'>EST timezone</p>
+          <p className='text-white font-medium text-sm'>Austin TX, US</p>
+          <p className='text-gray-500 text-xs font-mono'>CST timezone</p>
         </div>
       </motion.div>
 
@@ -106,12 +114,79 @@ export default function HeroSection() {
         </Link>
       </motion.div>
 
+      {/* Featured project card */}
+      <motion.div
+        className={`${cardBase} p-6 col-span-1 sm:col-span-2 flex flex-col justify-between hover:border-emerald-800/30 transition-colors duration-300 group`}
+        initial={{opacity: 0, filter: "blur(10px)"}}
+        animate={{opacity: 1, filter: "blur(0px)"}}
+        transition={{duration: 0.6, delay: 0.25, ease}}>
+        <div>
+          <p className='font-mono text-xs uppercase tracking-widest text-emerald-500/70 mb-3'>
+            Featured Project
+          </p>
+          <h3 className='text-white font-semibold text-lg mb-1'>Nalvar</h3>
+          <p className='text-gray-500 text-sm leading-relaxed mb-4'>
+            Tech consulting website with an AI-powered RAG chatbot for
+            intelligent Q&amp;A.
+          </p>
+          <div className='flex flex-wrap gap-1.5'>
+            {["Next.js", "FastAPI", "LangChain", "RAG"].map((t) => (
+              <span
+                key={t}
+                className='px-2 py-0.5 rounded-full border border-gray-800/50 bg-gray-800/30 text-gray-400 text-xs font-mono'>
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className='flex gap-3 mt-5'>
+          <Link
+            href='https://github.com/Pragadeesh122'
+            target='_blank'
+            className='flex items-center gap-1.5 text-xs text-gray-400 hover:text-white transition-colors duration-200'>
+            <Github size={13} /> GitHub
+          </Link>
+          <Link
+            href='https://nalvar.com'
+            target='_blank'
+            className='flex items-center gap-1.5 text-xs text-emerald-400 hover:text-emerald-300 transition-colors duration-200'>
+            <ExternalLink size={13} /> Live site
+          </Link>
+        </div>
+      </motion.div>
+
+      {/* Specializations card */}
+      <motion.div
+        className={`${cardBase} p-6 col-span-1 sm:col-span-2 hover:border-gray-700/60 transition-colors duration-300`}
+        initial={{opacity: 0, filter: "blur(10px)"}}
+        animate={{opacity: 1, filter: "blur(0px)"}}
+        transition={{duration: 0.6, delay: 0.3, ease}}>
+        <p className='font-mono text-xs uppercase tracking-widest text-gray-500 mb-4'>
+          What I Build
+        </p>
+        <div className='grid grid-cols-2 gap-3'>
+          {[
+            {icon: <Layers size={15} />, label: "Full Stack Apps"},
+            {icon: <Sparkles size={15} />, label: "AI / LLM Systems"},
+            {icon: <Globe size={15} />, label: "REST APIs"},
+            {icon: <Smartphone size={15} />, label: "Mobile Apps"},
+          ].map(({icon, label}) => (
+            <div
+              key={label}
+              className='flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-gray-800/30 border border-gray-800/40'>
+              <span className='text-emerald-400'>{icon}</span>
+              <span className='text-gray-300 text-xs font-medium'>{label}</span>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
       {/* Tech stack marquee card */}
       <motion.div
         className={`${cardBase} p-6 overflow-hidden col-span-1 sm:col-span-2 lg:col-span-3 hover:border-gray-700/60 transition-colors duration-300`}
         initial={{opacity: 0, filter: "blur(10px)"}}
         animate={{opacity: 1, filter: "blur(0px)"}}
-        transition={{duration: 0.6, delay: 0.25, ease}}>
+        transition={{duration: 0.6, delay: 0.35, ease}}>
         <p className='font-mono text-xs uppercase tracking-widest text-gray-500 mb-4'>
           Tech Stack
         </p>
@@ -135,7 +210,7 @@ export default function HeroSection() {
         className={`${cardBase} p-6 hover:border-gray-700/60 transition-colors duration-300`}
         initial={{opacity: 0, filter: "blur(10px)"}}
         animate={{opacity: 1, filter: "blur(0px)"}}
-        transition={{duration: 0.6, delay: 0.3, ease}}>
+        transition={{duration: 0.6, delay: 0.4, ease}}>
         <p className='font-mono text-xs uppercase tracking-widest text-gray-500 mb-4'>
           Connect
         </p>

@@ -244,7 +244,7 @@ export function ChatInterface() {
   return (
     <div className='fixed bottom-4 right-4 z-50'>
       {state.isOpen && (
-        <div className='mb-4 w-[380px] md:w-[480px] rounded-2xl border border-gray-800/50 bg-zinc-950/95 backdrop-blur-xl shadow-2xl shadow-black/40 overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-300'>
+        <div className='mb-4 w-[calc(100vw-2rem)] sm:w-[380px] md:w-[480px] rounded-2xl border border-gray-800/50 bg-zinc-950/95 backdrop-blur-xl shadow-2xl shadow-black/40 overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-300'>
           {/* Header */}
           <div className='flex items-center justify-between p-4 border-b border-gray-800/50'>
             <div className='flex items-center gap-3'>
@@ -274,7 +274,7 @@ export function ChatInterface() {
           </div>
 
           {/* Messages */}
-          <div className='h-[450px] overflow-y-auto p-4 space-y-1'>
+          <div className='h-[350px] sm:h-[450px] overflow-y-auto p-4 space-y-1'>
             {state.messages.length === 0 && !streamingMessage && (
               <div className='flex flex-col items-center justify-center h-full text-gray-500 space-y-4'>
                 <div className='h-14 w-14 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center'>
