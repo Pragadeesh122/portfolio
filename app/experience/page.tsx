@@ -17,6 +17,29 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
+    title: "Software Engineer",
+    company: "Slower.ai",
+    period: "Jan 2025 - Present",
+    description: [
+      "Engineered CLI automation tool to optimize geocoding engine build process handling billions of geospatial records with BigQuery, reducing build time from 90 to 53 days through workflow parallelization and process automation.",
+      "Optimized Apache Airflow DAG processing pipeline on GCP through task parallelization, code refactoring, and infrastructure tuning, reducing data processing time by 97% from 7 days to 2.5 hours.",
+      "Enhanced production monitoring and alerting infrastructure by configuring Elastic Kibana dashboards and PagerDuty rules, implementing alerting logic and recovery workflows.",
+      "Contributing to development of Salesforce Agentforce-powered telephony chatbot with custom RAG integration for automated medical screening interviews, handling PHI3/PHI4 protected health data.",
+    ],
+    type: "work",
+    skills: [
+      "Python",
+      "Apache Airflow",
+      "BigQuery",
+      "GCP",
+      "Go",
+      "Elastic Kibana",
+      "PagerDuty",
+      "Salesforce Agentforce",
+      "RAG",
+    ],
+  },
+  {
     title: "Software Developer",
     company: "IU Corps",
     period: "Oct 2024 - Dec 2024",
@@ -64,18 +87,6 @@ const experiences: Experience[] = [
       "GPA: 3.88/4.0",
     ],
     type: "education",
-  },
-  {
-    title: "Web Development Intern",
-    company: "SmartKnower",
-    period: "Apr 2022 - Jun 2022",
-    description: [
-      "Revitalized a B2B e-commerce platform, improving user experience and performance metrics.",
-      "Implemented responsive design principles to enhance mobile accessibility.",
-      "Utilized modern JavaScript frameworks to create dynamic user interfaces.",
-    ],
-    type: "work",
-    skills: ["JavaScript", "HTML", "CSS", "Bootstrap", "PHP", "MySQL"],
   },
   {
     title: "Bachelor of Science in Computer Science and Engineering",

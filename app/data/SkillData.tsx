@@ -24,6 +24,10 @@ import kubernetes from "@/public/kubernetes.svg";
 import agentic_ai from "@/public/Agentic AI.jpeg";
 import rag from "@/public/RAG.jpeg";
 import fastapi_original from "@/public/fastAPI.png";
+import go_original from "@/public/go-original.svg";
+import gcp_original from "@/public/gcp-original.svg";
+import airflow_original from "@/public/airflow-original.svg";
+import bigquery_original from "@/public/bigquery-original.svg";
 // Define skill categories
 export const categories = [
   "All",
@@ -93,6 +97,13 @@ export const skillData = [
     proficiency: 80,
   },
   {
+    skill: "Apache Airflow",
+    alt: "airflow_logo",
+    src: airflow_original,
+    category: "Backend",
+    proficiency: 85,
+  },
+  {
     skill: "MongoDB",
     alt: "mongodb_logo",
     src: mongodb_original,
@@ -135,6 +146,13 @@ export const skillData = [
     proficiency: 85,
   },
   {
+    skill: "Go",
+    alt: "go_logo",
+    src: go_original,
+    category: "Language",
+    proficiency: 75,
+  },
+  {
     skill: "Git",
     alt: "git_logo",
     src: git_original,
@@ -170,6 +188,13 @@ export const skillData = [
     proficiency: 85,
   },
   {
+    skill: "BigQuery",
+    alt: "bigquery_logo",
+    src: bigquery_original,
+    category: "Database",
+    proficiency: 85,
+  },
+  {
     skill: "Pinecone",
     alt: "pinecone_logo",
     src: pinecone,
@@ -182,6 +207,13 @@ export const skillData = [
     src: chromadb,
     category: "Database",
     proficiency: 82,
+  },
+  {
+    skill: "GCP",
+    alt: "gcp_logo",
+    src: gcp_original,
+    category: "DevOps",
+    proficiency: 85,
   },
   {
     skill: "AWS",
