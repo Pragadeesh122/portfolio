@@ -8,7 +8,7 @@ import nalvarPlatform from "@/public/nalvar-display.png";
 import citroLanding from "@/public/citro-home.png";
 import eleganceHub from "@/public/elegancehub-landing.png";
 import wildOasis from "@/public/wild_oasis_webiste.png";
-import WildOasisManager from "@/public/wild_oasis_management.png";
+import financeTracker from "@/public/finance-tracker.png";
 import styleSenseAI from "@/public/styleSenseAI.png";
 import {StaticImageData} from "next/image";
 
@@ -51,6 +51,15 @@ const projects: Project[] = [
     techStack: ["Next.js", "Tailwind CSS", "ShadCn", "Supabase"],
   },
   {
+    title: "Finance Tracker",
+    description:
+      "Investment calculator app with CAGR computation, return projections, goal planning, retirement planning, step-up SIP calculations, and mutual fund tracking.",
+    imageUrl: financeTracker,
+    githubLink: "https://github.com/Pragadeesh122/finance_tracker",
+    demoLink: "https://www.financetracker.one/",
+    techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+  },
+  {
     title: "EleganceHub",
     description:
       "A full-featured e-commerce platform with user auth, product filtering, cart management, payment processing, and order tracking.",
@@ -67,15 +76,6 @@ const projects: Project[] = [
     githubLink: "https://github.com/Pragadeesh122/the-wild-oasis-website",
     demoLink: "https://the-wild-oasis-website-iota.vercel.app/",
     techStack: ["Next.js", "Tailwind CSS", "NextAuth", "Supabase"],
-  },
-  {
-    title: "Wild Oasis Manager",
-    description:
-      "Admin management system for hotel staff to handle bookings, cabin listings, check-ins, and daily operations with a dashboard.",
-    imageUrl: WildOasisManager,
-    githubLink: "https://github.com/Pragadeesh122/the-wild-oasis-website",
-    demoLink: "https://the-wiild-oasis.netlify.app",
-    techStack: ["React", "Styled Components", "Supabase"],
   },
   {
     title: "StyleSense AI",
