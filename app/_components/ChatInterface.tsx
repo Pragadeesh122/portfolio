@@ -2,12 +2,12 @@
 
 import {useState, useEffect, useRef} from "react";
 import {Message, ChatState} from "@/app/types/chat";
-import {resetChat, sendMessage} from "@/app/actions/chat";
 import {X, SendHorizonal, Loader2, Sparkles, MessageCircle} from "lucide-react";
 import {cn} from "@/app/lib/utils";
 import {v4 as uuidv4} from "uuid";
 import Image from "next/image";
 
+const RAG_API_URL = process.env.NEXT_PUBLIC_RAG_API_URL;
 const STREAM_INTERVAL = 20;
 
 const formatMessageContent = (content: string) => {
@@ -130,7 +130,10 @@ export function ChatInterface() {
     const initializeChat = async () => {
       if (!hasInitialized.current) {
         setState((prev: ChatState) => ({...prev, isLoading: true}));
-        await resetChat();
+        await fetch(`${RAG_API_URL}/reset`, {
+          method: "POST",
+          credentials: "include",
+        });
         setState((prev: ChatState) => ({...prev, isLoading: false}));
         hasInitialized.current = true;
       }
@@ -211,10 +214,16 @@ export function ChatInterface() {
     setInput("");
 
     try {
-      const result = await sendMessage(input);
+      const res = await fetch(`${RAG_API_URL}/chat`, {
+        method: "POST",
+        credentials: "include",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({query: input}),
+      });
 
-      if (result.success && result.response) {
-        streamResponse(result.response);
+      if (res.ok) {
+        const data = await res.json();
+        streamResponse(data.response);
       } else {
         setState((prev) => ({...prev, isLoading: false}));
       }
