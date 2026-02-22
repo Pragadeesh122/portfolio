@@ -29,6 +29,7 @@ export async function sendMessage(message: string) {
       `${process.env.NEXT_PUBLIC_RAG_API_URL}/chat`,
       {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

@@ -1,7 +1,6 @@
 "use server";
 
 import nodemailer from "nodemailer";
-import {GoogleGenerativeAI} from "@google/generative-ai";
 
 export async function sendEmail(formData: any) {
   try {
@@ -54,24 +53,4 @@ ${name}
   } catch (err: any) {
     throw new Error(err.message);
   }
-}
-
-const systemPrompt = process.env.SYSTEM_PROMPT as string;
-
-export async function generatePortfolioResponse(prompt: string) {
-  const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
-  const model = genAI.getGenerativeModel({model: "gemini-2.0-flash-exp"});
-
-  const result = await model.generateContentStream([
-    systemPrompt,
-    `Human: ${prompt}`,
-    "Assistant: ",
-  ]);
-
-  let fullResponse = "";
-  for await (const chunk of result.stream) {
-    fullResponse += chunk.text();
-  }
-
-  return fullResponse;
 }
