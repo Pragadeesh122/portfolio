@@ -47,7 +47,7 @@ export default function HeroSection() {
         animate={{opacity: 1, filter: "blur(0px)"}}
         transition={{duration: 0.6, ease}}>
         <p className='font-mono text-xs uppercase tracking-widest text-gray-500 mb-3'>
-          Full Stack Developer
+          Full Stack + AI Engineer
         </p>
         <h1 className='text-[clamp(2rem,5vw,3.75rem)] font-bold tracking-tight text-white leading-[1.1] mb-4'>
           Hi, I&apos;m{" "}
@@ -56,9 +56,9 @@ export default function HeroSection() {
           </span>
         </h1>
         <p className='text-gray-400 text-base sm:text-lg max-w-3xl leading-relaxed'>
-          I transform ideas into intelligent full-stack applications, seamlessly
-          integrating AI capabilities to create powerful, user-centric
-          solutions.
+          I build full-stack applications powered by intelligent systems
+          &mdash; from scalable web platforms to RAG pipelines and LLM
+          integrations.
         </p>
       </motion.div>
 
