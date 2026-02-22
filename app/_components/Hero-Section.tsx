@@ -46,19 +46,19 @@ export default function HeroSection() {
         initial={{opacity: 0, filter: "blur(10px)"}}
         animate={{opacity: 1, filter: "blur(0px)"}}
         transition={{duration: 0.6, ease}}>
-        <p className='font-mono text-xs uppercase tracking-widest text-gray-500 mb-3'>
+        <p className='font-mono text-sm bold uppercase tracking-widest text-gray-500 font-bold  mb-3'>
           Full Stack + AI Engineer
         </p>
         <h1 className='text-[clamp(2rem,5vw,3.75rem)] font-bold tracking-tight text-white leading-[1.1] mb-4'>
-          Hi, I&apos;m{" "}
+          I build{" "}
           <span className='text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400'>
-            Pragadeesh
-          </span>
+            AI-powered
+          </span>{" "}
+          software.
         </h1>
         <p className='text-gray-400 text-base sm:text-lg max-w-3xl leading-relaxed'>
-          I build full-stack applications powered by intelligent systems
-          &mdash; from scalable web platforms to RAG pipelines and LLM
-          integrations.
+          I&apos;m Pragadeesh &mdash; from scalable full-stack platforms to RAG
+          pipelines and LLM integrations, I bring ideas to production.
         </p>
       </motion.div>
 
