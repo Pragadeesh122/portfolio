@@ -30,9 +30,9 @@ const techStack = [
   "FastAPI",
   "Python",
   "LangChain",
-  "TailwindCSS",
-  "PostgreSQL",
-  "MongoDB",
+  "Go",
+  "Airflow",
+  "GCP",
   "Docker",
   "AWS",
 ];
