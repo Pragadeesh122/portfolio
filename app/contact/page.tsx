@@ -35,7 +35,7 @@ const contactInfo = [
   {
     title: "Phone",
     value: "+1 812-671-6798",
-    icon: <Phone className='h-5 w-5 text-cyan-400' />,
+    icon: <Phone className='h-5 w-5 text-emerald-400' />,
     href: "tel:+18126716798",
   },
 ];

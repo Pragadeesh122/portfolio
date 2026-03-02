@@ -3,16 +3,16 @@
 import {motion} from "framer-motion";
 import Link from "next/link";
 import {
-  ArrowRight,
-  ExternalLink,
+  MoveRight,
+  ArrowUpRight,
   Github,
-  Globe,
-  Layers,
+  Cable,
+  AppWindow,
   Linkedin,
-  Mail,
-  MapPin,
-  Smartphone,
-  Sparkles,
+  AtSign,
+  LocateFixed,
+  TabletSmartphone,
+  BrainCircuit,
   Twitter,
 } from "lucide-react";
 import ResumeButton from "./ResumeButton";
@@ -46,12 +46,12 @@ export default function HeroSection() {
         initial={{opacity: 0, filter: "blur(10px)"}}
         animate={{opacity: 1, filter: "blur(0px)"}}
         transition={{duration: 0.6, ease}}>
-        <p className='font-mono text-sm bold uppercase tracking-widest text-gray-500 font-bold  mb-3'>
+        <p className='font-mono text-sm bold uppercase tracking-widest text-gray-500 font-bold mb-2'>
           Full Stack + AI Engineer
         </p>
-        <h1 className='text-[clamp(2rem,5vw,3.75rem)] font-bold tracking-tight text-white leading-[1.1] mb-4'>
+        <h1 className='text-[clamp(1.75rem,4vw,2.75rem)] font-bold tracking-tight text-white leading-[1.1] mb-3'>
           I build{" "}
-          <span className='text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400'>
+          <span className='text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-200'>
             AI-powered
           </span>{" "}
           software.
@@ -86,7 +86,7 @@ export default function HeroSection() {
         initial={{opacity: 0, filter: "blur(10px)"}}
         animate={{opacity: 1, filter: "blur(0px)"}}
         transition={{duration: 0.6, delay: 0.15, ease}}>
-        <MapPin className='w-5 h-5 text-gray-500 flex-shrink-0' />
+        <LocateFixed className='w-5 h-5 text-gray-500 flex-shrink-0' />
         <div>
           <p className='text-white font-medium text-sm'>Austin TX, US</p>
           <p className='text-gray-500 text-xs font-mono'>CST timezone</p>
@@ -104,12 +104,12 @@ export default function HeroSection() {
           resumePath='/resume.pdf'
           className='px-5 py-2.5 text-sm font-medium rounded-full bg-gray-800 hover:bg-gray-700 text-white transition-all duration-200 flex items-center gap-2'>
           Resume
-          <ArrowRight size={14} />
+          <MoveRight size={14} />
         </ResumeButton>
         <Link href='/contact'>
-          <button className='px-5 py-2.5 text-sm font-medium rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-white transition-all duration-200 flex items-center gap-2 shadow-lg shadow-emerald-500/20'>
+          <button className='px-5 py-2.5 text-sm font-medium rounded-full bg-gradient-to-r from-emerald-500 to-emerald-400 hover:from-emerald-400 hover:to-emerald-300 text-white transition-all duration-200 flex items-center gap-2 shadow-lg shadow-emerald-500/20'>
             Contact Me
-            <Mail size={14} />
+            <AtSign size={14} />
           </button>
         </Link>
       </motion.div>
@@ -150,7 +150,7 @@ export default function HeroSection() {
             href='https://nalvar.com'
             target='_blank'
             className='flex items-center gap-1.5 text-xs text-emerald-400 hover:text-emerald-300 transition-colors duration-200'>
-            <ExternalLink size={13} /> Live site
+            <ArrowUpRight size={13} /> Live site
           </Link>
         </div>
       </motion.div>
@@ -166,16 +166,19 @@ export default function HeroSection() {
         </p>
         <div className='grid grid-cols-2 gap-3'>
           {[
-            {icon: <Layers size={15} />, label: "Full Stack Apps"},
-            {icon: <Sparkles size={15} />, label: "AI / LLM Systems"},
-            {icon: <Globe size={15} />, label: "REST APIs"},
-            {icon: <Smartphone size={15} />, label: "Mobile Apps"},
-          ].map(({icon, label}) => (
+            {icon: <AppWindow size={15} />, label: "Full Stack Apps", desc: "Web apps & platforms"},
+            {icon: <BrainCircuit size={15} />, label: "AI / LLM Systems", desc: "RAG & agents"},
+            {icon: <Cable size={15} />, label: "REST APIs", desc: "Scalable backends"},
+            {icon: <TabletSmartphone size={15} />, label: "Mobile Apps", desc: "Cross-platform"},
+          ].map(({icon, label, desc}) => (
             <div
               key={label}
-              className='flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-gray-800/30 border border-gray-800/40'>
+              className='flex items-center gap-4 px-3 py-2.5 rounded-xl bg-gray-800/30 border border-gray-800/40'>
               <span className='text-emerald-400'>{icon}</span>
-              <span className='text-gray-300 text-xs font-medium'>{label}</span>
+              <div>
+                <span className='text-gray-300 text-xs font-medium'>{label}</span>
+                <p className='text-gray-500 text-[10px] leading-tight mt-0.5'>{desc}</p>
+              </div>
             </div>
           ))}
         </div>

@@ -2,7 +2,7 @@
 
 import {useState, useEffect, useRef} from "react";
 import {Message, ChatState} from "@/app/types/chat";
-import {X, SendHorizonal, Loader2, Sparkles, MessageCircle} from "lucide-react";
+import {X, SendHorizonal, Loader2, Sparkles, BotMessageSquare} from "lucide-react";
 import {cn} from "@/app/lib/utils";
 import {v4 as uuidv4} from "uuid";
 import Image from "next/image";
@@ -312,7 +312,7 @@ export function ChatInterface() {
                   className={cn(
                     "rounded-2xl px-3.5 py-2.5 transition-all duration-200",
                     message.type === "user"
-                      ? "bg-gradient-to-br from-emerald-500 to-cyan-500 text-white shadow-md shadow-emerald-500/10"
+                      ? "bg-gradient-to-br from-emerald-500 to-emerald-400 text-white shadow-md shadow-emerald-500/10"
                       : "bg-gray-800/60 border border-gray-800/50 text-gray-300"
                   )}>
                   {message.type === "user" ? (
@@ -377,7 +377,7 @@ export function ChatInterface() {
                 className={cn(
                   "h-10 w-10 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-200",
                   input.trim() && !state.isLoading
-                    ? "bg-gradient-to-br from-emerald-500 to-cyan-500 text-white shadow-md shadow-emerald-500/20 hover:scale-105"
+                    ? "bg-gradient-to-br from-emerald-500 to-emerald-400 text-white shadow-md shadow-emerald-500/20 hover:scale-105"
                     : "bg-gray-800/50 text-gray-600"
                 )}>
                 <SendHorizonal className='h-4 w-4' />
@@ -390,11 +390,11 @@ export function ChatInterface() {
       {/* Chat FAB */}
       <button
         onClick={handleToggleChat}
-        className='h-12 w-12 rounded-full relative overflow-hidden bg-gradient-to-br from-emerald-500 to-cyan-500 text-white shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30 transition-all duration-300 hover:scale-105 flex items-center justify-center'>
+        className='h-12 w-12 rounded-full relative overflow-hidden bg-gradient-to-br from-emerald-500 to-emerald-400 text-white shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30 transition-all duration-300 hover:scale-105 flex items-center justify-center'>
         {state.isOpen ? (
           <X className='h-5 w-5' />
         ) : (
-          <MessageCircle className='h-5 w-5' />
+          <BotMessageSquare className='h-5 w-5' />
         )}
       </button>
     </div>
