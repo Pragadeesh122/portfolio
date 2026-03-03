@@ -2,7 +2,13 @@
 
 import {useState, useEffect, useRef} from "react";
 import {Message, ChatState} from "@/app/types/chat";
-import {X, SendHorizonal, Loader2, Sparkles, BotMessageSquare} from "lucide-react";
+import {
+  X,
+  SendHorizonal,
+  Loader2,
+  Sparkles,
+  BotMessageSquare,
+} from "lucide-react";
 import {cn} from "@/app/lib/utils";
 import {v4 as uuidv4} from "uuid";
 import Image from "next/image";
@@ -57,7 +63,9 @@ const formatMessageContent = (content: string) => {
                 );
 
                 return (
-                  <li key={lineIndex} className='flex items-start gap-2 text-sm'>
+                  <li
+                    key={lineIndex}
+                    className='flex items-start gap-2 text-sm'>
                     <span className='text-emerald-500 mt-0.5'>•</span>
                     <span className='flex-1'>{content}</span>
                   </li>
@@ -86,6 +94,8 @@ const MessageContent = ({content}: {content: string}) => {
 let globalToggleChat: (() => void) | null = null;
 
 export function ChatInterface() {
+  const hasApiUrl = Boolean(RAG_API_URL);
+  const isProduction = process.env.ENV === "production";
   const [state, setState] = useState<ChatState>({
     messages: [],
     isOpen: false,
@@ -96,7 +106,6 @@ export function ChatInterface() {
     null
   );
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const hasInitialized = useRef<boolean>(false);
   const streamTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined
   );
@@ -128,19 +137,18 @@ export function ChatInterface() {
 
   useEffect(() => {
     const initializeChat = async () => {
-      if (!hasInitialized.current) {
-        setState((prev: ChatState) => ({...prev, isLoading: true}));
-        await fetch(`${RAG_API_URL}/reset`, {
-          method: "POST",
-          credentials: "include",
-        });
-        setState((prev: ChatState) => ({...prev, isLoading: false}));
-        hasInitialized.current = true;
-      }
+      if (!hasApiUrl) return;
+
+      setState((prev: ChatState) => ({...prev, isLoading: true}));
+      await fetch(`${RAG_API_URL}/reset`, {
+        method: "POST",
+        credentials: "include",
+      });
+      setState((prev: ChatState) => ({...prev, isLoading: false}));
     };
 
     initializeChat();
-  }, []);
+  }, [hasApiUrl]);
 
   const handleToggleChat = () => {
     setState((prev: ChatState) => ({...prev, isOpen: !prev.isOpen}));
@@ -197,7 +205,8 @@ export function ChatInterface() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!input.trim() || state.isLoading || streamingMessage) return;
+    if (!hasApiUrl || !input.trim() || state.isLoading || streamingMessage)
+      return;
 
     const userMessage: Message = {
       id: uuidv4(),
@@ -228,7 +237,9 @@ export function ChatInterface() {
         setState((prev) => ({...prev, isLoading: false}));
       }
     } catch (error) {
-      console.error("Error sending message:", error);
+      if (!isProduction) {
+        console.error("Chat request failed.", error);
+      }
       setState((prev) => ({...prev, isLoading: false}));
     }
   };
@@ -355,6 +366,14 @@ export function ChatInterface() {
               </div>
             )}
 
+            {!hasApiUrl && (
+              <div className='mb-3 animate-in fade-in duration-300'>
+                <div className='bg-amber-500/10 border border-amber-500/30 rounded-2xl px-3.5 py-2.5 inline-block text-amber-300 text-sm'>
+                  Chat is temporarily unavailable.
+                </div>
+              </div>
+            )}
+
             <div ref={messagesEndRef} />
           </div>
 
@@ -368,15 +387,15 @@ export function ChatInterface() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder='Ask me about Pragadeesh...'
-                disabled={state.isLoading}
+                disabled={state.isLoading || !hasApiUrl}
                 className='flex-1 bg-gray-800/30 border border-gray-800/50 rounded-full py-2.5 px-4 text-sm text-gray-200 placeholder:text-gray-600 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 transition-all duration-200 disabled:opacity-50'
               />
               <button
                 type='submit'
-                disabled={state.isLoading || !input.trim()}
+                disabled={state.isLoading || !input.trim() || !hasApiUrl}
                 className={cn(
                   "h-10 w-10 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-200",
-                  input.trim() && !state.isLoading
+                  input.trim() && !state.isLoading && hasApiUrl
                     ? "bg-gradient-to-br from-emerald-500 to-emerald-400 text-white shadow-md shadow-emerald-500/20 hover:scale-105"
                     : "bg-gray-800/50 text-gray-600"
                 )}>
