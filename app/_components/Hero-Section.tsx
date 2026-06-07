@@ -2,247 +2,183 @@
 
 import {motion} from "framer-motion";
 import Link from "next/link";
-import {
-  MoveRight,
-  ArrowUpRight,
-  Github,
-  Cable,
-  AppWindow,
-  Linkedin,
-  AtSign,
-  LocateFixed,
-  TabletSmartphone,
-  BrainCircuit,
-  Twitter,
-} from "lucide-react";
+import {ArrowUpRight, Github, Linkedin, Twitter, MoveRight} from "lucide-react";
 import ResumeButton from "./ResumeButton";
+import RunaxPanel from "./RunaxPanel";
+import {profile, socials, capabilityClusters} from "../data/profile";
+import {projects} from "../data/projects";
 
 const ease = [0.22, 1, 0.36, 1];
+const panel =
+  "rounded-2xl border border-white/[0.06] bg-white/[0.015] backdrop-blur-sm";
 
-const cardBase =
-  "rounded-2xl bg-zinc-900/60 border border-gray-800/50 backdrop-blur-sm";
+const flagship = projects.find((p) => p.slug === "runaxai")!;
+const flagshipTech = ["k3s", "Helm", "FastAPI", "RAG", "Grafana", "Pinecone"];
 
-const techStack = [
-  "React",
-  "Next.js",
-  "TypeScript",
-  "Node.js",
-  "FastAPI",
-  "Python",
-  "LangChain",
-  "Go",
-  "Airflow",
-  "GCP",
-  "Docker",
-  "AWS",
-];
+const fade = (delay: number) => ({
+  initial: {opacity: 0, filter: "blur(10px)", y: 12},
+  animate: {opacity: 1, filter: "blur(0px)", y: 0},
+  transition: {duration: 0.6, delay, ease},
+});
+
+const socialIcon = {
+  GitHub: Github,
+  LinkedIn: Linkedin,
+  Twitter: Twitter,
+} as const;
 
 export default function HeroSection() {
   return (
-    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-auto'>
-      {/* Main intro card - spans full width on lg */}
+    <div className='grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5'>
+      {/* Identity block - borderless, leads the page */}
       <motion.div
-        className={`${cardBase} p-6 sm:p-8 col-span-1 sm:col-span-2 lg:col-span-4 hover:border-gray-700/60 transition-colors duration-300`}
-        initial={{opacity: 0, filter: "blur(10px)"}}
-        animate={{opacity: 1, filter: "blur(0px)"}}
-        transition={{duration: 0.6, ease}}>
-        <p className='font-mono text-sm bold uppercase tracking-widest text-gray-500 font-bold mb-2'>
-          Full Stack + AI Engineer
-        </p>
-        <h1 className='text-[clamp(1.75rem,4vw,2.75rem)] font-bold tracking-tight text-white leading-[1.1] mb-3'>
-          I build{" "}
-          <span className='text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-200'>
-            AI-powered
-          </span>{" "}
-          software.
+        {...fade(0)}
+        className='lg:col-span-7 flex flex-col justify-center px-1 sm:px-2 py-2 sm:py-4'>
+        <div className='flex items-center gap-2.5 mb-5 font-mono text-xs text-gray-400'>
+          <span className='relative flex h-2 w-2'>
+            <span className='absolute inline-flex h-full w-full rounded-full bg-emerald-500/70 animate-ping' />
+            <span className='relative inline-flex h-2 w-2 rounded-full bg-emerald-500' />
+          </span>
+          {profile.availability}
+        </div>
+
+        <h1 className='text-[clamp(2.1rem,5vw,3.75rem)] font-bold tracking-tight text-white leading-[1.05]'>
+          {profile.name}
         </h1>
-        <p className='text-gray-400 text-base sm:text-lg max-w-3xl leading-relaxed'>
-          I&apos;m Pragadeesh &mdash; from scalable full-stack platforms to RAG
-          pipelines and LLM integrations, I bring ideas to production.
+        <p className='mt-2 text-[clamp(1rem,2.2vw,1.4rem)] font-medium text-emerald-400'>
+          {profile.role}
         </p>
-      </motion.div>
 
-      {/* Available for work card */}
-      <motion.div
-        className={`${cardBase} p-6 flex items-center gap-4 hover:border-emerald-800/40 transition-colors duration-300`}
-        initial={{opacity: 0, filter: "blur(10px)"}}
-        animate={{opacity: 1, filter: "blur(0px)"}}
-        transition={{duration: 0.6, delay: 0.1, ease}}>
-        <div className='relative'>
-          <div className='w-3 h-3 rounded-full bg-emerald-500' />
-          <div className='absolute inset-0 w-3 h-3 rounded-full bg-emerald-500 animate-ping opacity-75' />
+        <p className='mt-6 max-w-[60ch] text-base sm:text-lg leading-relaxed text-gray-400'>
+          {profile.intro}
+        </p>
+
+        <div className='mt-7 flex flex-wrap items-center gap-3'>
+          <Link href='/projects'>
+            <button className='group flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-2.5 text-sm font-medium text-zinc-950 transition-all duration-200 hover:bg-emerald-400 active:scale-[0.98]'>
+              View work
+              <MoveRight
+                size={15}
+                className='transition-transform duration-200 group-hover:translate-x-0.5'
+              />
+            </button>
+          </Link>
+          <ResumeButton
+            variant='ghost'
+            resumePath={profile.resumePath}
+            className='flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.02] px-5 py-2.5 text-sm font-medium text-gray-200 transition-all duration-200 hover:border-white/[0.16] hover:bg-white/[0.05] active:scale-[0.98]'>
+            Resume
+          </ResumeButton>
+          <Link
+            href='/contact'
+            className='px-3 py-2.5 text-sm font-medium text-gray-400 transition-colors duration-200 hover:text-emerald-400'>
+            Get in touch
+          </Link>
         </div>
-        <div>
-          <p className='text-white font-medium text-sm'>Available for work</p>
-          <p className='text-gray-500 text-xs font-mono'>
-            Open to opportunities
-          </p>
+
+        <div className='mt-7 flex items-center gap-5 font-mono text-xs text-gray-500'>
+          <span>
+            {profile.location} <span className='text-gray-700'>/</span>{" "}
+            {profile.timezone}
+          </span>
+          <span className='h-3 w-px bg-white/[0.08]' />
+          <div className='flex items-center gap-3'>
+            {socials.map((s) => {
+              const Icon = socialIcon[s.label as keyof typeof socialIcon];
+              return (
+                <Link
+                  key={s.label}
+                  href={s.href}
+                  target='_blank'
+                  aria-label={s.label}
+                  className='text-gray-500 transition-colors duration-200 hover:text-emerald-400'>
+                  <Icon size={16} />
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </motion.div>
 
-      {/* Location card */}
+      {/* Flagship project: RunaxAI */}
       <motion.div
-        className={`${cardBase} p-6 flex items-center gap-4 hover:border-gray-700/60 transition-colors duration-300`}
-        initial={{opacity: 0, filter: "blur(10px)"}}
-        animate={{opacity: 1, filter: "blur(0px)"}}
-        transition={{duration: 0.6, delay: 0.15, ease}}>
-        <LocateFixed className='w-5 h-5 text-gray-500 flex-shrink-0' />
-        <div>
-          <p className='text-white font-medium text-sm'>Austin TX, US</p>
-          <p className='text-gray-500 text-xs font-mono'>CST timezone</p>
+        {...fade(0.12)}
+        className={`lg:col-span-5 ${panel} overflow-hidden flex flex-col`}>
+        <div className='relative h-44 sm:h-52 border-b border-white/[0.06]'>
+          <RunaxPanel />
         </div>
-      </motion.div>
-
-      {/* CTA buttons card */}
-      <motion.div
-        className={`${cardBase} p-6 flex items-center gap-3 col-span-1 sm:col-span-2 hover:border-gray-700/60 transition-colors duration-300`}
-        initial={{opacity: 0, filter: "blur(10px)"}}
-        animate={{opacity: 1, filter: "blur(0px)"}}
-        transition={{duration: 0.6, delay: 0.2, ease}}>
-        <ResumeButton
-          variant='ghost'
-          resumePath='/resume.pdf'
-          className='px-5 py-2.5 text-sm font-medium rounded-full bg-gray-800 hover:bg-gray-700 text-white transition-all duration-200 flex items-center gap-2'>
-          Resume
-          <MoveRight size={14} />
-        </ResumeButton>
-        <Link href='/contact'>
-          <button className='px-5 py-2.5 text-sm font-medium rounded-full bg-gradient-to-r from-emerald-500 to-emerald-400 hover:from-emerald-400 hover:to-emerald-300 text-white transition-all duration-200 flex items-center gap-2 shadow-lg shadow-emerald-500/20'>
-            Contact Me
-            <AtSign size={14} />
-          </button>
-        </Link>
-      </motion.div>
-
-      {/* Featured project card */}
-      <motion.div
-        className={`${cardBase} p-6 col-span-1 sm:col-span-2 flex flex-col justify-between hover:border-emerald-800/30 transition-colors duration-300 group`}
-        initial={{opacity: 0, filter: "blur(10px)"}}
-        animate={{opacity: 1, filter: "blur(0px)"}}
-        transition={{duration: 0.6, delay: 0.25, ease}}>
-        <div>
-          <p className='font-mono text-xs uppercase tracking-widest text-emerald-500/70 mb-3'>
-            Featured Project
+        <div className='flex flex-1 flex-col p-6'>
+          <div className='flex items-center justify-between'>
+            <span className='font-mono text-[11px] uppercase tracking-widest text-emerald-500/80'>
+              Flagship
+            </span>
+            {flagship.status && (
+              <span className='font-mono text-[11px] text-gray-500'>
+                {flagship.status}
+              </span>
+            )}
+          </div>
+          <h2 className='mt-2 text-xl font-semibold text-white'>
+            {flagship.title}
+          </h2>
+          <p className='mt-1.5 text-sm leading-relaxed text-gray-400'>
+            {flagship.tagline}. Production AI infrastructure on a self-hosted k3s
+            cluster, deployed through a self-hosted runner.
           </p>
-          <h3 className='text-white font-semibold text-lg mb-1'>Nalvar</h3>
-          <p className='text-gray-500 text-sm leading-relaxed mb-4'>
-            Tech consulting website with an AI-powered RAG chatbot for
-            intelligent Q&amp;A.
-          </p>
-          <div className='flex flex-wrap gap-1.5'>
-            {["Next.js", "FastAPI", "LangChain", "RAG"].map((t) => (
+          <div className='mt-4 flex flex-wrap gap-1.5'>
+            {flagshipTech.map((t) => (
               <span
                 key={t}
-                className='px-2 py-0.5 rounded-full border border-gray-800/50 bg-gray-800/30 text-gray-400 text-xs font-mono'>
+                className='rounded-full border border-white/[0.06] bg-white/[0.02] px-2 py-0.5 font-mono text-[11px] text-gray-400'>
                 {t}
               </span>
             ))}
           </div>
-        </div>
-        <div className='flex gap-3 mt-5'>
-          <Link
-            href='https://github.com/Pragadeesh122'
-            target='_blank'
-            className='flex items-center gap-1.5 text-xs text-gray-400 hover:text-white transition-colors duration-200'>
-            <Github size={13} /> GitHub
-          </Link>
-          <Link
-            href='https://nalvar.com'
-            target='_blank'
-            className='flex items-center gap-1.5 text-xs text-emerald-400 hover:text-emerald-300 transition-colors duration-200'>
-            <ArrowUpRight size={13} /> Live site
-          </Link>
-        </div>
-      </motion.div>
-
-      {/* Specializations card */}
-      <motion.div
-        className={`${cardBase} p-6 col-span-1 sm:col-span-2 hover:border-gray-700/60 transition-colors duration-300`}
-        initial={{opacity: 0, filter: "blur(10px)"}}
-        animate={{opacity: 1, filter: "blur(0px)"}}
-        transition={{duration: 0.6, delay: 0.3, ease}}>
-        <p className='font-mono text-xs uppercase tracking-widest text-gray-500 mb-4'>
-          What I Build
-        </p>
-        <div className='grid grid-cols-2 gap-3'>
-          {[
-            {icon: <AppWindow size={15} />, label: "Full Stack Apps", desc: "Web apps & platforms"},
-            {icon: <BrainCircuit size={15} />, label: "AI / LLM Systems", desc: "RAG & agents"},
-            {icon: <Cable size={15} />, label: "REST APIs", desc: "Scalable backends"},
-            {icon: <TabletSmartphone size={15} />, label: "Mobile Apps", desc: "Cross-platform"},
-          ].map(({icon, label, desc}) => (
-            <div
-              key={label}
-              className='flex items-center gap-4 px-3 py-2.5 rounded-xl bg-gray-800/30 border border-gray-800/40'>
-              <span className='text-emerald-400'>{icon}</span>
-              <div>
-                <span className='text-gray-300 text-xs font-medium'>{label}</span>
-                <p className='text-gray-500 text-[10px] leading-tight mt-0.5'>{desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Tech stack marquee card */}
-      <motion.div
-        className={`${cardBase} p-6 overflow-hidden col-span-1 sm:col-span-2 lg:col-span-3 hover:border-gray-700/60 transition-colors duration-300`}
-        initial={{opacity: 0, filter: "blur(10px)"}}
-        animate={{opacity: 1, filter: "blur(0px)"}}
-        transition={{duration: 0.6, delay: 0.35, ease}}>
-        <p className='font-mono text-xs uppercase tracking-widest text-gray-500 mb-4'>
-          Tech Stack
-        </p>
-        <div className='relative overflow-hidden'>
-          <div className='absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-zinc-900/60 to-transparent z-10' />
-          <div className='absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-zinc-900/60 to-transparent z-10' />
-          <div className='flex animate-marquee whitespace-nowrap'>
-            {[...techStack, ...techStack].map((tech, i) => (
-              <span
-                key={i}
-                className='inline-flex items-center px-3 py-1.5 mx-1.5 rounded-full border border-gray-800/50 bg-gray-800/30 text-gray-300 text-xs font-mono'>
-                {tech}
-              </span>
-            ))}
+          <div className='mt-auto pt-5'>
+            <Link
+              href={flagship.links[0].href}
+              target='_blank'
+              className='inline-flex items-center gap-1.5 text-sm font-medium text-emerald-400 transition-colors duration-200 hover:text-emerald-300'>
+              {flagship.links[0].label}
+              <ArrowUpRight size={15} />
+            </Link>
           </div>
         </div>
       </motion.div>
 
-      {/* Social links card */}
+      {/* Capability clusters - console-style list, not a uniform card grid */}
       <motion.div
-        className={`${cardBase} p-6 hover:border-gray-700/60 transition-colors duration-300`}
-        initial={{opacity: 0, filter: "blur(10px)"}}
-        animate={{opacity: 1, filter: "blur(0px)"}}
-        transition={{duration: 0.6, delay: 0.4, ease}}>
-        <p className='font-mono text-xs uppercase tracking-widest text-gray-500 mb-4'>
-          Connect
-        </p>
-        <div className='flex gap-3'>
-          {[
-            {
-              href: "https://github.com/Pragadeesh122",
-              icon: <Github size={18} />,
-              label: "GitHub",
-            },
-            {
-              href: "https://www.linkedin.com/in/pragadeeshvs",
-              icon: <Linkedin size={18} />,
-              label: "LinkedIn",
-            },
-            {
-              href: "https://x.com/Pragadeesh1221",
-              icon: <Twitter size={18} />,
-              label: "Twitter",
-            },
-          ].map((social) => (
-            <Link
-              key={social.label}
-              href={social.href}
-              target='_blank'
-              aria-label={social.label}
-              className='p-2.5 rounded-full bg-gray-800/50 border border-gray-800/50 text-gray-400 hover:text-emerald-400 hover:border-emerald-500/20 transition-all duration-200'>
-              {social.icon}
-            </Link>
+        {...fade(0.2)}
+        className={`lg:col-span-12 ${panel} p-6 sm:p-8`}>
+        <div className='flex items-baseline justify-between'>
+          <h2 className='font-mono text-[11px] uppercase tracking-widest text-gray-500'>
+            What I build
+          </h2>
+          <Link
+            href='/skills'
+            className='font-mono text-[11px] text-gray-500 transition-colors duration-200 hover:text-emerald-400'>
+            full stack
+          </Link>
+        </div>
+        <div className='mt-5 grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-white/[0.05] bg-white/[0.04] md:grid-cols-2'>
+          {capabilityClusters.map((c) => (
+            <div
+              key={c.id}
+              className='group bg-[#0a0a0c] p-5 transition-colors duration-200 hover:bg-white/[0.015]'>
+              <h3 className='text-sm font-semibold text-gray-100'>{c.title}</h3>
+              <p className='mt-1.5 text-[13px] leading-relaxed text-gray-500'>
+                {c.summary}
+              </p>
+              <div className='mt-3 flex flex-wrap gap-1.5'>
+                {c.tags.slice(0, 5).map((t) => (
+                  <span
+                    key={t}
+                    className='font-mono text-[10px] text-gray-600 transition-colors duration-200 group-hover:text-gray-500'>
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </motion.div>

@@ -1,5 +1,5 @@
 import type {Metadata, Viewport} from "next";
-import {Inter, JetBrains_Mono} from "next/font/google";
+import {Sora, JetBrains_Mono} from "next/font/google";
 import "./globals.css";
 import Navbar from "./_components/Navbar";
 import Footer from "./_components/Footer";
@@ -11,10 +11,10 @@ import ClientOnly from "./_components/ClientOnly";
 import {Analytics} from "@vercel/analytics/next";
 import ScrollProgress from "./_components/ScrollProgress";
 
-const inter = Inter({
+const sora = Sora({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-sora",
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -28,35 +28,39 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
+const TITLE = "Pragadeesh VS - AI Systems & Full-Stack Engineer";
+const DESCRIPTION =
+  "AI Systems and Full-Stack Engineer building production-grade AI agents, RAG platforms, LLM observability, and cloud-native apps.";
+
 export const metadata: Metadata = {
-  title: "Pragadeesh - Full Stack Developer",
-  description:
-    "Full Stack Web Developer specializing in React, Next.js, Node.js, and modern web technologies.",
+  title: TITLE,
+  description: DESCRIPTION,
   keywords: [
-    "web developer",
-    "full stack",
-    "react",
-    "next.js",
+    "AI systems engineer",
+    "RAG",
+    "AI agents",
+    "LLM observability",
+    "cloud-native",
+    "Kubernetes",
+    "FastAPI",
+    "Next.js",
+    "full stack engineer",
     "portfolio",
-    "javascript",
-    "typescript",
   ],
-  authors: [{name: "Pragadeesh"}],
-  creator: "Pragadeesh",
+  authors: [{name: "Pragadeesh VS"}],
+  creator: "Pragadeesh VS",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://pragadeesh.dev",
-    title: "Pragadeesh - Full Stack Developer",
-    description:
-      "Full Stack Web Developer specializing in React, Next.js, Node.js, and modern web technologies.",
-    siteName: "Pragadeesh's Portfolio",
+    title: TITLE,
+    description: DESCRIPTION,
+    siteName: "Pragadeesh VS",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pragadeesh - Full Stack Developer",
-    description:
-      "Full Stack Web Developer specializing in React, Next.js, Node.js, and modern web technologies.",
+    title: TITLE,
+    description: DESCRIPTION,
     creator: "@Pragadeesh1221",
   },
   robots: "index, follow",
@@ -66,7 +70,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang='en' suppressHydrationWarning className='dark'>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased min-h-screen flex flex-col`}>
+        className={`${sora.variable} ${jetbrainsMono.variable} font-sans antialiased min-h-screen flex flex-col`}>
         <Analytics />
         <ClientOnly>
           <ThemeProvider defaultTheme='dark' forcedTheme='dark'>

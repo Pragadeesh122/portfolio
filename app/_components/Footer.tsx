@@ -41,7 +41,9 @@ const Footer = () => {
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6'>
         <div className='flex flex-col sm:flex-row items-center justify-between gap-4'>
           <p className='text-sm text-gray-500'>
-            Built by Pragadeesh &middot; {currentYear}
+            Pragadeesh VS{" "}
+            <span className='text-gray-700'>/</span> AI Systems &amp; Full-Stack
+            Engineer <span className='text-gray-700'>/</span> {currentYear}
           </p>
           <div className='flex items-center gap-3'>
             {socialLinks.map((link) => (

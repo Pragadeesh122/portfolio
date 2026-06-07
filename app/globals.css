@@ -81,6 +81,40 @@
   body {
     @apply bg-[#09090b] text-foreground;
   }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer utilities {
+  /* Faint blueprint grid for the control-surface canvas. */
+  .bg-blueprint {
+    background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.025) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+}
+
+/* Perpetual / decorative motion must yield to reduced-motion preferences. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-scanline,
+  .animate-breathe,
+  .animate-ping {
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* Scroll progress bar */

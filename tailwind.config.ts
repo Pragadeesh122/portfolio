@@ -18,8 +18,8 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        mono: ["var(--font-jetbrains)", "monospace"],
+        sans: ["var(--font-sora)", "system-ui", "sans-serif"],
+        mono: ["var(--font-jetbrains)", "ui-monospace", "monospace"],
       },
       colors: {
         background: {
@@ -76,10 +76,22 @@ const config: Config = {
           "0%": {transform: "translateX(0%)"},
           "100%": {transform: "translateX(-50%)"},
         },
+        // Slow vertical sweep used on telemetry panels (control-surface motion).
+        scanline: {
+          "0%": {transform: "translateY(-100%)"},
+          "100%": {transform: "translateY(400%)"},
+        },
+        // Gentle breathing for live status indicators.
+        breathe: {
+          "0%, 100%": {opacity: "1"},
+          "50%": {opacity: "0.45"},
+        },
       },
       animation: {
         "blur-in": "blur-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards",
         marquee: "marquee 30s linear infinite",
+        scanline: "scanline 6s cubic-bezier(0.4, 0, 0.2, 1) infinite",
+        breathe: "breathe 2.4s ease-in-out infinite",
       },
     },
   },

@@ -110,14 +110,12 @@ export default function ExperiencePage() {
           initial={{opacity: 0, filter: "blur(10px)"}}
           animate={{opacity: 1, filter: "blur(0px)"}}
           transition={{duration: 0.6, ease}}>
-          <p className='font-mono text-xs uppercase tracking-widest text-emerald-500 mb-3'>
-            My Journey
-          </p>
           <h1 className='text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4'>
-            Experience & Education
+            Experience
           </h1>
-          <p className='text-gray-400 text-lg max-w-2xl'>
-            My professional journey, work experience, and educational background.
+          <p className='text-gray-400 text-lg max-w-2xl leading-relaxed'>
+            Where I have worked and studied, from geospatial data pipelines and
+            AI agents to the degrees behind them.
           </p>
         </motion.div>
 
@@ -155,7 +153,7 @@ export default function ExperiencePage() {
                 </div>
 
                 {/* Card */}
-                <div className='rounded-xl bg-zinc-900/60 border border-gray-800/50 backdrop-blur-sm p-6 hover:border-gray-700/60 transition-colors duration-300'>
+                <div className='rounded-xl border border-white/[0.06] bg-white/[0.015] backdrop-blur-sm p-6 hover:border-white/[0.12] transition-colors duration-300'>
                   <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4'>
                     <div>
                       <h3 className='text-lg font-bold tracking-tight text-white'>
