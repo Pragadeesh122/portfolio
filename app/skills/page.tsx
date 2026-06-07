@@ -19,7 +19,7 @@ const toolGroups = categories
 export default function SkillsPage() {
   return (
     <section className='relative pt-28 pb-16 sm:pt-32 sm:pb-24'>
-      <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+      <div className='mx-auto w-full max-w-[1920px] px-[clamp(1rem,4vw,4.5rem)]'>
         <motion.div
           className='mb-12 sm:mb-16'
           initial={{opacity: 0, filter: "blur(10px)"}}
@@ -35,16 +35,14 @@ export default function SkillsPage() {
         </motion.div>
 
         {/* Capability clusters */}
-        <div className='grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2'>
+        <div className='grid grid-cols-1 gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3'>
           {capabilityClusters.map((cluster, i) => (
             <motion.div
               key={cluster.id}
               initial={{opacity: 0, filter: "blur(10px)", y: 14}}
               animate={{opacity: 1, filter: "blur(0px)", y: 0}}
               transition={{duration: 0.5, delay: 0.1 + i * 0.05, ease}}
-              className={`${panel} p-6 sm:p-7 ${
-                i === capabilityClusters.length - 1 ? "md:col-span-2" : ""
-              }`}>
+              className={`${panel} p-6 sm:p-7`}>
               <h2 className='text-lg font-semibold text-white'>
                 {cluster.title}
               </h2>

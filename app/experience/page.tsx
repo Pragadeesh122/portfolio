@@ -104,21 +104,7 @@ const experiences: Experience[] = [
 export default function ExperiencePage() {
   return (
     <section className='pt-28 sm:pt-32 pb-16 sm:pb-24 relative'>
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-        <motion.div
-          className='mb-16'
-          initial={{opacity: 0, filter: "blur(10px)"}}
-          animate={{opacity: 1, filter: "blur(0px)"}}
-          transition={{duration: 0.6, ease}}>
-          <h1 className='text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4'>
-            Experience
-          </h1>
-          <p className='text-gray-400 text-lg max-w-2xl leading-relaxed'>
-            Where I have worked and studied, from geospatial data pipelines and
-            AI agents to the degrees behind them.
-          </p>
-        </motion.div>
-
+      <div className='mx-auto w-full max-w-5xl px-[clamp(1rem,4vw,4.5rem)]'>
         {/* Timeline */}
         <div className='relative'>
           {/* Timeline line */}

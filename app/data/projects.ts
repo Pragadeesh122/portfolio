@@ -5,13 +5,10 @@ import financeTracker from "@/public/finance-tracker.png";
 import eleganceHub from "@/public/elegancehub-landing.png";
 import wildOasis from "@/public/wild_oasis_webiste.png";
 import styleSenseAI from "@/public/styleSenseAI.png";
+import runaxPlatform from "@/public/runaxai-platform.png";
+import optionsStrategy from "@/public/options-strategy.png";
 
-// New flagship projects have no screenshots, so they render crafted code/data
-// panels instead of broken image imports.
-export type ProjectVisual =
-  | {kind: "image"; src: StaticImageData}
-  | {kind: "runax"}
-  | {kind: "payoff"};
+export type ProjectVisual = {kind: "image"; src: StaticImageData};
 
 export type ProjectTier = "flagship" | "headline" | "supporting";
 
@@ -70,8 +67,15 @@ export const projects: Project[] = [
       "Full observability: Prometheus, Loki, Tempo, and Grafana, with ARQ background workers.",
       "Provider-agnostic LLM layer with semantic memory, agents, tools, and prompt management.",
     ],
-    links: [{label: "runaxai.com", href: "https://runaxai.com", kind: "live"}],
-    visual: {kind: "runax"},
+    links: [
+      {
+        label: "Source",
+        href: "https://github.com/Pragadeesh122/RunaxAI",
+        kind: "source",
+      },
+      {label: "runaxai.com", href: "https://runaxai.com", kind: "live"},
+    ],
+    visual: {kind: "image", src: runaxPlatform},
   },
   {
     slug: "options-strategy-reference",
@@ -99,8 +103,15 @@ export const projects: Project[] = [
       "Greeks, probability, and time-decay overlays on interactive payoff diagrams.",
       "Eight catalog strategies, a strategy builder, and a share codec, all invariant-tested with Vitest and fast-check.",
     ],
-    links: [],
-    visual: {kind: "payoff"},
+    links: [
+      {
+        label: "Source",
+        href: "https://github.com/Pragadeesh122/Options_Strategy_Reference/tree/main/options-strategy-reference",
+        kind: "source",
+      },
+      {label: "financetracker.live", href: "https://financetracker.live", kind: "live"},
+    ],
+    visual: {kind: "image", src: optionsStrategy},
   },
   {
     slug: "nalvar",

@@ -2,7 +2,7 @@ import HeroSection from "./_components/Hero-Section";
 
 export default function Page() {
   return (
-    <div className='relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 pb-2'>
+    <div className='relative mx-auto w-full max-w-[1920px] px-[clamp(1.25rem,5vw,6rem)] pt-24 sm:pt-28 pb-12'>
       <HeroSection />
     </div>
   );

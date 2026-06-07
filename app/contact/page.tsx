@@ -43,7 +43,7 @@ const contactInfo = [
 export default function ContactPage() {
   return (
     <section className='pt-28 sm:pt-32 pb-16 sm:pb-24 relative'>
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+      <div className='mx-auto w-full max-w-6xl px-[clamp(1rem,4vw,4.5rem)]'>
         <motion.div
           className='mb-16'
           initial={{opacity: 0, filter: "blur(10px)"}}

@@ -28,13 +28,31 @@ import go_original from "@/public/go-original.svg";
 import gcp_original from "@/public/gcp-original.svg";
 import airflow_original from "@/public/airflow-original.svg";
 import bigquery_original from "@/public/bigquery-original.svg";
+// RunaxAI stack additions (official Devicon / Simple Icons assets)
+import redis_original from "@/public/redis-original.svg";
+import minio from "@/public/minio.svg";
+import sqlalchemy from "@/public/sqlalchemy.svg";
+import pytest_original from "@/public/pytest-original.svg";
+import playwright_original from "@/public/playwright-original.svg";
+import helm from "@/public/helm.svg";
+import githubactions_original from "@/public/githubactions-original.svg";
+import cloudflare from "@/public/cloudflare.svg";
+import prometheus_original from "@/public/prometheus-original.svg";
+import grafana_original from "@/public/grafana-original.svg";
+import opentelemetry from "@/public/opentelemetry-original.svg";
+import ollama from "@/public/ollama.svg";
+import amazon_s3 from "@/public/amazon-s3.svg";
+import google_cloud_storage from "@/public/google-cloud-storage.svg";
 // Define skill categories
 export const categories = [
   "All",
   "Frontend",
   "Backend",
   "Database",
+  "Storage",
   "DevOps",
+  "Observability",
+  "Testing",
   "Language",
   "AI/ML",
 ];
@@ -247,6 +265,105 @@ export const skillData = [
     skill: "PyTorch",
     alt: "pytorch_logo",
     src: pytorch,
+    category: "AI/ML",
+    proficiency: 80,
+  },
+  // RunaxAI implemented stack
+  {
+    skill: "Redis",
+    alt: "redis_logo",
+    src: redis_original,
+    category: "Database",
+    proficiency: 85,
+  },
+  {
+    skill: "MinIO",
+    alt: "minio_logo",
+    src: minio,
+    category: "Storage",
+    proficiency: 80,
+  },
+  {
+    skill: "Amazon S3",
+    alt: "amazon_s3_logo",
+    src: amazon_s3,
+    category: "Storage",
+    proficiency: 78,
+  },
+  {
+    skill: "Google Cloud Storage",
+    alt: "google_cloud_storage_logo",
+    src: google_cloud_storage,
+    category: "Storage",
+    proficiency: 82,
+  },
+  {
+    skill: "SQLAlchemy",
+    alt: "sqlalchemy_logo",
+    src: sqlalchemy,
+    category: "Backend",
+    proficiency: 85,
+  },
+  {
+    skill: "Pytest",
+    alt: "pytest_logo",
+    src: pytest_original,
+    category: "Testing",
+    proficiency: 85,
+  },
+  {
+    skill: "Playwright",
+    alt: "playwright_logo",
+    src: playwright_original,
+    category: "Testing",
+    proficiency: 80,
+  },
+  {
+    skill: "Helm",
+    alt: "helm_logo",
+    src: helm,
+    category: "DevOps",
+    proficiency: 82,
+  },
+  {
+    skill: "GitHub Actions",
+    alt: "github_actions_logo",
+    src: githubactions_original,
+    category: "DevOps",
+    proficiency: 85,
+  },
+  {
+    skill: "Cloudflare",
+    alt: "cloudflare_logo",
+    src: cloudflare,
+    category: "DevOps",
+    proficiency: 78,
+  },
+  {
+    skill: "Prometheus",
+    alt: "prometheus_logo",
+    src: prometheus_original,
+    category: "Observability",
+    proficiency: 82,
+  },
+  {
+    skill: "Grafana",
+    alt: "grafana_logo",
+    src: grafana_original,
+    category: "Observability",
+    proficiency: 82,
+  },
+  {
+    skill: "OpenTelemetry",
+    alt: "opentelemetry_logo",
+    src: opentelemetry,
+    category: "Observability",
+    proficiency: 78,
+  },
+  {
+    skill: "Ollama",
+    alt: "ollama_logo",
+    src: ollama,
     category: "AI/ML",
     proficiency: 80,
   },
