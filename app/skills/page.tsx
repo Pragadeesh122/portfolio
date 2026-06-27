@@ -6,7 +6,6 @@ import {skillData, categories} from "../data/SkillData";
 import {capabilityClusters} from "../data/profile";
 
 const ease = [0.22, 1, 0.36, 1];
-const panel = "rounded-2xl border border-white/[0.06] bg-white/[0.015]";
 
 const toolGroups = categories
   .filter((c) => c !== "All")
@@ -35,14 +34,13 @@ export default function SkillsPage() {
         </motion.div>
 
         {/* Capability clusters */}
-        <div className='grid grid-cols-1 gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3'>
-          {capabilityClusters.map((cluster, i) => (
-            <motion.div
-              key={cluster.id}
-              initial={{opacity: 0, filter: "blur(10px)", y: 14}}
-              animate={{opacity: 1, filter: "blur(0px)", y: 0}}
-              transition={{duration: 0.5, delay: 0.1 + i * 0.05, ease}}
-              className={`${panel} p-6 sm:p-7`}>
+        <motion.div
+          initial={{opacity: 0, filter: "blur(10px)"}}
+          animate={{opacity: 1, filter: "blur(0px)"}}
+          transition={{duration: 0.5, delay: 0.1, ease}}
+          className='flex flex-col divide-y divide-white/[0.06] overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.015]'>
+          {capabilityClusters.map((cluster) => (
+            <div key={cluster.id} className='p-6 sm:p-7'>
               <h2 className='text-lg font-semibold text-white'>
                 {cluster.title}
               </h2>
@@ -58,9 +56,9 @@ export default function SkillsPage() {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Tooling wall */}
         <motion.div
