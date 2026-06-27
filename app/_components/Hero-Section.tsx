@@ -126,15 +126,18 @@ export default function HeroSection() {
 
       <section className='relative grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(500px,1fr)] lg:items-start xl:gap-14'>
         <motion.div {...fade(0)} className='flex min-w-0 flex-col pt-6 lg:pt-10'>
-          <div className='mb-8 flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-widest text-gray-500'>
-            <span className='inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/[0.04] px-3 py-1.5 text-emerald-300/90'>
+          <div className='mb-8 flex flex-wrap items-center gap-x-3 gap-y-1.5 font-mono text-[11px] uppercase tracking-widest text-gray-500'>
+            <span className='inline-flex items-center gap-2 text-emerald-300/90'>
               <span className='relative flex h-2 w-2'>
                 <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/60' />
                 <span className='relative inline-flex h-2 w-2 rounded-full bg-emerald-400' />
               </span>
               {profile.availability}
             </span>
-            <span>{profile.location} / {profile.timezone}</span>
+            <span aria-hidden className='text-gray-700'>·</span>
+            <span>
+              {profile.location} / {profile.timezone}
+            </span>
           </div>
 
           <h1 className='mt-0 max-w-[9ch] text-[clamp(2.45rem,4.65vw,4.85rem)] font-black leading-[0.94] tracking-[-0.06em] text-white'>
@@ -144,7 +147,7 @@ export default function HeroSection() {
             {profile.role}
           </p>
           <p className='mt-7 max-w-[62ch] text-base leading-relaxed text-gray-400 sm:text-lg'>
-            {profile.intro}
+            {profile.summary}
           </p>
 
           <div className='mt-8 flex flex-wrap items-center gap-3'>
@@ -163,12 +166,6 @@ export default function HeroSection() {
               className='inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.02] px-5 py-2.5 text-sm font-medium text-gray-200 transition-all duration-200 hover:border-white/[0.16] hover:bg-white/[0.05] active:scale-[0.98]'>
               Resume
             </ResumeButton>
-            <Link
-              href={`mailto:${profile.email}`}
-              className='inline-flex items-center gap-2 px-3 py-2.5 text-sm font-medium text-gray-400 transition-colors duration-200 hover:text-emerald-400'>
-              <Mail size={15} />
-              Email
-            </Link>
           </div>
 
           <div className='mt-8 flex items-center gap-4 text-gray-500'>
@@ -185,6 +182,12 @@ export default function HeroSection() {
                 </Link>
               );
             })}
+            <Link
+              href={`mailto:${profile.email}`}
+              aria-label='Email'
+              className='transition-colors duration-200 hover:text-emerald-400'>
+              <Mail size={17} />
+            </Link>
           </div>
         </motion.div>
 
