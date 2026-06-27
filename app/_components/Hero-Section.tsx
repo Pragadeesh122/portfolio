@@ -92,16 +92,13 @@ function CapabilityStrip() {
   return (
     <motion.div
       {...fade(0.22)}
-      className='grid grid-cols-1 overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.015] sm:grid-cols-2 xl:grid-cols-5'>
+      className='flex flex-col divide-y divide-white/[0.06] overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.015] xl:flex-row xl:divide-x xl:divide-y-0'>
       {capabilityClusters.map((cluster) => (
         <Link
           key={cluster.id}
           href='/skills'
-          className='group border-b border-white/[0.06] p-5 transition-colors duration-200 hover:bg-white/[0.025] sm:even:border-l xl:border-b-0 xl:border-l xl:first:border-l-0'>
-          <p className='font-mono text-[10px] uppercase tracking-widest text-emerald-500/70'>
-            {cluster.id.replaceAll("-", " /")}
-          </p>
-          <h3 className='mt-3 text-sm font-semibold text-gray-100'>
+          className='group flex-1 p-5 transition-colors duration-200 hover:bg-white/[0.025]'>
+          <h3 className='text-sm font-semibold text-gray-100'>
             {cluster.title}
           </h3>
           <p className='mt-2 line-clamp-3 text-[13px] leading-relaxed text-gray-500'>
@@ -111,7 +108,7 @@ function CapabilityStrip() {
             {cluster.tags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
-                className='font-mono text-[10px] text-gray-650 transition-colors duration-200 group-hover:text-gray-500'>
+                className='font-mono text-[10px] text-gray-600 transition-colors duration-200 group-hover:text-gray-500'>
                 {tag}
               </span>
             ))}
