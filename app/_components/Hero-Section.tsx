@@ -61,6 +61,10 @@ function ProjectWindow({
           sizes='(max-width: 1024px) 100vw, 48vw'
           priority={priority}
         />
+        <div
+          aria-hidden
+          className='pointer-events-none absolute inset-x-0 top-0 h-1/3 animate-scanline bg-gradient-to-b from-transparent via-emerald-400/[0.07] to-transparent'
+        />
       </div>
     </div>
   );
@@ -194,14 +198,17 @@ export default function HeroSection() {
         <motion.aside
           {...fade(0.12)}
           className='rounded-3xl border border-white/[0.06] bg-white/[0.018] p-6 backdrop-blur-sm lg:mt-2'>
-          <div className='flex items-end justify-between gap-4 border-b border-white/[0.06] pb-4'>
-            <div>
-              <p className='font-mono text-[11px] uppercase tracking-[0.28em] text-emerald-500/80'>
-                Featured project
-              </p>
-              <h2 className='mt-2 text-xl font-semibold tracking-tight text-white'>
-                RunaxAI
+          <div className='flex items-center justify-between gap-4 border-b border-white/[0.06] pb-4'>
+            <div className='flex items-center gap-3'>
+              <h2 className='text-xl font-semibold tracking-tight text-white'>
+                {flagship.title}
               </h2>
+              {flagship.status === "Live" && (
+                <span className='inline-flex items-center gap-1.5 rounded-full border border-emerald-400/20 bg-emerald-400/[0.06] px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-emerald-300/90'>
+                  <span className='h-1.5 w-1.5 rounded-full bg-emerald-400 animate-breathe' />
+                  {flagship.status}
+                </span>
+              )}
             </div>
             <Link
               href='/projects'
