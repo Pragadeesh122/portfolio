@@ -103,9 +103,6 @@ function FeatureCard({
 
       <div className='flex flex-1 flex-col px-5 pb-6 sm:px-6'>
         <div className='flex items-center gap-3'>
-          <span className='font-mono text-[11px] uppercase tracking-widest text-emerald-500/80'>
-            {project.tier === "flagship" ? "Flagship" : "Featured"}
-          </span>
           <span className='font-mono text-[11px] text-gray-600'>
             {project.year}
             {project.status ? ` · ${project.status}` : ""}
