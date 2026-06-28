@@ -61,6 +61,10 @@ function ProjectWindow({
           sizes='(max-width: 1024px) 100vw, 48vw'
           priority={priority}
         />
+        <div
+          aria-hidden
+          className='pointer-events-none absolute inset-x-0 top-0 h-1/3 animate-scanline bg-gradient-to-b from-transparent via-emerald-400/[0.07] to-transparent'
+        />
       </div>
     </div>
   );
@@ -88,16 +92,13 @@ function CapabilityStrip() {
   return (
     <motion.div
       {...fade(0.22)}
-      className='grid grid-cols-1 overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.015] sm:grid-cols-2 xl:grid-cols-5'>
+      className='flex flex-col divide-y divide-white/[0.06] overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.015] xl:flex-row xl:divide-x xl:divide-y-0'>
       {capabilityClusters.map((cluster) => (
         <Link
           key={cluster.id}
           href='/skills'
-          className='group border-b border-white/[0.06] p-5 transition-colors duration-200 hover:bg-white/[0.025] sm:even:border-l xl:border-b-0 xl:border-l xl:first:border-l-0'>
-          <p className='font-mono text-[10px] uppercase tracking-widest text-emerald-500/70'>
-            {cluster.id.replaceAll("-", " /")}
-          </p>
-          <h3 className='mt-3 text-sm font-semibold text-gray-100'>
+          className='group flex-1 p-5 transition-colors duration-200 hover:bg-white/[0.025]'>
+          <h3 className='text-sm font-semibold text-gray-100'>
             {cluster.title}
           </h3>
           <p className='mt-2 line-clamp-3 text-[13px] leading-relaxed text-gray-500'>
@@ -107,7 +108,7 @@ function CapabilityStrip() {
             {cluster.tags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
-                className='font-mono text-[10px] text-gray-650 transition-colors duration-200 group-hover:text-gray-500'>
+                className='font-mono text-[10px] text-gray-600 transition-colors duration-200 group-hover:text-gray-500'>
                 {tag}
               </span>
             ))}
@@ -126,15 +127,18 @@ export default function HeroSection() {
 
       <section className='relative grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(500px,1fr)] lg:items-start xl:gap-14'>
         <motion.div {...fade(0)} className='flex min-w-0 flex-col pt-6 lg:pt-10'>
-          <div className='mb-8 flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-widest text-gray-500'>
-            <span className='inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/[0.04] px-3 py-1.5 text-emerald-300/90'>
+          <div className='mb-8 flex flex-wrap items-center gap-x-3 gap-y-1.5 font-mono text-[11px] uppercase tracking-widest text-gray-500'>
+            <span className='inline-flex items-center gap-2 text-emerald-300/90'>
               <span className='relative flex h-2 w-2'>
                 <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/60' />
                 <span className='relative inline-flex h-2 w-2 rounded-full bg-emerald-400' />
               </span>
               {profile.availability}
             </span>
-            <span>{profile.location} / {profile.timezone}</span>
+            <span aria-hidden className='text-gray-700'>·</span>
+            <span>
+              {profile.location} / {profile.timezone}
+            </span>
           </div>
 
           <h1 className='mt-0 max-w-[9ch] text-[clamp(2.45rem,4.65vw,4.85rem)] font-black leading-[0.94] tracking-[-0.06em] text-white'>
@@ -144,7 +148,7 @@ export default function HeroSection() {
             {profile.role}
           </p>
           <p className='mt-7 max-w-[62ch] text-base leading-relaxed text-gray-400 sm:text-lg'>
-            {profile.intro}
+            {profile.summary}
           </p>
 
           <div className='mt-8 flex flex-wrap items-center gap-3'>
@@ -163,12 +167,6 @@ export default function HeroSection() {
               className='inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.02] px-5 py-2.5 text-sm font-medium text-gray-200 transition-all duration-200 hover:border-white/[0.16] hover:bg-white/[0.05] active:scale-[0.98]'>
               Resume
             </ResumeButton>
-            <Link
-              href={`mailto:${profile.email}`}
-              className='inline-flex items-center gap-2 px-3 py-2.5 text-sm font-medium text-gray-400 transition-colors duration-200 hover:text-emerald-400'>
-              <Mail size={15} />
-              Email
-            </Link>
           </div>
 
           <div className='mt-8 flex items-center gap-4 text-gray-500'>
@@ -185,20 +183,29 @@ export default function HeroSection() {
                 </Link>
               );
             })}
+            <Link
+              href={`mailto:${profile.email}`}
+              aria-label='Email'
+              className='transition-colors duration-200 hover:text-emerald-400'>
+              <Mail size={17} />
+            </Link>
           </div>
         </motion.div>
 
         <motion.aside
           {...fade(0.12)}
           className='rounded-3xl border border-white/[0.06] bg-white/[0.018] p-6 backdrop-blur-sm lg:mt-2'>
-          <div className='flex items-end justify-between gap-4 border-b border-white/[0.06] pb-4'>
-            <div>
-              <p className='font-mono text-[11px] uppercase tracking-[0.28em] text-emerald-500/80'>
-                Featured project
-              </p>
-              <h2 className='mt-2 text-xl font-semibold tracking-tight text-white'>
-                RunaxAI
+          <div className='flex items-center justify-between gap-4 border-b border-white/[0.06] pb-4'>
+            <div className='flex items-center gap-3'>
+              <h2 className='text-xl font-semibold tracking-tight text-white'>
+                {flagship.title}
               </h2>
+              {flagship.status === "Live" && (
+                <span className='inline-flex items-center gap-1.5 rounded-full border border-emerald-400/20 bg-emerald-400/[0.06] px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-emerald-300/90'>
+                  <span className='h-1.5 w-1.5 rounded-full bg-emerald-400 animate-breathe' />
+                  {flagship.status}
+                </span>
+              )}
             </div>
             <Link
               href='/projects'

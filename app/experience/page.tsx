@@ -128,12 +128,12 @@ export default function ExperiencePage() {
                     className={`w-10 h-10 rounded-full border-2 flex items-center justify-center ${
                       experience.type === "work"
                         ? "border-emerald-500/30 bg-emerald-500/10"
-                        : "border-cyan-500/30 bg-cyan-500/10"
+                        : "border-white/10 bg-white/[0.04]"
                     }`}>
                     {experience.type === "work" ? (
                       <Briefcase className='w-4 h-4 text-emerald-400' />
                     ) : (
-                      <GraduationCap className='w-4 h-4 text-cyan-400' />
+                      <GraduationCap className='w-4 h-4 text-gray-400' />
                     )}
                   </div>
                 </div>
@@ -157,7 +157,7 @@ export default function ExperiencePage() {
                         className={`px-2 py-0.5 text-xs font-mono rounded-full ${
                           experience.type === "work"
                             ? "text-emerald-400 bg-emerald-500/10 border border-emerald-500/20"
-                            : "text-cyan-400 bg-cyan-500/10 border border-cyan-500/20"
+                            : "text-gray-400 bg-white/[0.04] border border-white/10"
                         }`}>
                         {experience.type === "work" ? "Work" : "Education"}
                       </span>
